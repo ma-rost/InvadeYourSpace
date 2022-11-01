@@ -89,7 +89,6 @@ void ofApp::mouseExited(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-    cout << w <<"\n";
     player.setCoords(static_cast<float>(h - 50), false);
 }
 

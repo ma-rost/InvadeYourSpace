@@ -7,12 +7,14 @@
 class Character {
 	const int resizeFactor_{ 3 };
 protected:
-	ofImage spriteSheet{ "spaceInvaders_spriteSheet.png" };
-	std::vector<ofImage>sprites_;
-	Point <int> defaultSize{ 16,8 };
+	ofImage spriteSheet_{ "spaceInvaders_spriteSheet.png" };
+	std::vector<ofImage> sprites_;
+	Point <int> defaultSize_{ 16,8 };
+
 	Point <float> coordinate_;
-	bool isLive_;
-	
+	Point<float> drawRestrictions_{ 50, 600 };
+
+	bool isLive_{true};
 	
 public:
 	Character(const float& x, const float& y);

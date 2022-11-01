@@ -33,5 +33,4 @@ class ofApp : public ofBaseApp{
 		array<vector<Enemy>,11> enemyTest;
 
 		Point<int> screenSize = { 700, 500 };
-		Point<int> drawRestrictions {20, screenSize.x - 30};
 };

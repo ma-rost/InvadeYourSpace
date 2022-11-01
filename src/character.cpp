@@ -7,7 +7,7 @@ Character::Character (const float& x, const float& y)
 }
 
 void Character::setSprites (const ofImage& image, const Point<int>& coords,
-	const Point<int>& size)
+                            const Point<int>& size)
 {
 	ofImage newImage;
 	newImage.cropFrom(image, coords.x, coords.y, size.x, size.y);
@@ -17,12 +17,12 @@ void Character::setSprites (const ofImage& image, const Point<int>& coords,
 
 void Character::setSprites (const ofImage& image, const Point<int>& coords)
 {
-	setSprites(image, coords, defaultSize);
+	setSprites(image, coords, defaultSize_);
 }
 
 void Character::setSprites (const Point<int>& coords)
 {
-	setSprites(spriteSheet, coords, defaultSize);
+	setSprites(spriteSheet_, coords, defaultSize_);
 }
 
 void Character::setCoords (const float& x, const float& y, bool applyResize)
