@@ -1,14 +1,12 @@
 ﻿#pragma once
 #include "character.h"
-#include "ofImage.h"
-#include "point.h"
 
 class Enemy : public Character {
 
-	const float moveSpeed_{ 10 };
+	const float moveSpeed_{10};
 public:
-	Enemy(const float& x, const float& y, const int& spriteSet);
-	void draw() const;
+	Enemy (const float& x, const float& y, const int& spriteSet);
+	void draw () const;
 
-	void getSprite(bool isFirst, const int& setNum);
+	void getSprite (bool isFirst, const int& setNum);
 };

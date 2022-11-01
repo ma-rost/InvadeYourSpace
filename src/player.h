@@ -1,18 +1,14 @@
 ﻿#pragma once
-#include <utility>
 
 #include "character.h"
 
-
-class Player: public Character {
-	const float moveSpeed_ {10};
-
+class Player : public Character {
+	const float moveSpeed_{10};
 public:
-	Player(const float& x, const float& y);
-	
-	void move(bool isRightKey);
-	void draw() const;
+	Player (const float& x, const float& y);
 
-	void kill();
-private:
+	void move (bool isRightKey);
+	void draw () const;
+
+	void kill ();
 };

@@ -28,7 +28,7 @@ class ofApp : public ofBaseApp{
 
 		ofImage spriteSheet{"spaceInvaders_spriteSheet.png"};
 
-		Player player {10, static_cast<float>(screenSize.y + ofGetHeight())};
+		Player player {10, 70};
 
 		array<vector<Enemy>,11> enemyTest;
 
