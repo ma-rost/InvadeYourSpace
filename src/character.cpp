@@ -20,3 +20,14 @@ void Character::setSprites (const ofImage& image, const Point<int>& coords)
 {
 	setSprites(image, coords, { 16, 8 });
 }
+
+void Character::setSprites (const Point<int>& coords)
+{
+	setSprites(spriteSheet, coords, { 16, 8 });
+}
+
+int Character::getSpriteValue () const
+{
+	constexpr int frameRate = 60;
+	return ofGetFrameNum() % frameRate < frameRate / 2 ? 0 : 1;
+}

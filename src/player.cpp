@@ -1,12 +1,9 @@
 ﻿#include "player.h"
 
-
-Player::Player (const float& x, const float& y)
+Player::Player (const float& x, const float& y):Character (x,y)
 {
-	coordinate_.x = x;
-	coordinate_.y = y;
+	for ( int i = 0; i < 3; ++i )  setSprites ({1 + (i * 18), 49}); 
 }
-
 
 void Player::move (bool isRightKey)
 {
@@ -17,26 +14,12 @@ void Player::move (bool isRightKey)
 void Player::draw () const
 {
 	ofSetColor(ofColor::green);
-	switch ( isLive_ ) {
-		case true: 
-			for ( int i = 0; i < 6; ++i ) {
-				sprites_[1].draw(coordinate_.x, coordinate_.y);
-				Sleep(10);
-				sprites_[2].draw(coordinate_.x, coordinate_.y);
-				Sleep(10);
-			}
-			break;
-		default:
-			sprites_[0].draw(coordinate_.x, coordinate_.y);
-			break;
+
+	if (isLive_) {
+		sprites_[getSpriteValue() + 1].draw(coordinate_.x, coordinate_.y);
+	}
+	else {
+		sprites_[0].draw(coordinate_.x, coordinate_.y);
 	}
 	
-}
-
-void Player::setSprites (const ofImage& image, const Point<int>& coords, const Point<int>& size)
-{
-	ofImage newImage;
-	newImage.cropFrom(image, coords.x, coords.y, size.x, size.y);
-	newImage.resize(newImage.getWidth() * resizeFactor_, newImage.getHeight() * resizeFactor_);
-	sprites_.emplace_back(newImage);
 }

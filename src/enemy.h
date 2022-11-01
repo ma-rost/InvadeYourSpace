@@ -6,10 +6,9 @@
 class Enemy : public Character {
 
 	const float moveSpeed_{ 10 };
-	bool test;
 public:
 	Enemy(const float& x, const float& y, const int& spriteSet);
-	void draw();
+	void draw() const;
 
 	void getSprite(bool isFirst, const int& setNum);
 };
