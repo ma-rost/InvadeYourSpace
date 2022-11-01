@@ -30,10 +30,8 @@ class ofApp : public ofBaseApp{
 
 		Player player {10, static_cast<float>(screenSize.y + ofGetHeight())};
 
-		vector<vector<Enemy>> enemies;
-
 		array<vector<Enemy>,11> enemyTest;
 
-		Point<int> screenSize = { 630, 500 };
+		Point<int> screenSize = { 700, 500 };
 		Point<int> drawRestrictions {20, screenSize.x - 30};
 };

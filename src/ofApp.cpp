@@ -9,14 +9,11 @@ void ofApp::setup(){
     ofSetWindowTitle(TITLE); // Set the window title
     ofSetWindowShape(screenSize.x, screenSize.y);
 
-    for ( int x = 0; x < 11; ++x ) {
-        enemies.emplace_back();  
-        for (int y = 0; y < 5; ++ y) {
-            enemies[x].emplace_back (x * 18 + 6, y * 18 + 6, 1);
+    for (int x = 0; x < 11; ++x) {
+        for (int y = 0; y < 5; ++y) {
+            enemyTest[x].emplace_back(x * 18 + 6, y * 18 + 6, 1);
         }
     }
-
-    
 
     player.setCoords(20, static_cast<float>(screenSize.y - 50), false);
 }
@@ -29,7 +26,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     player.draw();
-    for ( const auto& enemyRow : enemies ) {
+    for ( const auto& enemyRow : enemyTest ) {
         for ( const auto& enemy : enemyRow ) {
             enemy.draw();
         }
