@@ -12,5 +12,7 @@ public:
 	
 	void move(bool isRightKey);
 	void draw() const;
+
+	void kill();
 private:
 };

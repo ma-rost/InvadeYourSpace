@@ -8,19 +8,17 @@ void ofApp::setup(){
     ofSetBackgroundColor(ofColor::black);
     ofSetWindowTitle(TITLE); // Set the window title
     ofSetWindowShape(screenSize.x, screenSize.y);
-    player.setSprites(spriteSheet, {1, 49}, {16, 8});
-    player.setSprites(spriteSheet, {19, 49}, {16, 8});
-    player.setSprites(spriteSheet, {37, 49 }, { 16, 8 });
 
     for ( int x = 0; x < 11; ++x ) {
         enemies.emplace_back();  
         for (int y = 0; y < 5; ++ y) {
-            enemies[x].emplace_back (x * 30 + 10, y * 30 +10, 1);
-
+            enemies[x].emplace_back (x * 18 + 6, y * 18 + 6, 1);
         }
     }
 
     
+
+    player.setCoords(20, static_cast<float>(screenSize.y - 50), false);
 }
 
 //--------------------------------------------------------------
@@ -31,8 +29,8 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     player.draw();
-    for ( auto enemyRow : enemies ) {
-        for ( auto enemy : enemyRow ) {
+    for ( const auto& enemyRow : enemies ) {
+        for ( const auto& enemy : enemyRow ) {
             enemy.draw();
         }
     }
@@ -49,6 +47,11 @@ void ofApp::keyPressed(int key){
     if (key == OF_KEY_RIGHT || key == 'd')
     {
         player.move(true);
+    }
+
+    if (key == 'e')
+    {
+        player.kill();
     }
 }
 
@@ -89,7 +92,8 @@ void ofApp::mouseExited(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    cout << w <<"\n";
+    player.setCoords(static_cast<float>(h - 50), false);
 }
 
 //--------------------------------------------------------------

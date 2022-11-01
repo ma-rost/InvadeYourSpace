@@ -28,13 +28,12 @@ class ofApp : public ofBaseApp{
 
 		ofImage spriteSheet{"spaceInvaders_spriteSheet.png"};
 
-		Player player {10, 90};
-
-		//array<array<Grid, Grid::gridSize.x>, Grid::gridSize.y> grid;
+		Player player {10, static_cast<float>(screenSize.y + ofGetHeight())};
 
 		vector<vector<Enemy>> enemies;
-	
 
-		Point<int> screenSize = { 1000, 1000 };
-		Point<int> drawRestrictions {10, screenSize.x - 20};
+		array<vector<Enemy>,11> enemyTest;
+
+		Point<int> screenSize = { 630, 500 };
+		Point<int> drawRestrictions {20, screenSize.x - 30};
 };
