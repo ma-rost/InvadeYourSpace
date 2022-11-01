@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
+#include "point.h"
+#include "player.h"
 
 class ofApp : public ofBaseApp{
 
@@ -23,7 +25,10 @@ class ofApp : public ofBaseApp{
 
 		const string TITLE = "Invade Your Space";
 
-		array<array<Grid, Grid::gridSize.x>, Grid::gridSize.y> grid;
+		Player player {10, 90};
 
-		Point<int> screenSize = { 600, 600 };
+		//array<array<Grid, Grid::gridSize.x>, Grid::gridSize.y> grid;
+
+		Point<int> screenSize = { 1000, 1000 };
+		Point<int> drawRestrictions {10, screenSize.x - 20};
 };
