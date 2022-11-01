@@ -31,6 +31,8 @@ class ofApp : public ofBaseApp{
 
 		//array<array<Grid, Grid::gridSize.x>, Grid::gridSize.y> grid;
 
+	
+
 		Point<int> screenSize = { 1000, 1000 };
 		Point<int> drawRestrictions {10, screenSize.x - 20};
 };

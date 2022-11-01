@@ -7,28 +7,11 @@ Player::Player (const float& x, const float& y)
 	coordinate_.y = y;
 }
 
-Player::Player(const std::string& avatarFilename, const float& x, const float& y)
-{
-
-}
-
 Player::Player (const ofImage& sprite, const float& x, const float& y):
 	sprite_ (sprite)
 {
 	coordinate_.x = x;
 	coordinate_.y = y;
-}
-
-
-Player::Player (const Point<float>& coordinate):
-	coordinate_(coordinate)
-{
-}
-
-Player::Player (const std::string& avatarFilename, const Point<float>& coordinate):
-	coordinate_(coordinate)
-{
-	//sprite.load(avatarFilename);
 }
 
 void Player::move (bool isRightKey)
@@ -39,11 +22,27 @@ void Player::move (bool isRightKey)
 
 void Player::draw () const
 {
-	sprite_.draw(coordinate_.x, coordinate_.y);
+	ofSetColor(ofColor::green);
+	switch ( isLive_ ) {
+		case true: 
+			for ( int i = 0; i < 6; ++i ) {
+				sprites_[1].draw(coordinate_.x, coordinate_.y);
+				Sleep(10);
+				sprites_[2].draw(coordinate_.x, coordinate_.y);
+				Sleep(10);
+			}
+			break;
+		default:
+			sprites_[0].draw(coordinate_.x, coordinate_.y);
+			break;
+	}
+	
 }
 
-void Player::setSprite(ofImage image)
+void Player::setSprites (const ofImage& image, const Point<int>& coords, const Point<int>& size)
 {
-	sprite_.cropFrom(image, 1, 49, 16, 8);
-	sprite_.resize(sprite_.getWidth() * resizeFactor_, sprite_.getHeight() * resizeFactor_);
+	ofImage newImage;
+	newImage.cropFrom(image, coords.x, coords.y, size.x, size.y);
+	newImage.resize(newImage.getWidth() * resizeFactor_, newImage.getHeight() * resizeFactor_);
+	sprites_.emplace_back(newImage);
 }

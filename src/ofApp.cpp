@@ -8,7 +8,9 @@ void ofApp::setup(){
     ofSetBackgroundColor(ofColor::black);
     ofSetWindowTitle(TITLE); // Set the window title
     ofSetWindowShape(screenSize.x, screenSize.y);
-    player.setSprite(spriteSheet);
+    player.setSprites(spriteSheet, {1, 49}, {16, 8});
+    player.setSprites(spriteSheet, {19, 49}, {16, 8});
+    player.setSprites(spriteSheet, {37, 49 }, { 16, 8 });
 }
 
 //--------------------------------------------------------------
@@ -18,9 +20,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofSetColor(ofColor::white);
     player.draw();
-    //ofDrawRectangle(drawRestrictions.x, 0, drawRestrictions.y, ofGetHeight());
 }
 
 //--------------------------------------------------------------
