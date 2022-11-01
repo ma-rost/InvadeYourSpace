@@ -8,7 +8,7 @@ Player::Player (const float& x, const float& y)
 }
 
 Player::Player (const Point<float>& coordinate):
-coordinate_(coordinate)
+	coordinate_(coordinate)
 {
 }
 
@@ -20,6 +20,7 @@ Player::Player (const std::string& avatarFilename, const Point<float>& coordinat
 
 void Player::move (bool isRightKey)
 {
+	std::cout << "isRightKey = " << isRightKey;
 	isRightKey ? coordinate_.x += moveSpeed_:
 				 coordinate_.x -= moveSpeed_;
 }

@@ -24,17 +24,15 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    // Left Arrow (37), A (65)
-    // Right Arrow (39), D (68)
 
-    if (key == 37 || key == 65)
+    if (key == OF_KEY_LEFT || key == 'a')
     {
-
+        player.move(false);
     }
 
-    if (key == 39 || key == 68)
+    if (key == OF_KEY_RIGHT || key == 'd')
     {
-
+        player.move(true);
     }
 }
 

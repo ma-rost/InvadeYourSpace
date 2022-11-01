@@ -8,7 +8,7 @@ class Player {
 	bool isLive_;
 	Point <float> coordinate_;
 	
-	int moveSpeed_ {4};
+	float moveSpeed_ {4};
 
 public:
 	Player(const float& x, const float& y);
