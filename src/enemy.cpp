@@ -11,11 +11,6 @@ Enemy::Enemy (const float& x, const float& y, const int& spriteSet): Character(x
 void Enemy::draw () const
 {
 	ofSetColor (ofColor::red);
-	//ofDrawRectangle(coordinate_.x, coordinate_.y, 16, 8);
-
-	
-	
-
 	sprites_[getSpriteValue()].draw (coordinate_.x, coordinate_.y);
 }
 

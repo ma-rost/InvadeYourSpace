@@ -2,7 +2,7 @@
 
 Player::Player (const float& x, const float& y):Character (x,y)
 {
-	for ( int i = 0; i < 3; ++i )  setSprites ({1 + (i * 18), 49}); 
+	for ( int i = 0; i < 3; ++i ) setSprites ({1 + (i * 18), 49}); 
 }
 
 void Player::move (bool isRightKey)

@@ -10,9 +10,6 @@
     <ClCompile Include="src\player.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\point.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\enemy.cpp">
       <Filter>src</Filter>
     </ClCompile>

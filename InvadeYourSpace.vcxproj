@@ -185,7 +185,6 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\player.cpp" />
-    <ClCompile Include="src\point.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\character.h" />
