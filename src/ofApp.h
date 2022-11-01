@@ -25,6 +25,8 @@ class ofApp : public ofBaseApp{
 
 		const string TITLE = "Invade Your Space";
 
+		ofImage spriteSheet{"spaceInvaders_spriteSheet.png"};
+
 		Player player {10, 90};
 
 		//array<array<Grid, Grid::gridSize.x>, Grid::gridSize.y> grid;

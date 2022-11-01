@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include <ofImage.cpp>
 
 
 
@@ -7,7 +8,7 @@ void ofApp::setup(){
     ofSetBackgroundColor(ofColor::black);
     ofSetWindowTitle(TITLE); // Set the window title
     ofSetWindowShape(screenSize.x, screenSize.y);
-
+    player.setSprite(spriteSheet);
 }
 
 //--------------------------------------------------------------
