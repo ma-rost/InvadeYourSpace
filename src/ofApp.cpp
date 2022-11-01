@@ -2,7 +2,9 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+    ofSetBackgroundColor(ofColor::black);
+    ofSetWindowTitle(TITLE); // Set the window title
+    ofSetWindowShape(screenSize.x, screenSize.y);
 }
 
 //--------------------------------------------------------------
@@ -17,7 +19,7 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    
 }
 
 //--------------------------------------------------------------

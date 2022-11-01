@@ -20,5 +20,10 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+
+		const string TITLE = "Invade Your Space";
+
+		array<array<Grid, Grid::gridSize.x>, Grid::gridSize.y> grid;
+
+		Point<int> screenSize = { 600, 600 };
 };
