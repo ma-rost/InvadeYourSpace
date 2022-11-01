@@ -1,5 +1,6 @@
 #pragma once
 
+#include "enemy.h"
 #include "ofMain.h"
 #include "point.h"
 #include "player.h"
@@ -31,6 +32,7 @@ class ofApp : public ofBaseApp{
 
 		//array<array<Grid, Grid::gridSize.x>, Grid::gridSize.y> grid;
 
+		vector<vector<Enemy>> enemies;
 	
 
 		Point<int> screenSize = { 1000, 1000 };

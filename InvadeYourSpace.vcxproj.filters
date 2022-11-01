@@ -13,6 +13,12 @@
     <ClCompile Include="src\point.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\enemy.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\character.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -27,6 +33,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\point.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enemy.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\character.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

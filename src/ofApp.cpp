@@ -11,6 +11,16 @@ void ofApp::setup(){
     player.setSprites(spriteSheet, {1, 49}, {16, 8});
     player.setSprites(spriteSheet, {19, 49}, {16, 8});
     player.setSprites(spriteSheet, {37, 49 }, { 16, 8 });
+
+    for ( int x = 0; x < 11; ++x ) {
+        enemies.emplace_back();  
+        for (int y = 0; y < 5; ++ y) {
+            enemies[x].emplace_back (x * 30 + 10, y * 30 +10, 1);
+
+        }
+    }
+
+    
 }
 
 //--------------------------------------------------------------
@@ -21,6 +31,11 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     player.draw();
+    for ( auto enemyRow : enemies ) {
+        for ( auto enemy : enemyRow ) {
+            enemy.draw();
+        }
+    }
 }
 
 //--------------------------------------------------------------

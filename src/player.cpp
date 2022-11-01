@@ -7,12 +7,6 @@ Player::Player (const float& x, const float& y)
 	coordinate_.y = y;
 }
 
-Player::Player (const ofImage& sprite, const float& x, const float& y):
-	sprite_ (sprite)
-{
-	coordinate_.x = x;
-	coordinate_.y = y;
-}
 
 void Player::move (bool isRightKey)
 {
