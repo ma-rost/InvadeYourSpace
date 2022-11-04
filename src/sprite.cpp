@@ -55,6 +55,11 @@ void Sprite::newCoords (const Point<int>& coords)
 	coordList_.emplace_back(coords);
 }
 
+void Sprite::setSize (const Point<int>& size)
+{
+	spriteSize_ = size;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Sprite::changeSprite (const int& spriteIndex, const Point<int>& coords, const Point<int>& size)

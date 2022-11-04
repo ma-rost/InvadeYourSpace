@@ -11,6 +11,7 @@ bool Enemy::isForwardMove_;
 Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 	Character (x, y)
 {
+	drawColor_ = ofColor::red;
 	int sprite = 0;
 
 	if		( spriteSet == 1 || spriteSet == 2 )  sprite = 1; 
