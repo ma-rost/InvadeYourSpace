@@ -16,6 +16,12 @@
     <ClCompile Include="src\character.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\bullet.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sprite.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -36,6 +42,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\character.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bullet.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sprite.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

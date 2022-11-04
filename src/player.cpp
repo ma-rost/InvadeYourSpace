@@ -24,3 +24,8 @@ void Player::draw () const
 }
 
 void Player::kill () { isLive_ = isLive_ ? false : true; }
+
+void Player::shoot ()
+{
+
+}

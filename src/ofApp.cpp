@@ -36,8 +36,9 @@ void ofApp::draw ()
 void ofApp::keyPressed (int key)
 {
 	if ( key == OF_KEY_LEFT || key == 'a' )  player.move (false); 
+	if ( key == OF_KEY_RIGHT || key == 'd' ) player.move (true);
 
-	if ( key == OF_KEY_RIGHT || key == 'd' ) player.move (true); 
+	if (key == OF_KEY_UP || key == 'w') player.move(true);
 
 	if ( key == 'e' )  player.kill(); 
 }

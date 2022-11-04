@@ -11,4 +11,6 @@ public:
 	void draw () const;
 
 	void kill ();
+
+	void shoot();
 };

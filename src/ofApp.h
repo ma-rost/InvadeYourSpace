@@ -26,8 +26,6 @@ class ofApp : public ofBaseApp{
 
 		const string TITLE = "Invade Your Space";
 
-		ofImage spriteSheet{"spaceInvaders_spriteSheet.png"};
-
 		Player player {10, 70};
 
 		array<vector<Enemy>,11> enemyTest;

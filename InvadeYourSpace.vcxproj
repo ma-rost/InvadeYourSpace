@@ -180,18 +180,22 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\bullet.cpp" />
     <ClCompile Include="src\character.cpp" />
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\bullet.h" />
     <ClInclude Include="src\character.h" />
     <ClInclude Include="src\enemy.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\point.h" />
+    <ClInclude Include="src\sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
