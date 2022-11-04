@@ -11,7 +11,7 @@ void ofApp::setup ()
 
 	for ( int x = 0; x < 11; ++x ) {
 		for ( int y = 0; y < 5; ++y ) {
-			enemyTest[x].emplace_back (x * 18 + 6, y * 18 + 6, 1);
+			enemyTest[x].emplace_back (x * 18 + 6, y * 18 + 6, y);
 		}
 	}
 

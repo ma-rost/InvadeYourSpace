@@ -3,8 +3,8 @@
 Player::Player (const float& x, const float& y):
 	Character (x, y)
 {
-	for ( int i = 0; i < 3; ++i ) {
-		sprites_.emplace_back(1 + (i * 18), 49);
+	for ( int i = 1; i < 3; ++i ) {
+		sprite_.newCoords({ 1 + (i * 18), 49 });
 	}
 }
 
@@ -21,8 +21,11 @@ void Player::draw ()
 {
 	ofSetColor (ofColor::green);
 
-	if ( isLive_ )  sprites_[0].drawSprite (coordinate_.x, coordinate_.y); 
-	else  sprites_[getSpriteValue() + 1].drawSprite (coordinate_.x, coordinate_.y); 
+	/*if ( isLive_ )  sprites_[0].drawSprite (coordinate_.x, coordinate_.y); 
+	else  sprites_[getSpriteValue() + 1].drawSprite (coordinate_.x, coordinate_.y); */
+
+	if (isLive_)  sprite_.drawSprite(0, coordinate_.x, coordinate_.y);
+	else  sprite_.drawSprite(getSpriteValue() + 1, coordinate_.x, coordinate_.y);
 }
 
 void Player::kill () { isLive_ = isLive_ ? false : true; }

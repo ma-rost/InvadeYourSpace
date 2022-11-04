@@ -10,6 +10,8 @@ class Character {
 protected:
 	ofImage spriteSheet_{"spaceInvaders_spriteSheet.png"};
 	std::vector <Sprite> sprites_;
+
+	Sprite sprite_;
 	Point <int> defaultSize_{16, 8};
 
 	Point <float> coordinate_;

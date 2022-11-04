@@ -6,7 +6,6 @@ Character::Character (const float& x, const float& y)
 	setCoords(x, y, true);
 }
 
-
 void Character::setCoords (const float& x, const float& y, bool applyResize)
 {
 	coordinate_.x = applyResize ? x * resizeFactor_ : x;
