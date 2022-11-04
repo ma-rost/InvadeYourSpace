@@ -8,13 +8,13 @@ Character::Character (const float& x, const float& y)
 
 void Character::setCoords (const float& x, const float& y, bool applyResize)
 {
-	coordinate_.x = applyResize ? x * resizeFactor_ : x;
-	coordinate_.y = applyResize ? y * resizeFactor_ : y;
+	coordinate_.x = applyResize ? x * Sprite::getResize() : x;
+	coordinate_.y = applyResize ? y * Sprite::getResize() : y;
 }
 
 void Character::setCoords (const float& y, bool applyResize)
 {
-	coordinate_.y = applyResize ? y * resizeFactor_ : y;
+	coordinate_.y = applyResize ? y * Sprite::getResize() : y;
 }
 
 int Character::getSpriteValue() const

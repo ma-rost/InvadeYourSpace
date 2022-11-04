@@ -6,20 +6,13 @@
 #include "sprite.h"
 
 class Character {
-	const int resizeFactor_{3};
 protected:
-	ofImage spriteSheet_{"spaceInvaders_spriteSheet.png"};
-	std::vector <Sprite> sprites_;
-
 	Sprite sprite_;
-	Point <int> defaultSize_{16, 8};
 
 	Point <float> coordinate_;
 	Point <float> drawRestrictions_{50, 600};
 
 	bool isLive_{true};
-
-
 public:
 	Character (const float& x, const float& y);
 

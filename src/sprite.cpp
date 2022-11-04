@@ -22,6 +22,11 @@ Sprite::Sprite () :
 
 }
 
+int Sprite::getResize ()
+{
+	return RESIZE_FACTOR;
+}
+
 void Sprite::clearCoords ()
 {
 	coordList_.clear();
@@ -61,7 +66,7 @@ void Sprite::changeSprite (const int& spriteIndex, const Point<int>& coords, con
 {
 	//drawnSprite_.clear();
 	drawnSprite_.cropFrom(spriteSheet_, coordList_[spriteIndex].x, coordList_[spriteIndex].y, size.x, size.y);
-	drawnSprite_.resize(drawnSprite_.getWidth() * resizeFactor_, drawnSprite_.getHeight() * resizeFactor_);
+	drawnSprite_.resize(drawnSprite_.getWidth() * RESIZE_FACTOR, drawnSprite_.getHeight() * RESIZE_FACTOR);
 }
 
 void Sprite::changeSprite (const int& spriteIndex)

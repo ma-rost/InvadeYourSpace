@@ -3,7 +3,7 @@
 #include "point.h"
 
 class Sprite {
-	const int resizeFactor_{ 3 };
+	static constexpr int RESIZE_FACTOR{ 3 };
 	ofImage spriteSheet_{ "spaceInvaders_spriteSheet.png" };
 	Point <int> spriteSize_;
 	std::vector <Point<int>> coordList_;
@@ -14,6 +14,9 @@ public:
 	Sprite(const Point<int>& coords);
 	Sprite(const int& x, const int& y);
 	Sprite();
+
+	static int getResize();
+	void debugSpriteVecValue() const;
 
 	void clearCoords();
 	void newCoords(const Point<int>& coords);
@@ -26,7 +29,7 @@ public:
 	void drawSprite(const float& x, const float& y);
 	void drawSprite(const int& spriteIndex, const float& x, const float& y);
 
-	void debugSpriteVecValue() const;
+	
 };
 
 //Set new sprite. 
