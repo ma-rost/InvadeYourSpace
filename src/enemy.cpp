@@ -1,6 +1,12 @@
 ﻿// ReSharper disable All
 #include "enemy.h"
 
+#include "ofGraphics.h"
+#include <algorithm>
+
+// Static variables must be declared in the .cpp file
+std::vector <Enemy> Enemy::allEnemies_;
+bool Enemy::isForwardMove_;
 
 Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 	Character (x, y)
@@ -13,22 +19,28 @@ Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 	sprite_.clearCoords();
 	getSprite (true, sprite);
 	getSprite (false, sprite);
+
+	Enemy::allEnemies_.push_back (*this);
 }
 
 void Enemy::draw ()
 {
 	ofSetColor (ofColor::red);
 	sprite_.drawSprite(getSpriteValue(), coordinate_.x, coordinate_.y);
-	if( ofGetFrameNum() % 60 ) {
-		++coordinate_.x;
-		coordinate_.x = ofClamp(coordinate_.x, drawRestrictions_.x,
-			drawRestrictions_.y);
-	}
 }
 
-void Enemy::move (bool isRightKey)
+void Enemy::move ()
 {
-	
+	// When Enemy hits drawRestrictions_ value, toggle isForwardMove
+	if (coordinate_.x >= drawRestrictions_.y) isForwardMove_ = false;
+	if (coordinate_.x <= drawRestrictions_.x) isForwardMove_ = true;
+
+	if (ofGetFrameNum() % 30 == 0) {
+		isForwardMove_ ? ++*this : --*this;
+		//coordinate_.x = ofClamp(coordinate_.x, drawRestrictions_.x,
+			//drawRestrictions_.y);
+	}
+	draw();
 }
 
 void Enemy::getSprite (const bool isFirst, const int& setNum)
@@ -38,6 +50,12 @@ void Enemy::getSprite (const bool isFirst, const int& setNum)
 	
 	sprite_.newCoords({x, y});
 }
+
+void Enemy::hitEvent (const bool& isTrue)
+{
+
+}
+
 
 Enemy& Enemy::operator++ ()
 {

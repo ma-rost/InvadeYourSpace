@@ -7,20 +7,15 @@ Sprite::Sprite (const Point<int>& coords, const Point<int>& size): spriteSize_ (
 
 Sprite::Sprite (const Point<int>& coords):
 	Sprite(coords, { 16, 8 })
-{
-
-}
+{}
 
 Sprite::Sprite (const int& x, const int& y):
 	Sprite ({ x, y } ,{ 16, 8 })
-{
-}
+{}
 
 Sprite::Sprite () :
 	Sprite({ 1, 49 }, { 16, 8 })
-{
-
-}
+{}
 
 int Sprite::getResize ()
 {
@@ -49,7 +44,7 @@ void Sprite::drawSprite (const int& spriteIndex, const float& x, const float& y)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Sprite::debugSpriteVecValue () const
 {
-	for ( auto element : coordList_) {
+	for ( const auto element : coordList_) {
 		std::cout << element.x << " " << element.y<< "\n";
 	}
 	

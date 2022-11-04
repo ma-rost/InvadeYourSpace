@@ -30,8 +30,9 @@ void ofApp::draw ()
 {
 	player.draw();
 	for (auto& enemyRow : enemyTest ) {
-		for (auto& enemy : enemyRow)  enemy.draw();
+		for (auto& enemy : enemyRow)  enemy.move();
 	}
+	
 }
 
 //--------------------------------------------------------------

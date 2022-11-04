@@ -1,5 +1,7 @@
 ﻿#include "player.h"
 
+#include "ofGraphics.h"
+
 Player::Player (const float& x, const float& y):
 	Character (x, y)
 {

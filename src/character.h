@@ -1,8 +1,6 @@
 ﻿#pragma once
 
-#include "ofImage.h"
 #include "point.h"
-#include "ofGraphics.h"
 #include "sprite.h"
 
 class Character {
@@ -10,7 +8,7 @@ protected:
 	Sprite sprite_;
 
 	Point <float> coordinate_;
-	Point <float> drawRestrictions_{10, 600};
+	Point <float> drawRestrictions_{10, 640};
 
 	bool isLive_{true};
 public:
