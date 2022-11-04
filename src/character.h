@@ -10,7 +10,7 @@ protected:
 	Sprite sprite_;
 
 	Point <float> coordinate_;
-	Point <float> drawRestrictions_{50, 600};
+	Point <float> drawRestrictions_{10, 600};
 
 	bool isLive_{true};
 public:
@@ -20,4 +20,6 @@ public:
 	void setCoords (const float& y, bool applyResize);
 
 	int getSpriteValue () const;
+
+
 };

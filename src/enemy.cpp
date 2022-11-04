@@ -19,6 +19,16 @@ void Enemy::draw ()
 {
 	ofSetColor (ofColor::red);
 	sprite_.drawSprite(getSpriteValue(), coordinate_.x, coordinate_.y);
+	if( ofGetFrameNum() % 60 ) {
+		++coordinate_.x;
+		coordinate_.x = ofClamp(coordinate_.x, drawRestrictions_.x,
+			drawRestrictions_.y);
+	}
+}
+
+void Enemy::move (bool isRightKey)
+{
+	
 }
 
 void Enemy::getSprite (const bool isFirst, const int& setNum)
@@ -27,4 +37,29 @@ void Enemy::getSprite (const bool isFirst, const int& setNum)
 	const int y = isFirst ? 1 : 11;
 	
 	sprite_.newCoords({x, y});
+}
+
+Enemy& Enemy::operator++ ()
+{
+	this->coordinate_.x += this->moveSpeed_;
+	return *this;
+}
+
+Enemy  Enemy::operator++ (int)
+{
+	Enemy result(*this);   // make a copy for result
+	++(*this);              // Now use the prefix version to do the work
+	return result;          // return the copy (the old) value.
+}
+
+Enemy& Enemy::operator-- ()
+{
+	this->coordinate_.x -= this->moveSpeed_;
+	return *this;
+}
+Enemy  Enemy::operator-- (int)
+{
+	Enemy result(*this);   // make a copy for result
+	--(*this);              // Now use the prefix version to do the work
+	return result;          // return the copy (the old) value.
 }

@@ -11,7 +11,7 @@ Player::Player (const float& x, const float& y):
 void Player::move (bool isRightKey)
 {
 	if ( isLive_ ) {
-		isRightKey ? coordinate_.x += moveSpeed_ : coordinate_.x -= moveSpeed_;
+		isRightKey ? ++*this : --*this;
 		coordinate_.x = ofClamp (coordinate_.x, drawRestrictions_.x,
 													drawRestrictions_.y);
 	}
@@ -33,4 +33,30 @@ void Player::kill () { isLive_ = isLive_ ? false : true; }
 void Player::shoot ()
 {
 
+}
+
+Player& Player::operator++ ()
+{
+	this->coordinate_.x += this->moveSpeed_;
+	return *this;
+}
+
+Player Player::operator++ (int)  // postfix ++
+{
+	Player result(*this);   // make a copy for result
+	++(*this);              // Now use the prefix version to do the work
+	return result;          // return the copy (the old) value.
+}
+
+Player& Player::operator-- ()
+{
+	this->coordinate_.x -= this->moveSpeed_;
+	return *this;
+}
+
+Player Player::operator-- (int)
+{
+	Player result(*this);   // make a copy for result
+	--(*this);              // Now use the prefix version to do the work
+	return result;          // return the copy (the old) value.
 }

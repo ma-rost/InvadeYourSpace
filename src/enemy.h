@@ -7,6 +7,12 @@ class Enemy : public Character {
 public:
 	Enemy (const float& x, const float& y, int& spriteSet);
 	void draw ();
+	void move(bool isRightKey);
 
 	void getSprite (bool isFirst, const int& setNum);
+
+	Enemy& operator++ ();
+    Enemy  operator++ (int);
+	Enemy& operator-- ();
+	Enemy  operator-- (int);
 };

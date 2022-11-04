@@ -13,4 +13,12 @@ public:
 	void kill ();
 
 	void shoot();
+
+    Player& operator++ ();
+	Player  operator++ (int);
+
+	Player& operator-- ();
+	Player  operator-- (int);
 };
+
+
