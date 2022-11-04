@@ -8,7 +8,7 @@ public:
 	Player (const float& x, const float& y);
 
 	void move (bool isRightKey);
-	void draw () const;
+	void draw ();
 
 	void kill ();
 

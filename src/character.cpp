@@ -6,18 +6,6 @@ Character::Character (const float& x, const float& y)
 	setCoords(x, y, true);
 }
 
-void Character::setSprites (const Point<int>& coords, const Point<int>& size)
-{
-	ofImage newImage;
-	newImage.cropFrom(spriteSheet_, coords.x, coords.y, size.x, size.y);
-	newImage.resize(newImage.getWidth() * resizeFactor_, newImage.getHeight() * resizeFactor_);
-	sprites_.emplace_back(newImage);
-}
-
-void Character::setSprites (const Point<int>& coords)
-{
-	setSprites(coords, defaultSize_);
-}
 
 void Character::setCoords (const float& x, const float& y, bool applyResize)
 {
@@ -30,7 +18,7 @@ void Character::setCoords (const float& y, bool applyResize)
 	coordinate_.y = applyResize ? y * resizeFactor_ : y;
 }
 
-int Character::getSpriteValue () const
+int Character::getSpriteValue() const
 {
 	constexpr int frameRate = 60;
 	return ofGetFrameNum() % frameRate < frameRate / 2 ? 0 : 1;

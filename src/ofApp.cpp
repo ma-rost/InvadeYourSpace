@@ -27,8 +27,8 @@ void ofApp::update ()
 void ofApp::draw ()
 {
 	player.draw();
-	for ( const auto& enemyRow : enemyTest ) {
-		for ( const auto& enemy : enemyRow )  enemy.draw(); 
+	for (auto& enemyRow : enemyTest ) {
+		for (auto& enemy : enemyRow )  enemy.draw(); 
 	}
 }
 
