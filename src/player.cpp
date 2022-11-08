@@ -22,7 +22,8 @@ void Player::move (bool isRightKey)
 
 void Player::draw ()
 {
-	Character::draw(isLive_ ? 0 : getSpriteValue() + 1, true);
+	Character::draw(isLive_ ? 0 : getSpriteValue() + 1);
+	setBulletSpawn(true);
 }
 
 void Player::kill () { isLive_ = isLive_ ? false : true; }

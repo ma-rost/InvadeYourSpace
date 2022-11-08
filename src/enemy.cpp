@@ -19,15 +19,18 @@ Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 	else if ( spriteSet == 3 || spriteSet == 4 )  sprite = 2; 
 
 	sprite_.clearCoords();
-	getSprite (true, sprite);
-	getSprite (false, sprite);
+	getSprite (true, sprite); // Sprite 1
+	getSprite (false, sprite); // Sprite 2 
+	sprite_.newCoords({ 55, 1 }); // Death Sprite
 
 	Enemy::allEnemies_.push_back (*this);
 }
 
 void Enemy::draw ()
 {
-	Character::draw(getSpriteValue(),false);
+	Character::draw(isLive_ ? getSpriteValue() : 2);
+	
+	setBulletSpawn(false);
 }
 
 void Enemy::move ()
