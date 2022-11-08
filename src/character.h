@@ -2,7 +2,6 @@
 
 #include "bullet.h"
 #include "destructible.h"
-#include "point.h"
 
 class Character : public Destructible {
 protected:

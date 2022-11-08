@@ -8,10 +8,11 @@ Character::Character (const float& x, const float& y, const bool& isPlayer):
 }
 
 Character::Character (const float& x, const float& y, const bool& isPlayer, const float& moveSpeed):
-	Destructible (x, y, moveSpeed), isPlayer_ (isPlayer), bullet_ (true)
+	Destructible (x, y, moveSpeed), isPlayer_ (isPlayer), bullet_ (isPlayer_)
 {
 	//Bullet bullet_ {true};
 	setBulletSpawn(isPlayer);
+	
 	bullet_.setCoords(bulletSpawn_.x, bulletSpawn_.y);
 }
 
@@ -27,9 +28,7 @@ void Character::setBulletSpawn(const bool& isPlayer)
 		bulletSpawn_.x-= 1; // Makes Bullet centeered on enemies
 		bulletSpawn_.y = coordinate_.y + sprite_.getSize().y / 2 + 20;
 	}
-
-	//DEBUG DRAW
-	bullet_.draw();
+	bullet_.setBulletOrigin(bulletSpawn_);
 }
 
 #pragma region Actions
@@ -41,7 +40,7 @@ void Character::move(const bool& isMoveRight)
 
 void Character::fire()
 {
-	new Bullet(bulletSpawn_.x, bulletSpawn_.y, true);
+	bullet_.fire();
 }
 #pragma endregion
 

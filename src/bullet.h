@@ -1,33 +1,33 @@
 ﻿#pragma once
-#include "character.h"
+
 #include "destructible.h"
 
 class Bullet : public Destructible {
 	//Character spawnSource_;
 	const bool isPlayer_;
 	bool isFired_{false};
+	Point <float> bulletOrigin_;
 
 public:
+	Bullet();
 	explicit Bullet (const bool& isPlayer);
 	Bullet (const float& x, const float& y, const bool& isPlayer);
 
 	void move();
 	void draw();
+	void fire();
 	bool checkHit();
-	void resetBullet(const Destructible& c);
+
+	void resetBullet();
+	void setBulletOrigin(Point <float> bulletOrigin);
 
 	Bullet& operator++ ();
-	Bullet& operator-- ();
 };
 
 inline Bullet& Bullet::operator++ ()
 {
-	this->coordinate_.y += this->moveSpeed_;
-	return *this;
-}
+	isPlayer_ ? this->coordinate_.y -= this->moveSpeed_ :
+				this->coordinate_.y += this->moveSpeed_;
 
-inline Bullet& Bullet::operator-- ()
-{
-	this->coordinate_.y -= this->moveSpeed_;
 	return *this;
 }
