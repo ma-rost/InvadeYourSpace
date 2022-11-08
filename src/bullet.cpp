@@ -15,6 +15,7 @@ Bullet::Bullet (const bool& isPlayer):
 Bullet::Bullet (const float& x, const float& y, const bool& isPlayer):
 	Destructible(x, y, 24),  isPlayer_ (isPlayer)
 {
+	moveSpeed_ = 4;
 	sprite_.clearCoords();
 	sprite_.setSize({ 3,7 });
 	sprite_.newCoords({ 41,21 }); // Default
@@ -23,28 +24,37 @@ Bullet::Bullet (const float& x, const float& y, const bool& isPlayer):
 
 void Bullet::move ()
 {
-}
+	if (!isFired_) {
+		resetBullet();
+	}
+	else {
+		isFired_ = isHitValid();
+		++* this;
+	}
 
-void Bullet::draw ()
-{
-	resetBullet();
-
-	Destructible::draw(isLive_ ? 0 : 1);
+	draw (isLive_ ? 0 : 1);
 }
 
 void Bullet::fire ()
 {
 	if(!isFired_) {
+		isFired_ = true;
 		
-		//isFired_ = true;
 		drawColor_ = ofColor::white;
-		++* this;
 	}
+	
 }
 
-bool Bullet::checkHit ()
+bool Bullet::isHitValid ()
 {
-	return false;
+	if(coordinate_.y < 1 || coordinate_.y > ofGetViewportHeight()) {
+		std::cout << "FIRE\n";
+		return false;
+	}
+	else {
+		return true;
+	}
+	
 }
 
 void Bullet::resetBullet ()

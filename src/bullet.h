@@ -14,9 +14,8 @@ public:
 	Bullet (const float& x, const float& y, const bool& isPlayer);
 
 	void move();
-	void draw();
 	void fire();
-	bool checkHit();
+	bool isHitValid();
 
 	void resetBullet();
 	void setBulletOrigin(Point <float> bulletOrigin);
@@ -26,8 +25,7 @@ public:
 
 inline Bullet& Bullet::operator++ ()
 {
-	isPlayer_ ? this->coordinate_.y -= this->moveSpeed_ :
-				this->coordinate_.y += this->moveSpeed_;
-	this->draw();
+	isPlayer_ ? coordinate_.y -= moveSpeed_ :
+				coordinate_.y += moveSpeed_;
 	return *this;
 }

@@ -22,7 +22,7 @@ void Character::setBulletSpawn()
 	bulletSpawn_.x = coordinate_.x + sprite_.getSize().x / 2 - 3;
 
 	if (isPlayer_) { // Player
-		bulletSpawn_.y = coordinate_.y - sprite_.getSize().y / 2 - 5;
+		bulletSpawn_.y = coordinate_.y - sprite_.getSize().y / 2 - 20;
 	}
 	else {			// Enemy
 		bulletSpawn_.x-= 1; // Makes Bullet centered on enemies
@@ -46,7 +46,7 @@ void Character::fire()
 void Character::draw (const int& spriteIndex)
 {
 	setBulletSpawn();
-	bullet_.draw();
+	bullet_.move();
 	Destructible::draw(spriteIndex);
 }
 #pragma endregion

@@ -17,7 +17,7 @@ Sprite::Sprite () :
 	Sprite({ 1, 49 }, { 16, 8 })
 {}
 
-int Sprite::getResize ()
+float Sprite::getResize ()
 {
 	return RESIZE_FACTOR;
 }
