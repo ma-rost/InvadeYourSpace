@@ -28,8 +28,7 @@ Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 
 void Enemy::draw ()
 {
-	Destructible::draw(isLive_ ? getSpriteValue() : 2);
-	setBulletSpawn(false);
+	Character::draw(isLive_ ? getSpriteValue() : 2);
 }
 
 void Enemy::move ()

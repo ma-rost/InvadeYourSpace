@@ -28,6 +28,6 @@ inline Bullet& Bullet::operator++ ()
 {
 	isPlayer_ ? this->coordinate_.y -= this->moveSpeed_ :
 				this->coordinate_.y += this->moveSpeed_;
-
+	this->draw();
 	return *this;
 }

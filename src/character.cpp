@@ -11,21 +11,21 @@ Character::Character (const float& x, const float& y, const bool& isPlayer, cons
 	Destructible (x, y, moveSpeed), isPlayer_ (isPlayer), bullet_ (isPlayer_)
 {
 	//Bullet bullet_ {true};
-	setBulletSpawn(isPlayer);
+	setBulletSpawn();
+	bullet_.resetBullet();
 	
-	bullet_.setCoords(bulletSpawn_.x, bulletSpawn_.y);
 }
 
 
-void Character::setBulletSpawn(const bool& isPlayer)
+void Character::setBulletSpawn()
 {
-	bulletSpawn_.x = coordinate_.x + sprite_.getSize().x / 2;
+	bulletSpawn_.x = coordinate_.x + sprite_.getSize().x / 2 - 3;
 
-	if (isPlayer) { // Player
+	if (isPlayer_) { // Player
 		bulletSpawn_.y = coordinate_.y - sprite_.getSize().y / 2 - 5;
 	}
 	else {			// Enemy
-		bulletSpawn_.x-= 1; // Makes Bullet centeered on enemies
+		bulletSpawn_.x-= 1; // Makes Bullet centered on enemies
 		bulletSpawn_.y = coordinate_.y + sprite_.getSize().y / 2 + 20;
 	}
 	bullet_.setBulletOrigin(bulletSpawn_);
@@ -41,6 +41,13 @@ void Character::move(const bool& isMoveRight)
 void Character::fire()
 {
 	bullet_.fire();
+}
+
+void Character::draw (const int& spriteIndex)
+{
+	setBulletSpawn();
+	bullet_.draw();
+	Destructible::draw(spriteIndex);
 }
 #pragma endregion
 

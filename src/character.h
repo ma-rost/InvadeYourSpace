@@ -12,10 +12,11 @@ public:
 	Character (const float& x, const float& y, const bool& isPlayer);
 	Character(const float& x, const float& y, const bool& isPlayer, const float& moveSpeed);
 
-	void setBulletSpawn(const bool& isPlayer);
+	void setBulletSpawn();
 
 	void move(const bool& isMoveRight);
 	void fire();
+	void draw(const int& spriteIndex);
 
 	Character& operator++ ();
 	Character  operator++ (int);
