@@ -4,10 +4,12 @@
 class Bullet : public Character{
 	Character spawnSource_;
 	const bool isPlayer_;
+	bool isFired_{false};
 
 public:
 
-	Bullet(const float& x, const float& y, const Character& spawnSource, const bool& isPlayer);
+	Bullet (const float& x, const float& y, Character spawnSource,
+	        const bool& isPlayer);
 
 	void move();
 	void draw();

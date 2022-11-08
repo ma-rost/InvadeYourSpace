@@ -20,5 +20,3 @@ public:
 	Player& operator-- ();
 	Player  operator-- (int);
 };
-
-

@@ -32,29 +32,3 @@ void Player::shoot ()
 {
 	
 }
-
-Player& Player::operator++ ()
-{
-	this->coordinate_.x += this->moveSpeed_;
-	return *this;
-}
-
-Player Player::operator++ (int)  // postfix ++
-{
-	Player result(*this);   // make a copy for result
-	++(*this);              // Now use the prefix version to do the work
-	return result;          // return the copy (the old) value.
-}
-
-Player& Player::operator-- ()
-{
-	this->coordinate_.x -= this->moveSpeed_;
-	return *this;
-}
-
-Player Player::operator-- (int)
-{
-	Player result(*this);   // make a copy for result
-	--(*this);              // Now use the prefix version to do the work
-	return result;          // return the copy (the old) value.
-}

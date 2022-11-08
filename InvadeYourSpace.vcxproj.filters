@@ -22,6 +22,9 @@
     <ClCompile Include="src\sprite.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\destructible.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -48,6 +51,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\sprite.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\destructible.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

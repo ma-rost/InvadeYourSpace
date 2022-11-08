@@ -1,13 +1,14 @@
 ﻿#include "bullet.h"
 
-Bullet::Bullet (const float& x, const float& y, const Character& spawnSource, const bool& isPlayer):
-	Character(x, y), spawnSource_ (spawnSource), isPlayer_ (isPlayer)
+Bullet::Bullet (const float& x, const float& y, Character spawnSource, const bool& isPlayer):
+	Character(x, y), spawnSource_ (std::move (spawnSource)), isPlayer_ (isPlayer)
 {
 	drawColor_ = ofColor::green;
 
 	sprite_.clearCoords();
 	sprite_.setSize({ 3,8 });
-	sprite_.newCoords({ 41,21 });
+	sprite_.newCoords({ 41,21 }); // Default
+	sprite_.newCoords({ 16,21 }); // Death
 }
 
 void Bullet::move ()
@@ -17,7 +18,7 @@ void Bullet::move ()
 
 void Bullet::draw ()
 {
-	Character::draw(0);
+	Character::draw(isLive_ ? 0 : 1);
 }
 
 bool Bullet::checkHit ()
