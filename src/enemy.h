@@ -4,7 +4,7 @@
 class Enemy : public Character {
 	static std::vector <Enemy> allEnemies_;
 
-	const float moveSpeed_{12};
+	//const float moveSpeed_{12};
 	static bool isForwardMove_;
 public:
 	
@@ -15,9 +15,4 @@ public:
 	void getSprite (bool isFirst, const int& setNum);
 
 	void hitEvent(const bool& isTrue);
-
-	Enemy& operator++ ();
-    Enemy  operator++ (int);
-	Enemy& operator-- ();
-	Enemy  operator-- (int);
 };

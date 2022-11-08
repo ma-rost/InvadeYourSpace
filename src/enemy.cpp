@@ -12,6 +12,7 @@ Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 	Character (x, y)
 {
 	drawColor_ = ofColor::red;
+	moveSpeed_ = 12;
 	int sprite = 0;
 
 	if		( spriteSet == 1 || spriteSet == 2 )  sprite = 1; 
@@ -26,8 +27,7 @@ Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 
 void Enemy::draw ()
 {
-	ofSetColor (ofColor::red);
-	sprite_.drawSprite(getSpriteValue(), coordinate_.x, coordinate_.y);
+	Character::draw(getSpriteValue(),false);
 }
 
 void Enemy::move ()
@@ -36,10 +36,8 @@ void Enemy::move ()
 	if (coordinate_.x >= drawRestrictions_.y) isForwardMove_ = false;
 	if (coordinate_.x <= drawRestrictions_.x) isForwardMove_ = true;
 
-	if (ofGetFrameNum() % 30 == 0) {
-		isForwardMove_ ? ++*this : --*this;
-		//coordinate_.x = ofClamp(coordinate_.x, drawRestrictions_.x,
-			//drawRestrictions_.y);
+	if (ofGetFrameNum() % 30 == 0) { 
+		Character::move(isForwardMove_);
 	}
 	draw();
 }
@@ -55,30 +53,4 @@ void Enemy::getSprite (const bool isFirst, const int& setNum)
 void Enemy::hitEvent (const bool& isTrue)
 {
 
-}
-
-
-Enemy& Enemy::operator++ ()
-{
-	this->coordinate_.x += this->moveSpeed_;
-	return *this;
-}
-
-Enemy  Enemy::operator++ (int)
-{
-	Enemy result(*this);   // make a copy for result
-	++(*this);              // Now use the prefix version to do the work
-	return result;          // return the copy (the old) value.
-}
-
-Enemy& Enemy::operator-- ()
-{
-	this->coordinate_.x -= this->moveSpeed_;
-	return *this;
-}
-Enemy  Enemy::operator-- (int)
-{
-	Enemy result(*this);   // make a copy for result
-	--(*this);              // Now use the prefix version to do the work
-	return result;          // return the copy (the old) value.
 }

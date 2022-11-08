@@ -60,6 +60,11 @@ void Sprite::setSize (const Point<int>& size)
 	spriteSize_ = size;
 }
 
+Point<float> Sprite::getSize () const
+{
+	return {drawnSprite_.getWidth(), drawnSprite_.getHeight()};
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Sprite::changeSprite (const int& spriteIndex, const Point<int>& coords, const Point<int>& size)

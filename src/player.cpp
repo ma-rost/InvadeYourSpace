@@ -14,7 +14,7 @@ Player::Player (const float& x, const float& y):
 void Player::move (bool isRightKey)
 {
 	if ( isLive_ ) {
-		isRightKey ? ++*this : --*this;
+		Character::move(isRightKey);
 		coordinate_.x = ofClamp (coordinate_.x, drawRestrictions_.x,
 													drawRestrictions_.y);
 	}
@@ -22,10 +22,7 @@ void Player::move (bool isRightKey)
 
 void Player::draw ()
 {
-	ofSetColor (ofColor::green);
-
-	if (isLive_)  Character::draw(0);
-	else  Character::draw(getSpriteValue()+1);
+	Character::draw(isLive_ ? 0 : getSpriteValue() + 1, true);
 }
 
 void Player::kill () { isLive_ = isLive_ ? false : true; }

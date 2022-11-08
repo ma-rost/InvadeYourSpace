@@ -21,6 +21,7 @@ public:
 	void clearCoords();
 	void newCoords(const Point<int>& coords);
 	void setSize(const Point<int>& size);
+	Point<float> getSize() const;
 
 	// Animation
 	void changeSprite(const int& spriteIndex, const Point<int>& coords, const Point<int>& size);
