@@ -1,7 +1,7 @@
 ﻿#include "bullet.h"
 
-Bullet::Bullet (const float& x, const float& y, Character spawnSource, const bool& isPlayer):
-	Character(x, y), spawnSource_ (std::move (spawnSource)), isPlayer_ (isPlayer)
+Bullet::Bullet (const float& x, const float& y, Destructible spawnSource, const bool& isPlayer):
+	Destructible(x, y), spawnSource_ (std::move (spawnSource)), isPlayer_ (isPlayer)
 {
 	drawColor_ = ofColor::green;
 
@@ -18,7 +18,7 @@ void Bullet::move ()
 
 void Bullet::draw ()
 {
-	Character::draw(isLive_ ? 0 : 1);
+	Destructible::draw(isLive_ ? 0 : 1);
 }
 
 bool Bullet::checkHit ()

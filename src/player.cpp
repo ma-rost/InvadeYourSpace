@@ -22,7 +22,7 @@ void Player::move (bool isRightKey)
 
 void Player::draw ()
 {
-	Character::draw(isLive_ ? 0 : getSpriteValue() + 1);
+	Destructible::draw(isLive_ ? 0 : getSpriteValue() + 1);
 	setBulletSpawn(true);
 }
 

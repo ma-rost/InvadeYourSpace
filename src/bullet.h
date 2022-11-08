@@ -1,20 +1,20 @@
 ﻿#pragma once
-#include "character.h"
+#include "destructible.h"
 
-class Bullet : public Character{
-	Character spawnSource_;
+class Bullet : public Destructible {
+	Destructible spawnSource_;
 	const bool isPlayer_;
 	bool isFired_{false};
 
 public:
 
-	Bullet (const float& x, const float& y, Character spawnSource,
+	Bullet (const float& x, const float& y, Destructible spawnSource,
 	        const bool& isPlayer);
 
 	void move();
 	void draw();
 	bool checkHit();
-	void resetBullet(const Character& c);
+	void resetBullet(const Destructible& c);
 
 	Bullet& operator++ ();
 	Bullet& operator-- ();
