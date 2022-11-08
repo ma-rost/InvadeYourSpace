@@ -17,6 +17,7 @@ void ofApp::setup ()
 	}
 
 	player.setCoords (20, static_cast <float> (screenSize.y - 50), false);
+	//Enemy::moveForward();
 }
 
 //--------------------------------------------------------------
@@ -30,7 +31,9 @@ void ofApp::draw ()
 {
 	player.draw();
 	for (auto& enemyRow : enemyTest ) {
-		for (auto& enemy : enemyRow)  enemy.move();
+		for (auto& enemy : enemyRow) {
+			enemy.move();
+		}
 	}
 	
 }

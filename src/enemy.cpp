@@ -1,11 +1,13 @@
 ﻿// ReSharper disable All
 #include "enemy.h"
-
+#include <vector>       // std::vector
 #include "ofGraphics.h"
-#include <algorithm>
+
 
 // Static variables must be declared in the .cpp file
 bool Enemy::isForwardMove_;
+int Enemy::downTrigger_;
+std::vector<Enemy*>Enemy::enemies_;
 
 Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 	Character (x, y, false)
@@ -29,6 +31,9 @@ Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 	getSprite (true, sprite); // Sprite 1
 	getSprite (false, sprite); // Sprite 2 
 	sprite_.newCoords({ 55, 1 }); // Death Sprite
+	enemy_ = &*this;
+	std::cout << enemy_->isPlayer_;
+	enemies_.push_back(enemy_);
 }
 
 void Enemy::draw ()
@@ -42,9 +47,7 @@ void Enemy::move ()
 	if (coordinate_.x >= drawRestrictions_.y) isForwardMove_ = false;
 	if (coordinate_.x <= drawRestrictions_.x) isForwardMove_ = true;
 
-	if (ofGetFrameNum() % 30 == 0) {
-		Character::move(isForwardMove_);
-	}
+	Character::move(isForwardMove_);
 	draw();
 }
 
@@ -54,4 +57,21 @@ void Enemy::getSprite (const bool isFirst, const int& setNum)
 	const int y = isFirst ? 1 : 11;
 	
 	sprite_.newCoords({x, y});
+}
+
+void Enemy::moveForward ()
+{
+	for (int i = 0; i < Enemy::getAllObjects().size(); i++) {
+		std::cout << downTrigger_;
+
+	}
+	std::cout << std::endl;
+}
+
+void Enemy::moveDown ()
+{
+	if ( downTrigger_ == 1 ) {
+		coordinate_.y++;
+	}
+	downTrigger_ = 0;
 }
