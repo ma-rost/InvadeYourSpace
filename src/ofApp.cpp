@@ -1,6 +1,6 @@
 #include "ofApp.h"
-#include <ofImage.cpp>
 #include <algorithm>
+#include <ofImage.cpp>
 
 
 //--------------------------------------------------------------

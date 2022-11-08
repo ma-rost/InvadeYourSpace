@@ -51,7 +51,6 @@ void Character::draw (const int& spriteIndex)
 #pragma endregion
 
 
-
 #pragma region Operators
 Character& Character::operator++ ()
 {
@@ -59,12 +58,12 @@ Character& Character::operator++ ()
 	return *this;
 }
 
-
 Character& Character::operator-- ()
 {
 	this->coordinate_.x -= this->moveSpeed_;
 	return *this;
 }
+
 #pragma endregion
 
 
