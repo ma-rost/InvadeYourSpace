@@ -9,7 +9,7 @@ std::vector <Enemy> Enemy::allEnemies_;
 bool Enemy::isForwardMove_;
 
 Enemy::Enemy (const float& x, const float& y, int& spriteSet):
-	Character (x, y)
+	Character (x, y, false)
 {
 	drawColor_ = ofColor::red;
 	moveSpeed_ = 12;

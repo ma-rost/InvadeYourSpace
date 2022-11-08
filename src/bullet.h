@@ -1,15 +1,15 @@
 ﻿#pragma once
+#include "character.h"
 #include "destructible.h"
 
 class Bullet : public Destructible {
-	Destructible spawnSource_;
+	//Character spawnSource_;
 	const bool isPlayer_;
 	bool isFired_{false};
 
 public:
-
-	Bullet (const float& x, const float& y, Destructible spawnSource,
-	        const bool& isPlayer);
+	explicit Bullet (const bool& isPlayer);
+	Bullet (const float& x, const float& y, const bool& isPlayer);
 
 	void move();
 	void draw();

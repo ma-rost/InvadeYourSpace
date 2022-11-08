@@ -3,7 +3,7 @@
 #include "ofGraphics.h"
 
 Player::Player (const float& x, const float& y):
-	Character (x, y)
+	Character (x, y, false)
 {
 	drawColor_ = ofColor::green;
 	for ( int i = 1; i < 3; ++i ) {

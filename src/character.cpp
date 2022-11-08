@@ -2,12 +2,19 @@
 #include "character.h"
 #include "ofGraphics.h"
 
-Character::Character (const float& x, const float& y):Destructible (x,y)
-{}
+Character::Character (const float& x, const float& y, const bool& isPlayer):
+	Character (x, y , isPlayer, 10)
+{
+}
 
-Character::Character (const float& x, const float& y, const float& moveSpeed):
-	Destructible (x,y,moveSpeed)
-{}
+Character::Character (const float& x, const float& y, const bool& isPlayer, const float& moveSpeed):
+	Destructible (x, y, moveSpeed), isPlayer_ (isPlayer), bullet_ (true)
+{
+	//Bullet bullet_ {true};
+	setBulletSpawn(isPlayer);
+	bullet_.setCoords(bulletSpawn_.x, bulletSpawn_.y);
+}
+
 
 void Character::setBulletSpawn(const bool& isPlayer)
 {
@@ -22,8 +29,7 @@ void Character::setBulletSpawn(const bool& isPlayer)
 	}
 
 	//DEBUG DRAW
-	ofSetColor(ofColor::white);
-	ofDrawRectangle(bulletSpawn_.x, bulletSpawn_.y, 4, 4);
+	bullet_.draw();
 }
 
 #pragma region Actions
@@ -35,7 +41,7 @@ void Character::move(const bool& isMoveRight)
 
 void Character::fire()
 {
-
+	new Bullet(bulletSpawn_.x, bulletSpawn_.y, true);
 }
 #pragma endregion
 
