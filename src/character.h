@@ -19,9 +19,7 @@ public:
 	void draw(const int& spriteIndex);
 
 	Character& operator++ ();
-	Character  operator++ (int);
 	Character& operator-- ();
-	Character  operator-- (int);
 };
 
 

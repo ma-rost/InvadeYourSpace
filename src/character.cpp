@@ -10,7 +10,6 @@ Character::Character (const float& x, const float& y, const bool& isPlayer):
 Character::Character (const float& x, const float& y, const bool& isPlayer, const float& moveSpeed):
 	Destructible (x, y, moveSpeed), isPlayer_ (isPlayer), bullet_ (isPlayer_)
 {
-	//Bullet bullet_ {true};
 	setBulletSpawn();
 	bullet_.resetBullet();
 	
@@ -60,23 +59,11 @@ Character& Character::operator++ ()
 	return *this;
 }
 
-Character  Character::operator++ (int)
-{
-	Character result(*this);   // make a copy for result
-	++(*this);              // Now use the prefix version to do the work
-	return result;          // return the copy (the old) value.
-}
 
 Character& Character::operator-- ()
 {
 	this->coordinate_.x -= this->moveSpeed_;
 	return *this;
-}
-Character  Character::operator-- (int)
-{
-	Character result(*this);   // make a copy for result
-	--(*this);              // Now use the prefix version to do the work
-	return result;          // return the copy (the old) value.
 }
 #pragma endregion
 

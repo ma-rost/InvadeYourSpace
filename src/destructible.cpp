@@ -1,5 +1,4 @@
 ﻿#include "destructible.h"
-
 #include "ofGraphics.h"
 
 Destructible::Destructible (const float& x, const float& y)
@@ -13,7 +12,7 @@ Destructible::Destructible (const float& x, const float& y, const float& moveSpe
 	moveSpeed_ = moveSpeed;
 }
 
-void Destructible::setCoords (const float& x, const float& y, bool applyResize)
+void Destructible::setCoords (const float& x, const float& y, const bool applyResize)
 {
 	coordinate_.x = applyResize ? x * Sprite::getResize() : x;
 	coordinate_.y = applyResize ? y * Sprite::getResize() : y;
