@@ -2,10 +2,10 @@
 #include "character.h"
 
 class Enemy : public Character {
-	static std::vector <Enemy> allEnemies_;
-
-	//const float moveSpeed_{12};
+	
 	static bool isForwardMove_;
+	int points_{30};
+	bool isBottomMost_;
 public:
 	
 	Enemy (const float& x, const float& y, int& spriteSet);
@@ -15,4 +15,5 @@ public:
 	void getSprite (bool isFirst, const int& setNum);
 
 	void hitEvent(const bool& isTrue);
+	
 };
