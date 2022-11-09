@@ -4,6 +4,7 @@
 
 Bullet::Bullet ():Bullet(4, 5, true)
 {
+
 }
 
 Bullet::Bullet (const bool& isPlayer):
@@ -13,13 +14,18 @@ Bullet::Bullet (const bool& isPlayer):
 }
 
 Bullet::Bullet (const float& x, const float& y, const bool& isPlayer):
-	Destructible(x, y, 24),  isPlayer_ (isPlayer)
+	Destructible(x, y, 24), isPlayer_ (isPlayer)
 {
 	moveSpeed_ = 4;
 	sprite_.clearCoords();
 	sprite_.setSize({ 3,7 });
 	sprite_.newCoords({ 41,21 }); // Default
 	sprite_.newCoords({ 16,21 }); // Death
+}
+
+void Bullet::isBulletActive (const bool& isBottom)
+{
+	isActive_ = isBottom;
 }
 
 void Bullet::move ()

@@ -6,14 +6,16 @@
 
 // Static variables must be declared in the .cpp file
 bool Enemy::isForwardMove_;
-int Enemy::downTrigger_;
-std::vector<Enemy*>Enemy::enemies_;
+std::vector<Enemy*> Enemy::enemies_;
+Point<float> Enemy::wholeCoordinate_; // The coordinate of the first enemy
+Point<float> Enemy::wholeSize_; // The size of all of the enemies compiled into one
 
-Enemy::Enemy (const float& x, const float& y, int& spriteSet):
-	Character (x, y, false)
+Enemy::Enemy(const float& x, const float& y, int& spriteSet) :
+	Character(x, y, false)
 {
-	drawColor_ = ofColor::red;
 	moveSpeed_ = 12;
+
+	drawColor_ = ofColor::red;
 	int sprite = 0;
 	if	( spriteSet == 1 || spriteSet == 2 ) {
 		sprite = 1;
@@ -25,16 +27,23 @@ Enemy::Enemy (const float& x, const float& y, int& spriteSet):
 		points_ = 10;
 		drawColor_ = ofColor::paleVioletRed;
 		isBottomMost_ = true;
+		bullet_.isBulletActive(isBottomMost_);
 	}
 
 	sprite_.clearCoords();
 	getSprite (true, sprite); // Sprite 1
 	getSprite (false, sprite); // Sprite 2 
 	sprite_.newCoords({ 55, 1 }); // Death Sprite
+
+	// Vector
 	enemy_ = &*this;
 	std::cout << enemy_->isPlayer_;
-	enemies_.push_back(enemy_);
+	enemies_.push_back(&*this);
+
+	setWholeSize(x, y);
 }
+
+
 
 void Enemy::draw ()
 {
@@ -44,8 +53,8 @@ void Enemy::draw ()
 void Enemy::move ()
 {
 	// When Enemy hits drawRestrictions_ value, toggle isForwardMove
-	if (coordinate_.x >= drawRestrictions_.y) isForwardMove_ = false;
-	if (coordinate_.x <= drawRestrictions_.x) isForwardMove_ = true;
+	if (coordinate_.x >= DRAW_RESTRICTIONS.y) isForwardMove_ = false;
+	if (coordinate_.x <= DRAW_RESTRICTIONS.x) isForwardMove_ = true;
 
 	Character::move(isForwardMove_);
 	draw();
@@ -59,19 +68,36 @@ void Enemy::getSprite (const bool isFirst, const int& setNum)
 	sprite_.newCoords({x, y});
 }
 
-void Enemy::moveForward ()
+#pragma region Static Functions
+bool Enemy::isMoveValid()
 {
-	for (int i = 0; i < Enemy::getAllObjects().size(); i++) {
-		std::cout << downTrigger_;
-
-	}
-	std::cout << std::endl;
+	if (wholeSize_.x >= DRAW_RESTRICTIONS.y)	   return false;
+	if (wholeCoordinate_.x <= DRAW_RESTRICTIONS.x) return true;
 }
 
-void Enemy::moveDown ()
+void Enemy::setWholeSize(int rowSize, int columnSize)
 {
-	if ( downTrigger_ == 1 ) {
-		coordinate_.y++;
-	}
-	downTrigger_ = 0;
+	wholeSize_.x += 10.7;
+	wholeSize_.y += 4.4;
+
+	std::cout << wholeSize_.x << ", " << wholeSize_.y << std::endl;
 }
+
+void Enemy::setWholeCoordinate(const Point<float> coordinate)
+{
+	wholeCoordinate_ = coordinate;
+}
+
+void Enemy::drawDebugRange()
+{
+	ofSetColor(ofColor::lavender);
+	ofDrawRectangle(wholeCoordinate_.x, wholeCoordinate_.y, wholeSize_.x, wholeSize_.y);
+}
+
+void Enemy::moveWhole()
+{
+	isMoveValid () ? wholeCoordinate_.x += getMoveSpeed() : wholeCoordinate_.x -= getMoveSpeed();
+	drawDebugRange();
+}
+#pragma endregion
+

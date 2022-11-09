@@ -1,15 +1,11 @@
 ﻿#include "destructible.h"
 #include "ofGraphics.h"
 
+
 Destructible::Destructible (const float& x, const float& y)
 {
 	setCoords(x, y, true);
-}
-
-Destructible::Destructible (const float& x, const float& y, const float& moveSpeed):
-	Destructible (x,y)
-{
-	moveSpeed_ = moveSpeed;
+	moveSpeed_ = 10;
 }
 
 void Destructible::setCoords (const float& x, const float& y, const bool applyResize)

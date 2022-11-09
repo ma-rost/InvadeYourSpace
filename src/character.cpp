@@ -8,11 +8,10 @@ Character::Character (const float& x, const float& y, const bool& isPlayer):
 }
 
 Character::Character (const float& x, const float& y, const bool& isPlayer, const float& moveSpeed):
-	Destructible (x, y, moveSpeed), isPlayer_ (isPlayer), bullet_ (isPlayer_)
+	Destructible (x, y), isPlayer_ (isPlayer), bullet_ (isPlayer_)
 {
 	setBulletSpawn();
 	bullet_.resetBullet();
-	
 }
 
 
@@ -30,11 +29,16 @@ void Character::setBulletSpawn()
 	bullet_.setBulletOrigin(bulletSpawn_);
 }
 
+Point<float> Character::getCoordinate ()
+{
+	return coordinate_;
+}
+
 #pragma region Actions
 
 void Character::move(const bool& isMoveRight)
 {
-	isMoveRight ? ++ * this : -- * this;
+	isMoveRight ? ++*this : --*this;
 }
 
 void Character::fire()

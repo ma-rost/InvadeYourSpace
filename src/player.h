@@ -3,7 +3,7 @@
 #include "character.h"
 
 class Player : public Character {
-	const float moveSpeed_{10};
+	static float moveSpeed_;
 public:
 	Player (const float& x, const float& y);
 
@@ -14,9 +14,8 @@ public:
 
 	void shoot();
 
-    Player& operator++ ();
-	Player  operator++ (int);
 
-	Player& operator-- ();
-	Player  operator-- (int);
+	static float getMoveSpeed() {
+		return moveSpeed_;
+	}
 };

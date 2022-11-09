@@ -6,7 +6,7 @@
 //--------------------------------------------------------------
 void ofApp::setup ()
 {
-	ofSetBackgroundColor (ofColor::black);
+	ofSetBackgroundColor (ofColor::darkGray);
 	ofSetWindowTitle (TITLE); // Set the window title
 	ofSetWindowShape (screenSize.x, screenSize.y);
 
@@ -16,8 +16,9 @@ void ofApp::setup ()
 		}
 	}
 
+	Enemy::setWholeCoordinate(enemyTest[0][0].getCoordinate());
+
 	player.setCoords (20, static_cast <float> (screenSize.y - 50), false);
-	//Enemy::moveForward();
 }
 
 //--------------------------------------------------------------
@@ -29,10 +30,12 @@ void ofApp::update ()
 //--------------------------------------------------------------
 void ofApp::draw ()
 {
+	Enemy::drawDebugRange();
 	player.draw();
 	for (auto& enemyRow : enemyTest ) {
 		for (auto& enemy : enemyRow) {
-			enemy.move();
+			//enemy.move();
+			enemy.draw();
 		}
 	}
 	

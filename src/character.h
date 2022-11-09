@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "bullet.h"
 #include "destructible.h"
+#include "bullet.h"
 
 class Character : public Destructible {
 protected:
@@ -13,6 +13,7 @@ public:
 	Character(const float& x, const float& y, const bool& isPlayer, const float& moveSpeed);
 
 	void setBulletSpawn();
+	Point<float> getCoordinate();
 
 	void move(const bool& isMoveRight);
 	void fire();
