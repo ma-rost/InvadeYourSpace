@@ -184,6 +184,7 @@
     <ClCompile Include="src\character.cpp" />
     <ClCompile Include="src\destructible.cpp" />
     <ClCompile Include="src\enemy.cpp" />
+    <ClCompile Include="src\enemyContainer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\player.cpp" />
@@ -194,6 +195,8 @@
     <ClInclude Include="src\character.h" />
     <ClInclude Include="src\destructible.h" />
     <ClInclude Include="src\enemy.h" />
+    <ClInclude Include="src\enemyContainer.h" />
+    <ClInclude Include="src\globals.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\point.h" />
