@@ -1,5 +1,6 @@
 ﻿#include "player.h"
 
+#include "globals.h"
 #include "ofGraphics.h"
 
 Player::Player (const float& x, const float& y):

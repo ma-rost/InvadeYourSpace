@@ -1,7 +1,5 @@
 ﻿#pragma once
 #include <array>
-
-#include "globals.h"
 #include "enemy.h"
 #include "point.h"
 

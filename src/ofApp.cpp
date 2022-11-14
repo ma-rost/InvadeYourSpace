@@ -3,14 +3,16 @@
 #include <ofImage.cpp>
 
 
+
+
 //--------------------------------------------------------------
 void ofApp::setup ()
 {
 	ofSetBackgroundColor (ofColor::darkGray);
 	ofSetWindowTitle (TITLE); // Set the window title
-	ofSetWindowShape (screenSize.x, screenSize.y);
+	ofSetWindowShape (glb::screen_size.x, glb::screen_size.y);
 
-	player.setCoords (21, static_cast <float> (screenSize.y - 50), false);
+	player.setCoords (21, static_cast <float> (glb::screen_size.y - 50), false);
 }
 
 //--------------------------------------------------------------
@@ -22,7 +24,6 @@ void ofApp::update ()
 //--------------------------------------------------------------
 void ofApp::draw ()
 {
-	
 	player.draw();
 	enemyContainer.moveWhole();
 }
@@ -35,7 +36,7 @@ void ofApp::keyPressed (int key)
 
 	if (key == OF_KEY_UP || key == 'w') player.fire();
 
-	if ( key == 'e' )  player.kill(); 
+	if ( key == 'e' )  player.kill();
 }
 
 //--------------------------------------------------------------

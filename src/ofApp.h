@@ -1,9 +1,10 @@
 #pragma once
 
+#include "globals.h"
 #include "enemyContainer.h"
 #include "ofMain.h"
-#include "point.h"
 #include "player.h"
+#include "point.h"
 
 class ofApp : public ofBaseApp{
 
@@ -27,10 +28,6 @@ class ofApp : public ofBaseApp{
 		const string TITLE = "Invade Your Space";
 
 		Player player {10, 70};
-
-		array<vector<Enemy>,11> enemyTest;
-
-		Point<int> screenSize = { 700, 500 };
 
 		EnemyContainer enemyContainer;
 };
