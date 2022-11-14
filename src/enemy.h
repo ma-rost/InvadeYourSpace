@@ -30,6 +30,9 @@ public:
 
 	void hitEvent(const bool& isTrue);
 
+	bool canShoot();
+
+
 };
 
 

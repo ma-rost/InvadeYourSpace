@@ -10,14 +10,14 @@
 Enemy::Enemy(const float& x, const float& y, int& spriteSet) :
 	Character(x, y, false)
 {
-	selfCoord_ = { x,y };
 	int sprite = setupRows (spriteSet);
 
 	sprite_.clearCoords();
 	getSprite (true, sprite); // Sprite 1
 	getSprite (false, sprite); // Sprite 2 
 	sprite_.newCoords({ 55, 1 }); // Death Sprite
-	
+
+	selfCoord_ = { applyResize (x),applyResize(y) };
 }
 
 int Enemy::setupRows(int& setNum)
@@ -59,5 +59,11 @@ void Enemy::getSprite (const bool isFirst, const int& setNum)
 	const int y = isFirst ? 1 : 11;
 	
 	sprite_.newCoords({x, y});
+}
+
+bool Enemy::canShoot ()
+{
+	if (isLive_ && isBottomMost_) return true;
+	else return false;
 }
 

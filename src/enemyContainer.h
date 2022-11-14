@@ -7,7 +7,7 @@ class EnemyContainer {
 
 	Point<float> wholeCoordinate_; // The coordinate of the first enemy
 	Point<float> wholeSize_; // The size of all of the enemies compiled into one
-	static constexpr float MOVE_SPEED{ 24 };
+	static constexpr float MOVE_SPEED{ 8 };
 	static bool isForwardMove_;
 
 	std::array<std::vector<Enemy>, 11> enemyTest_;
@@ -16,17 +16,14 @@ public:
 
 	void draw();
 
-	void isMovingRight();
+	void isMovingRight ();
 	void setWholeSize(int rowSize, int columnSize);
-
-	/*static std::vector<Enemy*> getAllObjects() {
-		return enemies_;
-	}*/
 
 	void setWholeCoordinate(const Point<float> coordinate);
 	void drawDebugRange() const;
 	void drawEnemies ();
 
+	void makeShoot ();
 	void moveWhole();
 	static float getMoveSpeed() { return MOVE_SPEED; }
 };

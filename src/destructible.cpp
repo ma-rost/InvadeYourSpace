@@ -18,6 +18,11 @@ void Destructible::setCoords (const float& y, bool applyResize)
 	coordinate_.y = applyResize ? y * Sprite::getResize() : y;
 }
 
+float Destructible::applyResize (float value)
+{
+	return value * Sprite::getResize();
+}
+
 int Destructible::getSpriteValue() const
 {
 	constexpr int frameRate = 60;

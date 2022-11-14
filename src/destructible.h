@@ -19,6 +19,7 @@ public:
 
 	void setCoords(const float& x, const float& y, bool applyResize);
 	void setCoords(const float& y, bool applyResize);
+	float applyResize(float value);
 	int getSpriteValue () const;
 
 	void kill();

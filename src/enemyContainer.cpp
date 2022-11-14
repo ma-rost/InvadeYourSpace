@@ -8,14 +8,15 @@ bool EnemyContainer::isForwardMove_;
 
 EnemyContainer::EnemyContainer ()
 {
+	
 	for (int x = 0; x < 11; ++x) {
 		for (int y = 0; y < 5; ++y) {
-			enemyTest_[x].emplace_back(x * 18 + 6, y * 18 + 6, y);
+			enemyTest_[x].emplace_back(x * 18, y * 18, y);
 			setWholeSize(x, y);
 		}
 	}
 
-	setWholeCoordinate(enemyTest_[0][0].getCoordinate());
+	setWholeCoordinate({ glb::DRAW_RESTRICTIONS.x, 10 });
 	
 }
 
@@ -30,8 +31,7 @@ void EnemyContainer::isMovingRight ()
 	//std::cout << wholeCoordinate_.x << ", " << wholeCoordinate_.x + wholeSize_.x << std::endl;
 	if (wholeCoordinate_.x + wholeSize_.x >= glb::DRAW_RESTRICTIONS.y) {
 		isForwardMove_ = false;
-
-		if (ofGetFrameNum() % 4 == 0) wholeCoordinate_.y += 3;
+		wholeCoordinate_.y += 3;
 	}
 	if (wholeCoordinate_.x <= glb::DRAW_RESTRICTIONS.x) isForwardMove_ = true;
 }
@@ -64,13 +64,24 @@ void EnemyContainer::drawEnemies ()
 	}
 }
 
+void EnemyContainer::makeShoot ()
+{
+	int a = static_cast<int>(round(ofRandom(10)));
+	int b = static_cast<int>(round(ofRandom(4)));
+
+	enemyTest_[a][b].canShoot() ? enemyTest_[a][b].fire() : makeShoot();
+}
+
 void EnemyContainer::moveWhole ()
 {
-	drawDebugRange();
-	isMovingRight();
-	if (ofGetFrameNum() % 6 == 0) {
+	if (ofGetFrameNum() % 30 == 0) {
+		isMovingRight();
 		isForwardMove_ ? wholeCoordinate_.x += MOVE_SPEED : wholeCoordinate_.x -= MOVE_SPEED;
 	}
 	drawDebugRange();
 	drawEnemies ();
+
+	if (ofGetFrameNum() % 60 == 0) {
+		makeShoot();
+	}
 }

@@ -24,7 +24,7 @@ void ofApp::draw ()
 {
 	
 	player.draw();
-	enemyContainer.draw();
+	enemyContainer.moveWhole();
 }
 
 //--------------------------------------------------------------
