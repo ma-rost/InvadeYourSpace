@@ -26,6 +26,8 @@ class Enemy : public Character {
 
 	int setupRows(int& setNum);
 
+	static void isMovingRight();
+	static void setWholeSize(int rowSize, int columnSize);
 
 public:
 	
@@ -44,9 +46,9 @@ public:
 		return enemies_;
 	}
 
-	static void isMovingRight();
+	
 
-	static void setWholeSize(int rowSize, int columnSize);
+	
 	static void setWholeCoordinate(const Point<float> coordinate);
 	static void drawDebugRange();
 
