@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <array>
 #include "enemy.h"
+#include "ofGraphics.h"
 #include "point.h"
 
 class EnemyContainer {
@@ -13,15 +14,15 @@ public:
 	EnemyContainer();
 
 	void draw();
-
-	void isMovingRight ();
-	void setWholeSize(int rowSize, int columnSize);
-
-	void setWholeCoordinate(const Point<float> coordinate);
 	void drawDebugRange() const;
-	void drawEnemies ();
+	void drawEnemies();
+	void moveWhole();
+	void isMovingRight ();
+
+	void setWholeSize(int rowSize, int columnSize);
+	void setWholeCoordinate(const Point<float> coordinate);
 
 	void makeShoot ();
-	void moveWhole();
+	
 	static float getMoveSpeed() { return MOVE_SPEED; }
 };

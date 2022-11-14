@@ -1,10 +1,9 @@
-﻿#ifndef BULLET_H
-#define BULLET_H
+﻿#pragma once
 #include "destructible.h"
 
 class Bullet : public Destructible {
 	const bool isPlayer_;
-	bool isFired_{false};
+	bool isFired_{ false };
 	bool isActive_{ false };
 	Point <float> bulletOrigin_;
 
@@ -15,20 +14,18 @@ public:
 	explicit Bullet (const bool& isPlayer);
 	Bullet (const float& x, const float& y, const bool& isPlayer);
 
-	void isBulletActive(const bool& isBottom);
-
 	void move();
 	void fire();
 	bool isHitValid();
 
 	void resetBullet();
 	void setBulletOrigin(Point <float> bulletOrigin);
-
-	Bullet& operator++ ();
-
-	static float getMoveSpeed() { return MOVE_SPEED; }
+	void isBulletActive(const bool& isBottom);
 
 	void checkCollider(Destructible& obj);
+
+	static float getMoveSpeed() { return MOVE_SPEED; }
+	Bullet& operator++ ();
 };
 
 inline Bullet& Bullet::operator++ ()
@@ -37,4 +34,3 @@ inline Bullet& Bullet::operator++ ()
 				collider_.y += MOVE_SPEED;
 	return *this;
 }
-#endif // BULLET_H

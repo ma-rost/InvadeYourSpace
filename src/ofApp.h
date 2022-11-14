@@ -1,10 +1,8 @@
 #pragma once
 
-#include "globals.h"
-#include "enemyContainer.h"
 #include "ofMain.h"
+#include "enemyContainer.h"
 #include "player.h"
-#include "point.h"
 
 class ofApp : public ofBaseApp{
 

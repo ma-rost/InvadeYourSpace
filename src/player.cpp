@@ -1,8 +1,5 @@
 ﻿#include "player.h"
 
-#include "globals.h"
-#include "ofGraphics.h"
-
 Player::Player (const float& x, const float& y):
 	Character (x, y, true)
 {
@@ -27,8 +24,3 @@ void Player::draw ()
 }
 
 void Player::kill () { isLive_ = isLive_ ? false : true; }
-
-void Player::shoot ()
-{
-	
-}

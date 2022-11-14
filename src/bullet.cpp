@@ -1,5 +1,4 @@
 ﻿#include "bullet.h"
-
 #include "ofGraphics.h"
 
 Bullet::Bullet ():Bullet(4, 5, true)

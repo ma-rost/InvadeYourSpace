@@ -1,16 +1,11 @@
 #include "ofApp.h"
-#include <algorithm>
 #include <ofImage.cpp>
-
-
-
 
 //--------------------------------------------------------------
 void ofApp::setup ()
 {
 	ofSetBackgroundColor (ofColor::darkGray);
 	ofSetWindowTitle (TITLE); // Set the window title
-	ofSetWindowShape (glb::screen_size.x, glb::screen_size.y);
 
 	player.setCoords (21, static_cast <float> (glb::screen_size.y - 50), false);
 }

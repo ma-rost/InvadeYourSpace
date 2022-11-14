@@ -14,6 +14,25 @@ Character::Character (const float& x, const float& y, const bool& isPlayer, cons
 	bullet_.resetBullet();
 }
 
+#pragma region Actions
+
+void Character::move(const bool& isMoveRight)
+{
+	isMoveRight ? ++ * this : -- * this;
+}
+
+void Character::draw(const int& spriteIndex)
+{
+	setBulletSpawn();
+	bullet_.move();
+	Destructible::draw(spriteIndex);
+}
+
+void Character::fire()
+{
+	bullet_.fire();
+}
+#pragma endregion
 
 void Character::setBulletSpawn()
 {
@@ -34,34 +53,13 @@ Point<float> Character::getCoordinate ()
 	return collider_.getXY();
 }
 
-#pragma region Actions
-
-void Character::move(const bool& isMoveRight)
-{
-	isMoveRight ? ++*this : --*this;
-}
-
-void Character::fire()
-{
-	bullet_.fire();
-}
-
-void Character::draw (const int& spriteIndex)
-{
-	setBulletSpawn();
-	bullet_.move();
-	Destructible::draw(spriteIndex);
-}
-
-bool Character::checkCollide (const Destructible& obj)
+bool Character::checkCollide(const Destructible& obj)
 {
 	/*if ( >= ) {
-		
+
 	}*/
 	return false;
 }
-#pragma endregion
-
 
 #pragma region Operators
 Character& Character::operator++ ()
