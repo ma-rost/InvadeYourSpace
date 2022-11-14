@@ -112,24 +112,11 @@ void Enemy::moveWhole()
 	isMovingRight();
 
 	if (ofGetFrameNum() % 4 == 0) {
-		isForwardMove_ ? wholeCoordinate_.x++ : wholeCoordinate_.x--;
+		isForwardMove_ ? wholeCoordinate_.x+=MOVE_SPEED : wholeCoordinate_.x-= MOVE_SPEED;
+		// isForwardMove_ ? wholeCoordinate_.x++ : wholeCoordinate_.x--; // TO TEST
 	}
 	
 	drawDebugRange();
 }
-
-Enemy& Enemy::operator++ ()
-{
-	
-}
-
-Enemy& Enemy::operator-- ()
-{
-	std::cout << "ENEMY";
-	wholeCoordinate_.x -= Enemy::getMoveSpeed();
-	return *this;
-}
-
-
 #pragma endregion
 
