@@ -17,21 +17,21 @@ Character::Character (const float& x, const float& y, const bool& isPlayer, cons
 
 void Character::setBulletSpawn()
 {
-	bulletSpawn_.x = coordinate_.x + sprite_.getSize().x / 2 - 3;
+	bulletSpawn_.x = collider_.x + sprite_.getSize().x / 2 - 3;
 
 	if (isPlayer_) { // Player
-		bulletSpawn_.y = coordinate_.y - sprite_.getSize().y / 2 - 20;
+		bulletSpawn_.y = collider_.y - sprite_.getSize().y / 2 - 20;
 	}
 	else {			// Enemy
 		bulletSpawn_.x-= 1; // Makes Bullet centered on enemies
-		bulletSpawn_.y = coordinate_.y + sprite_.getSize().y / 2 + 20;
+		bulletSpawn_.y = collider_.y + sprite_.getSize().y / 2 + 20;
 	}
 	bullet_.setBulletOrigin(bulletSpawn_);
 }
 
 Point<float> Character::getCoordinate ()
 {
-	return coordinate_;
+	return collider_.getXY();
 }
 
 #pragma region Actions
@@ -55,9 +55,10 @@ void Character::draw (const int& spriteIndex)
 
 bool Character::checkCollide (const Destructible& obj)
 {
-	if ( >= ) {
+	/*if ( >= ) {
 		
-	}
+	}*/
+	return false;
 }
 #pragma endregion
 
@@ -65,13 +66,13 @@ bool Character::checkCollide (const Destructible& obj)
 #pragma region Operators
 Character& Character::operator++ ()
 {
-	this->coordinate_.x += this->getMoveSpeed();
+	this->collider_.x += this->getMoveSpeed();
 	return *this;
 }
 
 Character& Character::operator-- ()
 {
-	this->coordinate_.x -= this->getMoveSpeed();
+	this->collider_.x -= this->getMoveSpeed();
 	return *this;
 }
 

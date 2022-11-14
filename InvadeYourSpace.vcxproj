@@ -200,7 +200,6 @@
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\point.h" />
-    <ClInclude Include="src\rectangle.h" />
     <ClInclude Include="src\sprite.h" />
   </ItemGroup>
   <ItemGroup>

@@ -40,21 +40,20 @@ void EnemyContainer::setWholeSize (int rowSize, int columnSize)
 
 void EnemyContainer::setWholeCoordinate (const Point<float> coordinate)
 {
-	wholeCollision_.x = coordinate.x;
-	wholeCollision_.y = coordinate.y;
+	wholeCollision_.setXY(coordinate);
 }
 
 void EnemyContainer::drawDebugRange () const
 {
 	ofSetColor(ofColor::lavender);
-	ofDrawRectangle(wholeCoordinate_.x, wholeCoordinate_.y, wholeSize_.x, wholeSize_.y);
+	ofDrawRectangle(wholeCollision_.x, wholeCollision_.y, wholeCollision_.w, wholeCollision_.h);
 }
 
 void EnemyContainer::drawEnemies ()
 {
 	for (auto& enemyRow : enemyTest_) {
 		for (auto& enemy : enemyRow) {
-			enemy.move(wholeCoordinate_);
+			enemy.move(wholeCollision_.getXY());
 		}
 	}
 }
@@ -72,7 +71,7 @@ void EnemyContainer::moveWhole ()
 {
 	if (ofGetFrameNum() % 30 == 0) {
 		isMovingRight();
-		isForwardMove_ ? wholeCoordinate_.x += MOVE_SPEED : wholeCoordinate_.x -= MOVE_SPEED;
+		isForwardMove_ ? wholeCollision_.x += MOVE_SPEED : wholeCollision_.x -= MOVE_SPEED;
 	}
 	drawDebugRange();
 	drawEnemies ();
@@ -84,9 +83,9 @@ void EnemyContainer::moveWhole ()
 
 void EnemyContainer::isMovingRight()
 {
-	if (wholeCoordinate_.x + wholeSize_.x >= glb::DRAW_RESTRICTIONS.y) {
+	if (wholeCollision_.x + wholeCollision_.w >= glb::DRAW_RESTRICTIONS.y) {
 		isForwardMove_ = false;
-		wholeCoordinate_.y += 3;
+		wholeCollision_.y += 3;
 	}
-	if (wholeCoordinate_.x <= glb::DRAW_RESTRICTIONS.x) isForwardMove_ = true;
+	if (wholeCollision_.x <= glb::DRAW_RESTRICTIONS.x) isForwardMove_ = true;
 }

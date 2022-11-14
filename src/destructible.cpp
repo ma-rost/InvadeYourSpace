@@ -9,13 +9,15 @@ Destructible::Destructible (const float& x, const float& y)
 
 void Destructible::setCoords (const float& x, const float& y, const bool applyResize)
 {
-	coordinate_.x = applyResize ? x * Sprite::getResize() : x;
-	coordinate_.y = applyResize ? y * Sprite::getResize() : y;
+	collider_.x = applyResize ? x * Sprite::getResize() : x;
+	collider_.y = applyResize ? y * Sprite::getResize() : y;
+
+
 }
 
 void Destructible::setCoords (const float& y, bool applyResize)
 {
-	coordinate_.y = applyResize ? y * Sprite::getResize() : y;
+	collider_.y = applyResize ? y * Sprite::getResize() : y;
 }
 
 float Destructible::applyResize (float value)
@@ -37,15 +39,23 @@ void Destructible::kill ()
 void Destructible::draw (const int& spriteIndex)
 {
 	ofSetColor(drawColor_);
-	sprite_.drawSprite(spriteIndex, coordinate_.x, coordinate_.y);
+	sprite_.drawSprite(spriteIndex, collider_.x, collider_.y);
 }
 
 void Destructible::setCollision ()
 {
-	setCollision(coordinate_.x, coordinate_.y, sprite_.getSize().x, sprite_.getSize().y);
+	setCollision(collider_.x, collider_.y, sprite_.getSize().x, sprite_.getSize().y);
 }
 
-void Destructible::setCollision (const float& x, const float& y, const float& w, const float& h)
+void Destructible::setCollision(const float& x, const float& y, const float& w, const float& h)
 {
-	collider_ = { x,y,w,h };
+	setCollision({ x,y }, { w,h });
 }
+
+void Destructible::setCollision (Point<float> xy, Point<float> wh)
+{
+	collider_.setXY(xy);
+	collider_.setWH(wh);
+}
+
+

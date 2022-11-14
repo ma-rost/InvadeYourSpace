@@ -49,8 +49,8 @@ void Enemy::draw ()
 
 void Enemy::move (Point<float> refCoord)
 {
-	coordinate_.x = selfCoord_.x + refCoord.x;
-	coordinate_.y = selfCoord_.y + refCoord.y;
+	collider_.x = selfCoord_.x + refCoord.x;
+	collider_.y = selfCoord_.y + refCoord.y;
 	draw();
 }
 

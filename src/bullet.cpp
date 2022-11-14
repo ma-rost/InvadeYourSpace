@@ -52,7 +52,7 @@ void Bullet::fire ()
 
 bool Bullet::isHitValid ()
 {
-	if(coordinate_.y < 1 || coordinate_.y > ofGetViewportHeight()) {
+	if(collider_.y < 1 || collider_.y > ofGetViewportHeight()) {
 		return false;
 	}
 	return true;
@@ -72,7 +72,5 @@ void Bullet::setBulletOrigin (const Point<float> bulletOrigin)
 
 void Bullet::checkCollider (const Destructible& obj)
 {
-	if ( >= ) {
-
-	}
+	
 }

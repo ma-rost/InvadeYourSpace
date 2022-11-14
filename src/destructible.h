@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <array>
-#include "rectangle.h"
 #include "ofColor.h"
 #include "point.h"
 #include "sprite.h"
@@ -13,7 +12,6 @@ protected:
 	ofColor drawColor_{ ofColor::white };
 
 	static constexpr float MOVE_SPEED{ 10 };
-	Point<float> coordinate_;
 	Rect<float> collider_;
 	static constexpr Point <float> DRAW_RESTRICTIONS{ 20, 670 };
 
@@ -32,5 +30,6 @@ public:
 	static float getMoveSpeed() { return MOVE_SPEED;}
 
 	void setCollision();
+	void setCollision(Point<float> xy, Point<float> wh);
 	void setCollision(const float& x, const float& y, const float& w, const float& h);
 };

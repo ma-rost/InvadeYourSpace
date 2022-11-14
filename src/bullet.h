@@ -33,7 +33,7 @@ public:
 
 inline Bullet& Bullet::operator++ ()
 {
-	isPlayer_ ? coordinate_.y -= MOVE_SPEED :
-				coordinate_.y += MOVE_SPEED;
+	isPlayer_ ? collider_.y -= MOVE_SPEED :
+				collider_.y += MOVE_SPEED;
 	return *this;
 }
