@@ -4,25 +4,29 @@
 #include "point.h"
 
 class EnemyContainer {
-	//static std::array<std::array<Enemy, 5>, 11> enemyTest_;
-	static Point<float> wholeCoordinate_; // The coordinate of the first enemy
-	static Point<float> wholeSize_; // The size of all of the enemies compiled into one
-	static constexpr float MOVE_SPEED{ 24 };
 
+	Point<float> wholeCoordinate_; // The coordinate of the first enemy
+	Point<float> wholeSize_; // The size of all of the enemies compiled into one
+	static constexpr float MOVE_SPEED{ 24 };
 	static bool isForwardMove_;
+
+	std::array<std::vector<Enemy>, 11> enemyTest_;
 public:
 	EnemyContainer();
 
-	static void isMovingRight();
-	static void setWholeSize(int rowSize, int columnSize);
+	void draw();
+
+	void isMovingRight();
+	void setWholeSize(int rowSize, int columnSize);
 
 	/*static std::vector<Enemy*> getAllObjects() {
 		return enemies_;
 	}*/
 
-	static void setWholeCoordinate(const Point<float> coordinate);
-	static void drawDebugRange();
+	void setWholeCoordinate(const Point<float> coordinate);
+	void drawDebugRange() const;
+	void drawEnemies ();
 
-	static void moveWhole();
+	void moveWhole();
 	static float getMoveSpeed() { return MOVE_SPEED; }
 };

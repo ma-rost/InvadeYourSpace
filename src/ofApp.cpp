@@ -10,14 +10,6 @@ void ofApp::setup ()
 	ofSetWindowTitle (TITLE); // Set the window title
 	ofSetWindowShape (screenSize.x, screenSize.y);
 
-	for ( int x = 0; x < 11; ++x ) {
-		for ( int y = 0; y < 5; ++y ) {
-			enemyTest[x].emplace_back (x * 18 + 6, y * 18 + 6, y);
-		}
-	}
-
-	Enemy::setWholeCoordinate(enemyTest[0][0].getCoordinate());
-
 	player.setCoords (21, static_cast <float> (screenSize.y - 50), false);
 }
 
@@ -30,16 +22,9 @@ void ofApp::update ()
 //--------------------------------------------------------------
 void ofApp::draw ()
 {
-	Enemy::drawDebugRange();
+	
 	player.draw();
-	for (auto& enemyRow : enemyTest ) {
-		for (auto& enemy : enemyRow) {
-			//enemy.move();
-			//enemy.draw();
-		}
-	}
-
-	Enemy::moveWhole();
+	enemyContainer.draw();
 }
 
 //--------------------------------------------------------------

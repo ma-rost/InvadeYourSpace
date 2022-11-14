@@ -4,14 +4,25 @@
 
 
 // Static variables must be declared in the .cpp file
-
-Point<float> EnemyContainer::wholeCoordinate_; // The coordinate of the first enemy
-Point<float> EnemyContainer::wholeSize_; // The size of all of the enemies compiled into one
 bool EnemyContainer::isForwardMove_;
 
 EnemyContainer::EnemyContainer ()
 {
+	for (int x = 0; x < 11; ++x) {
+		for (int y = 0; y < 5; ++y) {
+			enemyTest_[x].emplace_back(x * 18 + 6, y * 18 + 6, y);
+			setWholeSize(x, y);
+		}
+	}
 
+	setWholeCoordinate(enemyTest_[0][0].getCoordinate());
+	
+}
+
+void EnemyContainer::draw ()
+{
+	drawDebugRange();
+	drawEnemies();
 }
 
 void EnemyContainer::isMovingRight ()
@@ -38,17 +49,28 @@ void EnemyContainer::setWholeCoordinate (const Point<float> coordinate)
 	wholeCoordinate_ = coordinate;
 }
 
-void EnemyContainer::drawDebugRange ()
+void EnemyContainer::drawDebugRange () const
 {
 	ofSetColor(ofColor::lavender);
 	ofDrawRectangle(wholeCoordinate_.x, wholeCoordinate_.y, wholeSize_.x, wholeSize_.y);
 }
 
+void EnemyContainer::drawEnemies ()
+{
+	for (auto& enemyRow : enemyTest_) {
+		for (auto& enemy : enemyRow) {
+			enemy.move(wholeCoordinate_);
+		}
+	}
+}
+
 void EnemyContainer::moveWhole ()
 {
+	drawDebugRange();
 	isMovingRight();
 	if (ofGetFrameNum() % 6 == 0) {
 		isForwardMove_ ? wholeCoordinate_.x += MOVE_SPEED : wholeCoordinate_.x -= MOVE_SPEED;
 	}
 	drawDebugRange();
+	drawEnemies ();
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "enemy.h"
+#include "enemyContainer.h"
 #include "ofMain.h"
 #include "point.h"
 #include "player.h"
@@ -31,4 +31,6 @@ class ofApp : public ofBaseApp{
 		array<vector<Enemy>,11> enemyTest;
 
 		Point<int> screenSize = { 700, 500 };
+
+		EnemyContainer enemyContainer;
 };
