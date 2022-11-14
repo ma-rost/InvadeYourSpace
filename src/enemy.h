@@ -26,11 +26,7 @@ public:
 	void move(Point<float> refCoord);
 
 	void getSprite (bool isFirst, const int& setNum);
-
-	/**
-	 * \brief runs when a bullet hits an enemy, destroying it.
-	 * \param isTrue 
-	 */
+	
 	void hitEvent(const bool& isTrue);
 
 	void setNewBottom(const bool& val);

@@ -1,6 +1,4 @@
 ﻿#pragma once
-
-
 #include "point.h"
 
 namespace glb

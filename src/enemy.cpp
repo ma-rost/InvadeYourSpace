@@ -35,8 +35,8 @@ int Enemy::setupRows(int& setNum)
 		drawColor_ = ofColor::paleVioletRed;
 	}
 	points_ -= sprite * 10;
+
 	isBottomMost_ = setNum == 4 ? true : false;
-	
 	bullet_.isBulletActive(isBottomMost_);
 
 	return sprite;

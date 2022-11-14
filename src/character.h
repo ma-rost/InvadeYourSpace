@@ -9,7 +9,7 @@ protected:
 	Point <float> bulletSpawn_;
 	Bullet bullet_;
 public:
-	Character (const float& x, const float& y, const bool& isPlayer);
+	Character(const float& x, const float& y, const bool& isPlayer);
 	Character(const float& x, const float& y, const bool& isPlayer, const float& moveSpeed);
 
 	void setBulletSpawn();
