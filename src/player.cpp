@@ -15,8 +15,8 @@ void Player::move (const bool isRightKey)
 {
 	if ( isLive_ ) {
 		Character::move(isRightKey);
-		collider_.x = ofClamp (collider_.x, DRAW_RESTRICTIONS.x,
-												DRAW_RESTRICTIONS.y - 16*3);
+		collider_.x = ofClamp (collider_.x, glb::DRAW_RESTRICTIONS.x,
+			glb::DRAW_RESTRICTIONS.y - 16*3);
 	}
 }
 

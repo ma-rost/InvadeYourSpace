@@ -31,4 +31,9 @@ struct Rect {
 		w = input.x;
 		h = input.y;
 	}
+
+	T addXW()
+	{
+		return x + w;
+	}
 };

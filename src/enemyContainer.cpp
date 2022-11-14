@@ -19,7 +19,6 @@ EnemyContainer::EnemyContainer ()
 	}
 
 	setWholeCoordinate({ glb::DRAW_RESTRICTIONS.x, 10 });
-	
 }
 
 void EnemyContainer::draw ()
@@ -83,7 +82,7 @@ void EnemyContainer::moveWhole ()
 
 void EnemyContainer::isMovingRight()
 {
-	if (wholeCollision_.x + wholeCollision_.w >= glb::DRAW_RESTRICTIONS.y) {
+	if (wholeCollision_.addXW() >= glb::DRAW_RESTRICTIONS.y) {
 		isForwardMove_ = false;
 		wholeCollision_.y += 3;
 	}

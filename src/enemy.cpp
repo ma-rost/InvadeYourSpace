@@ -18,7 +18,7 @@ Enemy::Enemy(const float& x, const float& y, int& rowNum) :
 	sprite_.newCoords({ 55, 1 }); // Death Sprite
 
 	placeValue_ = { static_cast<int>(x/18),static_cast<int>(rowNum) };
-	selfCoord_ = { applyResize (x),applyResize(y) };
+	selfCoord_ = applyResize ({x,y});
 }
 
 int Enemy::setupRows(int& setNum)

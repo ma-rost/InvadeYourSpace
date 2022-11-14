@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <array>
+#include "globals.h"
 #include "ofColor.h"
 #include "point.h"
 #include "sprite.h"
@@ -13,19 +14,21 @@ protected:
 
 	static constexpr float MOVE_SPEED{ 10 };
 	Rect<float> collider_;
-	static constexpr Point <float> DRAW_RESTRICTIONS{ 20, 670 };
 
 	bool isLive_{ true };
 public:
 	Destructible(const float& x, const float& y);
 
-	void setCoords(const float& x, const float& y, bool applyResize);
-	void setCoords(const float& y, bool applyResize);
-	float applyResize(float value);
-	int getSpriteValue () const;
-
 	void kill();
 	void draw(const int& spriteIndex);
+
+	void setCoords(const float& x, const float& y, bool applyResize);
+	void setCoords(const float& y, bool applyResize);
+	static float applyResize(float value);
+	static Point<float> applyResize(Point<float> value);
+	static int getSpriteValue ();
+
+	
 
 	static float getMoveSpeed() { return MOVE_SPEED;}
 
