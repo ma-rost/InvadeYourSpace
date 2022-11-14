@@ -8,7 +8,7 @@
 	//		- Hide bullets on enemies not bottommost 
 
 class Enemy : public Character {
-	Character player_;
+	Character& player_;
 
 	Point<int> placeValue_;
 	Point<float> selfCoord_;
@@ -16,14 +16,16 @@ class Enemy : public Character {
 	int points_{30};
 	bool isBottomMost_;
 
+	
 	int setupRows(int& setNum);
 
 public:
 	
-	Enemy (const float& x, const float& y, int& rowNum);
+	Enemy(const float& x, const float& y, int& rowNum, Character& player);
 
 	void draw ();
 	void move(Point<float> refCoord);
+	void fire();
 
 	void getSprite (bool isFirst, const int& setNum);
 	

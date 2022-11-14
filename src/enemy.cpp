@@ -1,14 +1,11 @@
 ﻿// ReSharper disable All
 #include "enemy.h"
-#include <vector>       // std::vector
 #include "ofGraphics.h"
+#include <vector>       // std::vector
 
 
-// Static variables must be declared in the .cpp file
-
-
-Enemy::Enemy(const float& x, const float& y, int& rowNum) :
-	Character(x, y, false)
+Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
+	Character (x,y,false), player_ (player)
 {
 	int sprite = setupRows (rowNum);
 
@@ -52,6 +49,11 @@ void Enemy::move (Point<float> refCoord)
 	collider_.x = selfCoord_.x + refCoord.x;
 	collider_.y = selfCoord_.y + refCoord.y;
 	draw();
+}
+
+void Enemy::fire ()
+{
+	Character::fire();
 }
 
 void Enemy::getSprite (const bool isFirst, const int& setNum)

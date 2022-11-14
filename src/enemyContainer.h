@@ -11,7 +11,7 @@ class EnemyContainer {
 
 	std::array<std::vector<Enemy>, 11> enemyTest_;
 public:
-	EnemyContainer();
+	explicit EnemyContainer(Character& player);
 
 	void draw();
 	void drawDebugRange() const;

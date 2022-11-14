@@ -27,5 +27,5 @@ class ofApp : public ofBaseApp{
 
 		Player player {10, 70};
 
-		EnemyContainer enemyContainer;
+		EnemyContainer enemyContainer {player};
 };

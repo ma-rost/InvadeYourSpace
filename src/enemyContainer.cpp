@@ -3,11 +3,11 @@
 // Static variables must be declared in the .cpp file
 bool EnemyContainer::isForwardMove_;
 
-EnemyContainer::EnemyContainer ()
+EnemyContainer::EnemyContainer (Character& player)
 {
 	for (int x = 0; x < 11; ++x) {
 		for (int y = 0; y < 5; ++y) {
-			enemyTest_[x].emplace_back(x * 18, y * 18, y);
+			enemyTest_[x].emplace_back(x * 18, y * 18, y, player);
 			setWholeSize(x, y);
 		}
 	}

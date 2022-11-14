@@ -21,9 +21,23 @@ Bullet::Bullet (const float& x, const float& y, const bool& isPlayer):
 	sprite_.newCoords({ 16,21 }); // Death
 }
 
+void Bullet::addTarget (Destructible& obj)
+{
+	targetableObj_.emplace_back(obj);
+}
+
 void Bullet::isBulletActive (const bool& isBottom)
 {
 	isActive_ = isBottom;
+}
+
+void Bullet::checkEach ()
+{
+}
+
+void Bullet::checkCollider ()
+{
+
 }
 
 void Bullet::move ()
@@ -34,6 +48,7 @@ void Bullet::move ()
 	else {
 		isFired_ = isHitValid();
 		++* this;
+		//checkCollider();
 	}
 
 	draw (isLive_ ? 0 : 1);

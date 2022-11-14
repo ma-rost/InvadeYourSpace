@@ -7,6 +7,8 @@ class Bullet : public Destructible {
 	bool isActive_{ false };
 	Point <float> bulletOrigin_;
 
+	std::vector<Destructible> targetableObj_;
+
 	static constexpr float MOVE_SPEED{ 10 };
 
 public:
@@ -14,6 +16,8 @@ public:
 	explicit Bullet (const bool& isPlayer);
 	Bullet (const float& x, const float& y, const bool& isPlayer);
 
+	void addTarget(Destructible& obj);
+	
 	void move();
 	void fire();
 	bool isHitValid();
@@ -22,6 +26,8 @@ public:
 	void setBulletOrigin(Point <float> bulletOrigin);
 	void isBulletActive(const bool& isBottom);
 
+	void checkEach();
+	void checkCollider();
 	void checkCollider(Destructible& obj);
 
 	static float getMoveSpeed() { return MOVE_SPEED; }
