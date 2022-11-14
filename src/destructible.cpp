@@ -39,3 +39,13 @@ void Destructible::draw (const int& spriteIndex)
 	ofSetColor(drawColor_);
 	sprite_.drawSprite(spriteIndex, coordinate_.x, coordinate_.y);
 }
+
+void Destructible::setCollision ()
+{
+	setCollision(coordinate_.x, coordinate_.y, sprite_.getSize().x, sprite_.getSize().y);
+}
+
+void Destructible::setCollision (const float& x, const float& y, const float& w, const float& h)
+{
+	collider_ = { x,y,w,h };
+}

@@ -18,6 +18,7 @@ public:
 	void move(const bool& isMoveRight);
 	void fire();
 	void draw(const int& spriteIndex);
+	bool checkCollide(const Destructible& obj);
 
 	Character& operator++ ();
 	Character& operator-- ();

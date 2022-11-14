@@ -52,6 +52,13 @@ void Character::draw (const int& spriteIndex)
 	bullet_.move();
 	Destructible::draw(spriteIndex);
 }
+
+bool Character::checkCollide (const Destructible& obj)
+{
+	if ( >= ) {
+		
+	}
+}
 #pragma endregion
 
 

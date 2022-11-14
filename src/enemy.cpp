@@ -7,16 +7,17 @@
 // Static variables must be declared in the .cpp file
 
 
-Enemy::Enemy(const float& x, const float& y, int& spriteSet) :
+Enemy::Enemy(const float& x, const float& y, int& rowNum) :
 	Character(x, y, false)
 {
-	int sprite = setupRows (spriteSet);
+	int sprite = setupRows (rowNum);
 
 	sprite_.clearCoords();
 	getSprite (true, sprite); // Sprite 1
 	getSprite (false, sprite); // Sprite 2 
 	sprite_.newCoords({ 55, 1 }); // Death Sprite
 
+	placeValue_ = { static_cast<int>(x/18),static_cast<int>(rowNum) };
 	selfCoord_ = { applyResize (x),applyResize(y) };
 }
 
@@ -27,16 +28,16 @@ int Enemy::setupRows(int& setNum)
 	sprite = 0;
 	if (setNum == 1 || setNum == 2) {
 		sprite = 1;
-		points_ = 20;
 		drawColor_ = ofColor::orangeRed;
 	}
 	else if (setNum == 3 || setNum == 4) {
 		sprite = 2;
-		points_ = 10;
 		drawColor_ = ofColor::paleVioletRed;
-		isBottomMost_ = true;
-		bullet_.isBulletActive(isBottomMost_);
 	}
+	points_ -= sprite * 10;
+	isBottomMost_ = setNum == 4 ? true : false;
+	
+	bullet_.isBulletActive(isBottomMost_);
 
 	return sprite;
 }
@@ -61,9 +62,20 @@ void Enemy::getSprite (const bool isFirst, const int& setNum)
 	sprite_.newCoords({x, y});
 }
 
+void Enemy::hitEvent (const bool& isTrue)
+{
+	if (isBottomMost_) {
+		
+	}
+}
+
+void Enemy::setNewBottom (const bool& val)
+{
+	isBottomMost_ = val;
+}
+
 bool Enemy::canShoot ()
 {
-	if (isLive_ && isBottomMost_) return true;
-	else return false;
+	return isLive_ && isBottomMost_ ? true : false;
 }
 

@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include <array>
+
 #include "globals.h"
 #include "enemy.h"
 #include "point.h"
@@ -7,6 +9,8 @@ class EnemyContainer {
 
 	Point<float> wholeCoordinate_; // The coordinate of the first enemy
 	Point<float> wholeSize_; // The size of all of the enemies compiled into one
+
+	Rect <float> wholeCollision_;
 	static constexpr float MOVE_SPEED{ 8 };
 	static bool isForwardMove_;
 

@@ -1,7 +1,5 @@
 ﻿#pragma once
 #include "character.h"
-#include <algorithm>
-#include <array>
 
 // THINGS TO DO /////
 	// - Make enemies move down when hitting right side
@@ -11,6 +9,7 @@
 
 class Enemy : public Character {
 
+	Point<int> placeValue_;
 	Point<float> selfCoord_;
 	
 	Enemy* enemy_;
@@ -21,18 +20,22 @@ class Enemy : public Character {
 
 public:
 	
-	Enemy (const float& x, const float& y, int& spriteSet);
+	Enemy (const float& x, const float& y, int& rowNum);
 
 	void draw ();
 	void move(Point<float> refCoord);
 
 	void getSprite (bool isFirst, const int& setNum);
 
+	/**
+	 * \brief runs when a bullet hits an enemy, destroying it.
+	 * \param isTrue 
+	 */
 	void hitEvent(const bool& isTrue);
 
+	void setNewBottom(const bool& val);
+
 	bool canShoot();
-
-
 };
 
 

@@ -1,5 +1,7 @@
 ﻿#include "enemyContainer.h"
 
+#include <array>
+
 #include "ofGraphics.h"
 
 
@@ -26,27 +28,20 @@ void EnemyContainer::draw ()
 	drawEnemies();
 }
 
-void EnemyContainer::isMovingRight ()
-{
-	//std::cout << wholeCoordinate_.x << ", " << wholeCoordinate_.x + wholeSize_.x << std::endl;
-	if (wholeCoordinate_.x + wholeSize_.x >= glb::DRAW_RESTRICTIONS.y) {
-		isForwardMove_ = false;
-		wholeCoordinate_.y += 3;
-	}
-	if (wholeCoordinate_.x <= glb::DRAW_RESTRICTIONS.x) isForwardMove_ = true;
-}
+
 
 void EnemyContainer::setWholeSize (int rowSize, int columnSize)
 {
-	wholeSize_.x += 10.7;
-	wholeSize_.y += 4.4;
+	wholeCollision_.w += 10.7;
+	wholeCollision_.h += 4.4;
 
 	//std::cout << wholeSize_.x << ", " << wholeSize_.y << std::endl;
 }
 
 void EnemyContainer::setWholeCoordinate (const Point<float> coordinate)
 {
-	wholeCoordinate_ = coordinate;
+	wholeCollision_.x = coordinate.x;
+	wholeCollision_.y = coordinate.y;
 }
 
 void EnemyContainer::drawDebugRange () const
@@ -66,10 +61,11 @@ void EnemyContainer::drawEnemies ()
 
 void EnemyContainer::makeShoot ()
 {
-	int a = static_cast<int>(round(ofRandom(10)));
-	int b = static_cast<int>(round(ofRandom(4)));
-
-	enemyTest_[a][b].canShoot() ? enemyTest_[a][b].fire() : makeShoot();
+	const int a = static_cast<int>(round(ofRandom(10)));
+	const int b = static_cast<int>(round(ofRandom(4)));
+	
+	if (enemyTest_[a][b].canShoot()) enemyTest_[a][b].fire();
+	else makeShoot ();
 }
 
 void EnemyContainer::moveWhole ()
@@ -84,4 +80,13 @@ void EnemyContainer::moveWhole ()
 	if (ofGetFrameNum() % 60 == 0) {
 		makeShoot();
 	}
+}
+
+void EnemyContainer::isMovingRight()
+{
+	if (wholeCoordinate_.x + wholeSize_.x >= glb::DRAW_RESTRICTIONS.y) {
+		isForwardMove_ = false;
+		wholeCoordinate_.y += 3;
+	}
+	if (wholeCoordinate_.x <= glb::DRAW_RESTRICTIONS.x) isForwardMove_ = true;
 }

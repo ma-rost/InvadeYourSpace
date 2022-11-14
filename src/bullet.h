@@ -27,6 +27,8 @@ public:
 	Bullet& operator++ ();
 
 	static float getMoveSpeed() { return MOVE_SPEED; }
+
+	void checkCollider(const Destructible& obj);
 };
 
 inline Bullet& Bullet::operator++ ()
