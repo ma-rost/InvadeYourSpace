@@ -111,7 +111,7 @@ void Enemy::moveWhole()
 {
 	isMovingRight();
 
-	if (ofGetFrameNum() % 4 == 0) {
+	if (ofGetFrameNum() % 6 == 0) {
 		isForwardMove_ ? wholeCoordinate_.x+=MOVE_SPEED : wholeCoordinate_.x-= MOVE_SPEED;
 		// isForwardMove_ ? wholeCoordinate_.x++ : wholeCoordinate_.x--; // TO TEST
 	}
