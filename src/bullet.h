@@ -1,5 +1,5 @@
-﻿#pragma once
-
+﻿#ifndef BULLET_H
+#define BULLET_H
 #include "destructible.h"
 
 class Bullet : public Destructible {
@@ -28,7 +28,7 @@ public:
 
 	static float getMoveSpeed() { return MOVE_SPEED; }
 
-	void checkCollider(const Destructible& obj);
+	void checkCollider(Destructible& obj);
 };
 
 inline Bullet& Bullet::operator++ ()
@@ -37,3 +37,4 @@ inline Bullet& Bullet::operator++ ()
 				collider_.y += MOVE_SPEED;
 	return *this;
 }
+#endif // BULLET_H

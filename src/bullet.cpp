@@ -70,7 +70,13 @@ void Bullet::setBulletOrigin (const Point<float> bulletOrigin)
 	bulletOrigin_ = bulletOrigin;
 }
 
-void Bullet::checkCollider (const Destructible& obj)
+void Bullet::checkCollider (Destructible& obj)
 {
-	
+	Rect<float> col = obj.getCollider();
+	if(collider_.x <= col.x && collider_.addXW() >= col.addXW()) {
+		std::cout << "IN X\n";
+	}
+	if (collider_.y <= col.y && collider_.addYH() >= col.addYH()) {
+		std::cout << "IN Y\n";
+	}
 }

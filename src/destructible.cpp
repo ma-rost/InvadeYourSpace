@@ -45,6 +45,11 @@ int Destructible::getSpriteValue()
 	return ofGetFrameNum() % frameRate < frameRate / 2 ? 0 : 1;
 }
 
+Rect<float> Destructible::getCollider () const
+{
+	return collider_;
+}
+
 void Destructible::setCollision ()
 {
 	setCollision(collider_.x, collider_.y, sprite_.getSize().x, sprite_.getSize().y);

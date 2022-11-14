@@ -36,4 +36,9 @@ struct Rect {
 	{
 		return x + w;
 	}
+
+	T addYH()
+	{
+		return y + h;
+	}
 };

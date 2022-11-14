@@ -1,6 +1,4 @@
 ﻿#pragma once
-#include <array>
-#include "globals.h"
 #include "ofColor.h"
 #include "point.h"
 #include "sprite.h"
@@ -32,6 +30,7 @@ public:
 
 	static float getMoveSpeed() { return MOVE_SPEED;}
 
+	Rect<float> getCollider() const;
 	void setCollision();
 	void setCollision(Point<float> xy, Point<float> wh);
 	void setCollision(const float& x, const float& y, const float& w, const float& h);
