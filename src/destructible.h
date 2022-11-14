@@ -9,9 +9,9 @@ protected:
 
 	ofColor drawColor_{ ofColor::white };
 
-	static float moveSpeed_;
+	static constexpr float MOVE_SPEED{ 10 };
 	Point <float> coordinate_;
-	static constexpr Point <float> DRAW_RESTRICTIONS{ 10, 640 };
+	static constexpr Point <float> DRAW_RESTRICTIONS{ 20, 670 };
 
 	bool isLive_{ true };
 public:
@@ -24,9 +24,5 @@ public:
 	void kill();
 	void draw(const int& spriteIndex);
 
-	static float getMoveSpeed()
-	{
-		return moveSpeed_;
-	}
-	
+	static float getMoveSpeed() { return MOVE_SPEED;}
 };

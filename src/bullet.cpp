@@ -14,9 +14,8 @@ Bullet::Bullet (const bool& isPlayer):
 }
 
 Bullet::Bullet (const float& x, const float& y, const bool& isPlayer):
-	Destructible(x, y, 24), isPlayer_ (isPlayer)
+	Destructible(x, y), isPlayer_ (isPlayer)
 {
-	moveSpeed_ = 4;
 	sprite_.clearCoords();
 	sprite_.setSize({ 3,7 });
 	sprite_.newCoords({ 41,21 }); // Default

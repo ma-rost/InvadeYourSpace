@@ -5,7 +5,6 @@
 Destructible::Destructible (const float& x, const float& y)
 {
 	setCoords(x, y, true);
-	moveSpeed_ = 10;
 }
 
 void Destructible::setCoords (const float& x, const float& y, const bool applyResize)

@@ -6,13 +6,14 @@ class Enemy : public Character {
 	static std::vector<Enemy*> enemies_;
 	static Point<float> wholeCoordinate_; // The coordinate of the first enemy
 	static Point<float> wholeSize_; // The size of all of the enemies compiled into one
+	int setupRows (int& sprite);
 	Enemy* enemy_;
 	static bool isForwardMove_;
 	int points_{30};
 	bool isBottomMost_;
 
 
-	static float moveSpeed_;
+	static constexpr float MOVE_SPEED {24};
 public:
 	
 	Enemy (const float& x, const float& y, int& spriteSet);
@@ -36,19 +37,29 @@ public:
 	// - Only bottom most enemy has (Working) bullets
 	//		- Hide bullets on enemies not bottommost 
 
-
-	static float getMoveSpeed() {
-		return moveSpeed_;
-	}
-
-	static bool isMoveValid();
+	static void isMovingRight();
 
 	static void setWholeSize(int rowSize, int columnSize);
 	static void setWholeCoordinate(const Point<float> coordinate);
 	static void drawDebugRange();
 
 	static void moveWhole();
+	static float getMoveSpeed() return MOVE_SPEED; }
 
+
+	Enemy& operator ++ ()
+	{
+		std::cout << "ENEMY";
+		wholeCoordinate_.x += Enemy::getMoveSpeed();
+		return *this;
+	}
+
+	Enemy& operator-- ()
+	{
+		std::cout << "ENEMY";
+		wholeCoordinate_.x -= Enemy::getMoveSpeed();
+		return *this;
+	}
 };
 
 

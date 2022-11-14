@@ -8,6 +8,8 @@ class Bullet : public Destructible {
 	bool isActive_{ false };
 	Point <float> bulletOrigin_;
 
+	static constexpr float MOVE_SPEED{ 10 };
+
 public:
 	explicit Bullet();
 	explicit Bullet (const bool& isPlayer);
@@ -23,11 +25,13 @@ public:
 	void setBulletOrigin(Point <float> bulletOrigin);
 
 	Bullet& operator++ ();
+
+	static float getMoveSpeed() { return MOVE_SPEED; }
 };
 
 inline Bullet& Bullet::operator++ ()
 {
-	isPlayer_ ? coordinate_.y -= moveSpeed_ :
-				coordinate_.y += moveSpeed_;
+	isPlayer_ ? coordinate_.y -= MOVE_SPEED :
+				coordinate_.y += MOVE_SPEED;
 	return *this;
 }
