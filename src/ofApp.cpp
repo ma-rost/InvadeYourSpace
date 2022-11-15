@@ -19,6 +19,9 @@ void ofApp::update ()
 //--------------------------------------------------------------
 void ofApp::draw ()
 {
+	ofSetColor(ofColor::green);
+	ofDrawRectangle(0, 0, ofGetWidth(), 90);
+
 	player.draw();
 	enemyContainer.moveWhole();
 }

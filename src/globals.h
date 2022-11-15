@@ -3,6 +3,7 @@
 
 namespace glb
 {
-	static constexpr Point <float> DRAW_RESTRICTIONS{ 20, 670 };
-	constexpr Point<int> screen_size = { 700, 500 };
+	
+	constexpr Point<int> screen_size = { 900, 900 };
+	static constexpr Point <float> DRAW_RESTRICTIONS{ 20, screen_size.x - 30 };
 }
