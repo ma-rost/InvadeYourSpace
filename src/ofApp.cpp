@@ -4,7 +4,10 @@
 //--------------------------------------------------------------
 void ofApp::setup ()
 {
-	ofSetBackgroundColor (ofColor::darkGray);
+	ofSetBackgroundColor (53,53,53);
+
+	ofTrueTypeFont::setGlobalDpi(72); // Default is 96, but results in larger than normal pt size.
+	retroGaming.load(ofToDataPath("Retro Gaming.ttf"), 30, true, true); // filename via ofToDataPath, point size, antialiased?, full char-set?
 
 	player.setCoords (21, static_cast <float> (glb::screen_size.y - 50), false);
 }
@@ -21,9 +24,9 @@ void ofApp::draw ()
 	//ofSetColor(ofColor::green);
 	//ofDrawRectangle(0, 0, ofGetWidth(), 90);
 
-	ofDrawBitmapStringHighlight("SCORE <1> HI-SCORE SCORE <2>", 10, 20, ofColor::black, ofColor::white);
-
-	ofDrawBitmapStringHighlight("0000 \t 0000 \t 0000", 10, 90, ofColor::black, ofColor::white);
+	ofSetColor(ofColor::green);
+	retroGaming.drawString("SCORE <1> HI-SCORE SCORE <2>", 10, 20);
+	retroGaming.drawString("0000 \t 0000 \t 0000", 10, 90);
 
 	player.draw();
 	enemyContainer.moveWhole();

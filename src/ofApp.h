@@ -6,6 +6,8 @@
 
 class ofApp : public ofBaseApp{
 
+	ofTrueTypeFont retroGaming;
+
 	public:
 		void setup();
 		void update();
