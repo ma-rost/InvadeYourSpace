@@ -1,4 +1,6 @@
 ﻿#include "bullet.h"
+
+#include "character.h"
 #include "ofGraphics.h"
 
 Bullet::Bullet():
@@ -20,12 +22,13 @@ Bullet::Bullet(const float& x, const float& y, const bool& isPlayer):
 	sprite_.newCoords ({16, 21}); // Death
 }
 
-void Bullet::addTarget(Destructible& obj) { targetableObj_.emplace_back (obj); }
-
 void Bullet::isBulletActive(const bool& isBottom) { isActive_ = isBottom; }
 
-void Bullet::checkEach()
+void Bullet::checkEach(const Character& obj)
 {
+	if(isFired_) {
+		isFired_ = hasHitOppos(obj.getCollider());
+	}
 }
 
 void Bullet::checkCollider()
@@ -38,7 +41,6 @@ void Bullet::move()
 	else {
 		isFired_ = isHitValid();
 		++*this;
-		//checkCollider();
 	}
 
 	draw (isLive_ ? 0 : 1);
@@ -70,13 +72,16 @@ void Bullet::setBulletOrigin(const Point <float> bulletOrigin)
 	bulletOrigin_ = bulletOrigin;
 }
 
-void Bullet::checkCollider(Destructible& obj)
+bool Bullet::hasHitOppos(Rect<float> col)
 {
-	Rect <float> col = obj.getCollider();
 	if (collider_.x <= col.x && collider_.addXW() >= col.addXW()) {
 		std::cout << "IN X\n";
+		return true;
 	}
 	if (collider_.y <= col.y && collider_.addYH() >= col.addYH()) {
 		std::cout << "IN Y\n";
+		return true;
 	}
+
+	return false;
 }

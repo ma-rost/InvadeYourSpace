@@ -8,14 +8,11 @@
 //		- Hide bullets on enemies not bottommost 
 
 class Enemy : public Character {
-	Character& player_;
-
 	Point <int> placeValue_;
 	Point <float> selfCoord_;
 
 	int points_ {30};
 	bool isBottomMost_;
-
 
 	int setupRows(int& setNum);
 
@@ -35,4 +32,6 @@ public:
 	bool canShoot();
 
 	void takeBullet(Bullet& bullet);
+
+	
 };

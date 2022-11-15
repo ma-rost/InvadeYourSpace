@@ -46,7 +46,7 @@ void EnemyContainer::moveWhole ()
 	drawDebugRange();
 	drawEnemies();
 
-	if (ofGetFrameNum() % 60 == 0) makeShoot();
+	if (ofGetFrameNum() % 60 == 0) fireEvent();
 }
 
 void EnemyContainer::isMovingRight ()
@@ -71,16 +71,26 @@ void EnemyContainer::setWholeCoordinate (const Point <float> coordinate)
 	wholeCollision_.setXY (coordinate);
 }
 
-void EnemyContainer::makeShoot ()
+void EnemyContainer::fireEvent ()
 {
 	const int a = static_cast <int> (round (ofRandom (10)));
 	const int b = static_cast <int> (round (ofRandom (4)));
 
 	if (enemyTest_[a][b].canShoot()) enemyTest_[a][b].fire();
-	else makeShoot();
+	else fireEvent();
 }
 
-//std::array<std::vector<Character>, 11>& EnemyContainer::getAllEnemies()
-//{
-//	return enemyTest_;
-//}
+std::array<std::vector<Enemy>, 11>& EnemyContainer::getAllEnemies()
+{
+	return enemyTest_;
+}
+
+void EnemyContainer::checkForHit(Bullet& bullet)
+{
+	//std::cout << "checkForHit";
+	for (auto& enemyRow : enemyTest_) {
+		for (auto& enemy : enemyRow) {
+			enemy.checkCollider(enemy.bullet_);
+		}
+	}
+}

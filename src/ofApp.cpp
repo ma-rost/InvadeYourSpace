@@ -15,9 +15,7 @@ void ofApp::setup()
 //--------------------------------------------------------------
 void ofApp::update()
 {
-
-	player.getAllDestructibles(player, enemyContainer);
-
+	Character::setDestructibles(player, enemyContainer);
 	//player.getDigits(player.score_);
 }
 

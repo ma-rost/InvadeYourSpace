@@ -1,6 +1,11 @@
 ﻿// ReSharper disable All
 #include "character.h"
+
+#include "enemyContainer.h"
 #include "ofGraphics.h"
+
+Character* Character::player_;
+EnemyContainer* Character::container_;
 
 Character::Character(const float& x, const float& y, const bool& isPlayer):
 	Character (x, y, isPlayer, 10)
@@ -18,10 +23,15 @@ Character::Character(const float& x, const float& y,
 #pragma region Actions
 void Character::move(const bool& isMoveRight) { isMoveRight ? ++ *this : -- *this; }
 
-void Character::draw(const int& spriteIndex)
+void Character::moveBullet()
 {
 	setBulletSpawn();
 	bullet_.move();
+}
+
+void Character::draw(const int& spriteIndex)
+{
+	moveBullet();
 	Destructible::draw (spriteIndex);
 }
 
@@ -46,23 +56,22 @@ void Character::setBulletSpawn()
 
 Point <float> Character::getCoordinate() { return collider_.getXY(); }
 
-bool Character::checkCollide(const Destructible& obj)
+bool Character::checkCollider(Bullet& bullet)
 {
-	std::cout << player_->isPlayer_;
+	//std::cout << "hasHitOppos";
+
+	bullet.hasHitOppos(getCollider());
 
 	return false;
 }
 
-void Character::getAllDestructibles(Character& player, EnemyContainer& container)
+void Character::setDestructibles(Character& player, EnemyContainer& container)
 {
 	player_ = &player;
 	container_ = &container;
-
-	checkCollide(*player_);
-	checkCollide(*container);
 }
 
-//void Character::getAllDestructibles(Character& player,
+//void Character::setDestructibles(Character& player,
 //	std::array<std::vector<Character>, 11>& enemies)
 //{
 //	player_  = &player;

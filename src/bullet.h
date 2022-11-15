@@ -1,7 +1,14 @@
 ﻿#pragma once
 #include "destructible.h"
 
+class Character;
+class EnemyContainer;
+
 class Bullet : public Destructible {
+
+	/*Character* player_;
+	EnemyContainer* container_;*/
+
 	const bool isPlayer_;
 	bool isFired_ {false};
 	bool isActive_ {false};
@@ -16,8 +23,6 @@ public:
 	explicit Bullet(const bool& isPlayer);
 	Bullet(const float& x, const float& y, const bool& isPlayer);
 
-	void addTarget(Destructible& obj);
-
 	void move();
 	void fire();
 	bool isHitValid();
@@ -26,9 +31,9 @@ public:
 	void setBulletOrigin(Point <float> bulletOrigin);
 	void isBulletActive(const bool& isBottom);
 
-	void checkEach();
+	void checkEach(const Character& obj);
 	void checkCollider();
-	void checkCollider(Destructible& obj);
+	bool hasHitOppos(Rect<float> col);
 
 	static float getMoveSpeed() { return MOVE_SPEED; }
 	Bullet& operator++();

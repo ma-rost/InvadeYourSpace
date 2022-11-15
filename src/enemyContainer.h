@@ -22,11 +22,12 @@ public:
 	void setWholeSize(int rowSize, int columnSize);
 	void setWholeCoordinate(const Point <float> coordinate);
 
-	void makeShoot();
+	void fireEvent();
+	void checkForHit(Bullet& bullet);
 
-	void takeBullet(Bullet& bullet);
-
-	//std::array<std::vector<Character>, 11>& getAllEnemies();
+	std::array<std::vector<Enemy>, 11>& getAllEnemies();
 
 	static float getMoveSpeed() { return MOVE_SPEED; }
+
+	
 };

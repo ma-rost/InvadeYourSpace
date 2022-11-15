@@ -5,7 +5,7 @@
 
 
 Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
-	Character (x, y, false), player_ (player)
+	Character (x, y, false)
 {
 	int sprite = setupRows (rowNum);
 
@@ -43,6 +43,7 @@ void Enemy::draw() { Character::draw (isLive_ ? getSpriteValue() : 2); }
 
 void Enemy::move(Point <float> refCoord)
 {
+	player_->checkCollider(bullet_);
 	collider_.x = selfCoord_.x + refCoord.x;
 	collider_.y = selfCoord_.y + refCoord.y;
 	draw();

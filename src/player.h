@@ -4,9 +4,6 @@
 
 class Player : public Character {
 	static constexpr float MOVE_SPEED {12};
-	std::array <std::vector <Character>, 11> enemies_;
-	
-
 public:
 	int score_{ 0 };
 	Player(const float& x, const float& y);

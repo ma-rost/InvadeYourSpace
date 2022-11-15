@@ -10,31 +10,32 @@ class EnemyContainer;
 class Character : public Destructible {
 protected:
 	///std::array<std::vector<Character>, 11>* enemies_;
-	Character* player_;
-
-	EnemyContainer* container_;
+	static Character* player_;
+	static EnemyContainer* container_;
 
 
 	const bool isPlayer_;
 	Point <float> bulletSpawn_;
-	Bullet bullet_;
+	
 public:
+	Bullet bullet_;
 	Character(const float& x, const float& y, const bool& isPlayer);
 	Character(const float& x, const float& y, const bool& isPlayer,
 	          const float& moveSpeed);
 
 	void move(const bool& isMoveRight);
+	void moveBullet();
 	void draw(const int& spriteIndex);
 	void fire();
 
 	Point <float> getCoordinate();
 
 
-	bool checkCollide(const Destructible& obj);
+	bool checkCollider(Bullet& bullet);
 
 
 
-	void getAllDestructibles(Character& player, EnemyContainer& container);
+	static void setDestructibles(Character& player, EnemyContainer& container);
 
 
 	Character& operator++();

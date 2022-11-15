@@ -1,5 +1,7 @@
 ﻿#include "player.h"
 
+#include "enemyContainer.h"
+
 Player::Player(const float& x, const float& y):
 	Character (x, y, true)
 {
@@ -9,7 +11,9 @@ Player::Player(const float& x, const float& y):
 
 void Player::move(const bool isRightKey)
 {
+	
 	if (isLive_) {
+		container_->checkForHit(bullet_);
 		Character::move (isRightKey);
 		collider_.x = ofClamp (collider_.x, glb::DRAW_RESTRICTIONS.x,
 		                       glb::DRAW_RESTRICTIONS.y - 16 * 3);
