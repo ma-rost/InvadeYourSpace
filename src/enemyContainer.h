@@ -6,10 +6,10 @@
 
 class EnemyContainer {
 	Rect <float> wholeCollision_;
-	static constexpr float MOVE_SPEED{ 8 };
+	static constexpr float MOVE_SPEED {8};
 	static bool isForwardMove_;
 
-	std::array<std::vector<Enemy>, 11> enemyTest_;
+	std::array <std::vector <Enemy>, 11> enemyTest_;
 public:
 	explicit EnemyContainer(Character& player);
 
@@ -17,12 +17,12 @@ public:
 	void drawDebugRange() const;
 	void drawEnemies();
 	void moveWhole();
-	void isMovingRight ();
+	void isMovingRight();
 
 	void setWholeSize(int rowSize, int columnSize);
-	void setWholeCoordinate(const Point<float> coordinate);
+	void setWholeCoordinate(const Point <float> coordinate);
 
-	void makeShoot ();
-	
+	void makeShoot();
+
 	static float getMoveSpeed() { return MOVE_SPEED; }
 };

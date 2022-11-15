@@ -10,21 +10,20 @@ protected:
 	Bullet bullet_;
 public:
 	Character(const float& x, const float& y, const bool& isPlayer);
-	Character(const float& x, const float& y, const bool& isPlayer, const float& moveSpeed);
+	Character(const float& x, const float& y, const bool& isPlayer,
+	          const float& moveSpeed);
 
 	void move(const bool& isMoveRight);
 	void draw(const int& spriteIndex);
 	void fire();
-	
-	Point<float> getCoordinate();
 
-	
+	Point <float> getCoordinate();
+
+
 	bool checkCollide(const Destructible& obj);
 
-	Character& operator++ ();
-	Character& operator-- ();
+	Character& operator++();
+	Character& operator--();
 private:
 	void setBulletSpawn();
 };
-
-
