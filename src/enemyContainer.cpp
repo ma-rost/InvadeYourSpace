@@ -62,8 +62,6 @@ void EnemyContainer::setWholeSize (int rowSize, int columnSize)
 {
 	wholeCollision_.w += glb::RESIZE_FACTOR * 3.56f;
 	wholeCollision_.h += glb::RESIZE_FACTOR + 2;
-
-	//std::cout << wholeSize_.x << ", " << wholeSize_.y << std::endl;
 }
 
 void EnemyContainer::setWholeCoordinate (const Point <float> coordinate)

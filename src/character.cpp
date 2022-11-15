@@ -60,7 +60,13 @@ bool Character::checkCollider(Bullet& bullet)
 {
 	//std::cout << "hasHitOppos";
 
-	bullet.hasHitOppos(getCollider());
+	bool lifeState = bullet.hasHitOppos(getCollider());
+
+	if (lifeState) {
+		std::cout << &bullet << " HIT ME!";
+		kill();
+		return true;
+	}
 
 	return false;
 }

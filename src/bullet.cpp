@@ -74,6 +74,13 @@ void Bullet::setBulletOrigin(const Point <float> bulletOrigin)
 
 bool Bullet::hasHitOppos(Rect<float> col)
 {
+	//std::cout << col.x << " " << col.y << "\n";
+	
+
+	if (ofGetFrameNum() % 10 == 0 && isFired_) {
+		collider_.printXY();
+	}
+
 	if (collider_.x <= col.x && collider_.addXW() >= col.addXW()) {
 		std::cout << "IN X\n";
 		return true;
