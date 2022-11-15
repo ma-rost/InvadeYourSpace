@@ -4,10 +4,10 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-	ofSetBackgroundColor (53, 53, 53);
+	ofSetBackgroundColor (53);
 
 	ofTrueTypeFont::setGlobalDpi (72);
-	retroGaming.load (ofToDataPath ("Retro Gaming.ttf"), 30, true, true);
+	retroFont_.load (ofToDataPath ("DePixelBreit.ttf"), 30, true, true);
 
 	player.setCoords (21, static_cast <float> (glb::SCREEN_SIZE.y - 50), false);
 }
@@ -15,18 +15,27 @@ void ofApp::setup()
 //--------------------------------------------------------------
 void ofApp::update()
 {
+
+	player.getAllDestructibles(player, enemyContainer);
+
+	//player.getDigits(player.score_);
 }
 
 
 //--------------------------------------------------------------
 void ofApp::draw()
 {
-	//ofSetColor(ofColor::green);
-	//ofDrawRectangle(0, 0, ofGetWidth(), 90);
+	ofSetColor(ofColor::black);
+	ofDrawRectangle(0, 0, ofGetWidth(), 90);
 
-	ofSetColor (ofColor::green);
-	retroGaming.drawString ("SCORE <1> HI-SCORE SCORE <2>", 10, 20);
-	retroGaming.drawString ("0000 \t 0000 \t 0000", 10, 90);
+	ofSetColor (ofColor::white);
+	retroFont_.drawString ("SCORE <1> | HI-SCORE | SCORE <2>", 10, 30);
+	retroFont_.drawString ("0000 \t 0000 \t 0000", 10, 90);
+
+	
+
+	char fpsStr[255]; // an array of chars
+	retroFont_.drawString(fpsStr, 100, 600);
 
 	player.draw();
 	enemyContainer.moveWhole();
@@ -40,7 +49,7 @@ void ofApp::keyPressed(int key)
 
 	if (key == OF_KEY_UP || key == 'w') player.fire();
 
-	if (key == 'e') player.kill();
+	if (key == 'e') player.killEnemy();
 }
 
 //--------------------------------------------------------------

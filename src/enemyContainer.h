@@ -24,5 +24,9 @@ public:
 
 	void makeShoot();
 
+	void takeBullet(Bullet& bullet);
+
+	//std::array<std::vector<Character>, 11>& getAllEnemies();
+
 	static float getMoveSpeed() { return MOVE_SPEED; }
 };

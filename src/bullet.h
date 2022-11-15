@@ -7,7 +7,7 @@ class Bullet : public Destructible {
 	bool isActive_ {false};
 	Point <float> bulletOrigin_;
 
-	std::vector <Destructible> targetableObj_;
+	//std::vector <Destructible> targetableObj_;
 
 	static constexpr float MOVE_SPEED {10};
 

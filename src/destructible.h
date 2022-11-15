@@ -34,4 +34,7 @@ public:
 	void setCollision(Point <float> xy, Point <float> wh);
 	void setCollision(const float& x, const float& y, const float& w,
 	                  const float& h);
+
+
+
 };

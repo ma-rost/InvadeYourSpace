@@ -79,3 +79,8 @@ void EnemyContainer::makeShoot ()
 	if (enemyTest_[a][b].canShoot()) enemyTest_[a][b].fire();
 	else makeShoot();
 }
+
+//std::array<std::vector<Character>, 11>& EnemyContainer::getAllEnemies()
+//{
+//	return enemyTest_;
+//}

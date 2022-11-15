@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <iostream>
 #include <string>
 
 #include "point.h"
@@ -11,4 +12,6 @@ namespace glb
 	const std::string TITLE = "Invade Your Space";
 
 	constexpr float RESIZE_FACTOR{ 3.5 };
+
+	
 }

@@ -68,3 +68,8 @@ void Enemy::hitEvent(const bool& isTrue)
 void Enemy::setNewBottom(const bool& val) { isBottomMost_ = val; }
 
 bool Enemy::canShoot() { return isLive_ && isBottomMost_ ? true : false; }
+
+void Enemy::takeBullet(Bullet& bullet)
+{
+
+}

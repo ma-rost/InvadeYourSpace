@@ -48,11 +48,26 @@ Point <float> Character::getCoordinate() { return collider_.getXY(); }
 
 bool Character::checkCollide(const Destructible& obj)
 {
-	/*if ( >= ) {
+	std::cout << player_->isPlayer_;
 
-	}*/
 	return false;
 }
+
+void Character::getAllDestructibles(Character& player, EnemyContainer& container)
+{
+	player_ = &player;
+	container_ = &container;
+
+	checkCollide(*player_);
+	checkCollide(*container);
+}
+
+//void Character::getAllDestructibles(Character& player,
+//	std::array<std::vector<Character>, 11>& enemies)
+//{
+//	player_  = &player;
+//	enemies_ = &enemies;
+//}
 
 #pragma region Operators
 Character& Character::operator++()

@@ -33,4 +33,6 @@ public:
 	void setNewBottom(const bool& val);
 
 	bool canShoot();
+
+	void takeBullet(Bullet& bullet);
 };

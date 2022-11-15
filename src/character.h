@@ -1,10 +1,20 @@
 ﻿#pragma once
 
+#include <array>
+
 #include "destructible.h"
 #include "bullet.h"
 
+class EnemyContainer;
+
 class Character : public Destructible {
 protected:
+	///std::array<std::vector<Character>, 11>* enemies_;
+	Character* player_;
+
+	EnemyContainer* container_;
+
+
 	const bool isPlayer_;
 	Point <float> bulletSpawn_;
 	Bullet bullet_;
@@ -21,6 +31,11 @@ public:
 
 
 	bool checkCollide(const Destructible& obj);
+
+
+
+	void getAllDestructibles(Character& player, EnemyContainer& container);
+
 
 	Character& operator++();
 	Character& operator--();

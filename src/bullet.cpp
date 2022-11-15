@@ -48,7 +48,6 @@ void Bullet::fire()
 {
 	if (!isFired_) {
 		isFired_ = true;
-
 		drawColor_ = ofColor::white;
 	}
 }
