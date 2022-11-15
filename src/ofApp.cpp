@@ -5,7 +5,6 @@
 void ofApp::setup ()
 {
 	ofSetBackgroundColor (ofColor::darkGray);
-	ofSetWindowTitle (TITLE); // Set the window title
 
 	player.setCoords (21, static_cast <float> (glb::screen_size.y - 50), false);
 }
