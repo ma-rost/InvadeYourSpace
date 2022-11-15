@@ -41,4 +41,14 @@ struct Rect {
 	{
 		return y + h;
 	}
+
+	void printXY()
+	{
+		std::cout << "x:" << x << " y:" << y << "\n";
+	}
+
+	void printRect()
+	{
+		std::cout << "x:" << x << " y:" << y << " w:" << w << " h:" << h << "\n";
+	}
 };
