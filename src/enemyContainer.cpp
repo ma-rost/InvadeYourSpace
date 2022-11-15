@@ -60,8 +60,8 @@ void EnemyContainer::isMovingRight()
 
 void EnemyContainer::setWholeSize (int rowSize, int columnSize)
 {
-	wholeCollision_.w += 10.7;
-	wholeCollision_.h += 4.4;
+	wholeCollision_.w += glb::RESIZE_FACTOR * 3.56;
+	wholeCollision_.h += glb::RESIZE_FACTOR + 2;
 
 	//std::cout << wholeSize_.x << ", " << wholeSize_.y << std::endl;
 }
