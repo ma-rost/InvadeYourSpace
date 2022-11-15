@@ -18,8 +18,12 @@ void ofApp::update ()
 //--------------------------------------------------------------
 void ofApp::draw ()
 {
-	ofSetColor(ofColor::green);
-	ofDrawRectangle(0, 0, ofGetWidth(), 90);
+	//ofSetColor(ofColor::green);
+	//ofDrawRectangle(0, 0, ofGetWidth(), 90);
+
+	ofDrawBitmapStringHighlight("SCORE <1> HI-SCORE SCORE <2>", 10, 20, ofColor::black, ofColor::white);
+
+	ofDrawBitmapStringHighlight("0000 \t 0000 \t 0000", 10, 90, ofColor::black, ofColor::white);
 
 	player.draw();
 	enemyContainer.moveWhole();

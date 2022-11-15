@@ -23,8 +23,6 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		const string TITLE = "Invade Your Space";
-
 		Player player {10, 70};
 
 		EnemyContainer enemyContainer {player};

@@ -12,7 +12,7 @@ EnemyContainer::EnemyContainer (Character& player)
 		}
 	}
 
-	setWholeCoordinate({ glb::draw_restrictions.x, 10 });
+	setWholeCoordinate({ glb::draw_restrictions.x, 100 });
 }
 
 void EnemyContainer::draw ()
