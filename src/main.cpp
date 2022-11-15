@@ -3,8 +3,8 @@
 
 //========================================================================
 int main( ){
-	ofSetupOpenGL(glb::screen_size.x, glb::screen_size.y,OF_WINDOW);			// <-------- setup the GL context
-	ofSetWindowTitle(glb::title); // Set the window title
+	ofSetupOpenGL(glb::SCREEN_SIZE.x, glb::SCREEN_SIZE.y,OF_WINDOW);			// <-------- setup the GL context
+	ofSetWindowTitle(glb::TITLE); // Set the window title
 	//ofSetFrameRate(8);
 
 	// this kicks off the running of my app

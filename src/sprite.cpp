@@ -19,7 +19,7 @@ Sprite::Sprite () :
 
 float Sprite::getResize ()
 {
-	return RESIZE_FACTOR;
+	return glb::RESIZE_FACTOR;
 }
 
 void Sprite::clearCoords ()
@@ -71,7 +71,7 @@ void Sprite::changeSprite (const int& spriteIndex, const Point<int>& coords, con
 {
 	//drawnSprite_.clear();
 	drawnSprite_.cropFrom(spriteSheet_, coordList_[spriteIndex].x, coordList_[spriteIndex].y, size.x, size.y);
-	drawnSprite_.resize(drawnSprite_.getWidth() * RESIZE_FACTOR, drawnSprite_.getHeight() * RESIZE_FACTOR);
+	drawnSprite_.resize(drawnSprite_.getWidth() * glb::RESIZE_FACTOR, drawnSprite_.getHeight() * glb::RESIZE_FACTOR);
 }
 
 void Sprite::changeSprite (const int& spriteIndex)

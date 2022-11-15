@@ -12,7 +12,7 @@ EnemyContainer::EnemyContainer (Character& player)
 		}
 	}
 
-	setWholeCoordinate({ glb::draw_restrictions.x, 100 });
+	setWholeCoordinate({ glb::DRAW_RESTRICTIONS.x, 100 });
 }
 
 void EnemyContainer::draw ()
@@ -51,11 +51,11 @@ void EnemyContainer::moveWhole()
 
 void EnemyContainer::isMovingRight()
 {
-	if (wholeCollision_.addXW() >= glb::draw_restrictions.y) {
+	if (wholeCollision_.addXW() >= glb::DRAW_RESTRICTIONS.y) {
 		isForwardMove_ = false;
 		wholeCollision_.y += 3;
 	}
-	if (wholeCollision_.x <= glb::draw_restrictions.x) isForwardMove_ = true;
+	if (wholeCollision_.x <= glb::DRAW_RESTRICTIONS.x) isForwardMove_ = true;
 }
 
 void EnemyContainer::setWholeSize (int rowSize, int columnSize)

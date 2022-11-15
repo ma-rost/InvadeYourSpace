@@ -9,7 +9,7 @@ void ofApp::setup ()
 	ofTrueTypeFont::setGlobalDpi(72); // Default is 96, but results in larger than normal pt size.
 	retroGaming.load(ofToDataPath("Retro Gaming.ttf"), 30, true, true); // filename via ofToDataPath, point size, antialiased?, full char-set?
 
-	player.setCoords (21, static_cast <float> (glb::screen_size.y - 50), false);
+	player.setCoords (21, static_cast <float> (glb::SCREEN_SIZE.y - 50), false);
 }
 
 //--------------------------------------------------------------

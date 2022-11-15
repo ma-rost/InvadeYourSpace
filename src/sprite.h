@@ -1,9 +1,9 @@
 ﻿#pragma once
+#include "globals.h"
 #include "ofImage.h"
 #include "point.h"
 
 class Sprite {
-	static constexpr float RESIZE_FACTOR{ 3 };
 	ofImage spriteSheet_{ "spaceInvaders_spriteSheet.png" };
 	Point <int> spriteSize_;
 	std::vector <Point<int>> coordList_;
