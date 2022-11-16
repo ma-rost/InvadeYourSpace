@@ -42,13 +42,29 @@ struct Rect {
 		return y + h;
 	}
 
-	void printXY()
+	void printXY() const
 	{
 		std::cout << "x:" << x << " y:" << y << "\n";
 	}
 
-	void printRect()
+	void printRect() const
 	{
 		std::cout << "x:" << x << " y:" << y << " w:" << w << " h:" << h << "\n";
 	}
+
+	void drawRect() const
+	{
+		ofDrawRectangle(x, y, w, h);
+	}
+
+	void drawRect(int w, int h) const
+	{
+		ofDrawRectangle(x, y, w, h);
+	}
+
+	void drawCircle(int radius) const
+	{
+		ofDrawCircle(x, y, radius);
+	}
+
 };
