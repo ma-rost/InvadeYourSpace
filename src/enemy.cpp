@@ -16,6 +16,10 @@ Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
 
 	placeValue_ = {static_cast <int> (x / 18), static_cast <int> (rowNum)};
 	selfCoord_  = applyResize ({x, y});
+	
+	std::ostringstream oss;
+	oss << "[" << placeValue_.x << ", " << placeValue_.y << "]";
+	bullet_.memoryAddress_ = oss.str();
 }
 
 int Enemy::setupRows(int& setNum)

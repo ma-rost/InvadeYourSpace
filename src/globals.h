@@ -1,8 +1,10 @@
 ﻿#pragma once
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "point.h"
+class Destructible;
 
 namespace glb
 {
@@ -13,5 +15,6 @@ namespace glb
 
 	constexpr float RESIZE_FACTOR{ 3.5 };
 
-	
+	std::string getMemoryAddress(const Destructible& object);
+	std::string eraseFromFront(std::string& in, int amount);
 }

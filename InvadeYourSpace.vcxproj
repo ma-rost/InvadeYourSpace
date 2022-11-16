@@ -185,6 +185,7 @@
     <ClCompile Include="src\destructible.cpp" />
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\enemyContainer.cpp" />
+    <ClCompile Include="src\globals.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\player.cpp" />

@@ -20,6 +20,7 @@ class Bullet : public Destructible {
 	static constexpr float MOVE_SPEED {10};
 
 public:
+	std::string memoryAddress_;
 	explicit Bullet();
 	explicit Bullet(const bool& isPlayer);
 	Bullet(const float& x, const float& y, const bool& isPlayer);

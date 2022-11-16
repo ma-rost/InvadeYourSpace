@@ -24,8 +24,7 @@ void EnemyContainer::draw ()
 void EnemyContainer::drawDebugRange () const
 {
 	ofSetColor (ofColor::lavender);
-	ofDrawRectangle (wholeCollision_.x, wholeCollision_.y, 
-					 wholeCollision_.w, wholeCollision_.h);
+	wholeCollision_.drawRect();
 }
 
 void EnemyContainer::drawEnemies ()
