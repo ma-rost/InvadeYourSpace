@@ -77,13 +77,6 @@ void Character::setDestructibles(Character& player, EnemyContainer& container)
 	container_ = &container;
 }
 
-//void Character::setDestructibles(Character& player,
-//	std::array<std::vector<Character>, 11>& enemies)
-//{
-//	player_  = &player;
-//	enemies_ = &enemies;
-//}
-
 #pragma region Operators
 Character& Character::operator++()
 {

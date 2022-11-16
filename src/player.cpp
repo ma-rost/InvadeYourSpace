@@ -11,7 +11,6 @@ Player::Player(const float& x, const float& y):
 
 void Player::move(const bool isRightKey)
 {
-	
 	if (isLive_) {
 		container_->checkForHit(bullet_);
 		Character::move (isRightKey);
@@ -55,5 +54,4 @@ void Player::printDigits()
 	std::array<int, 4> numbers;
 	getDigits(score_);
 	std::cout << '\n';
-	
 }

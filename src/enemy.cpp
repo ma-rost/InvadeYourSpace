@@ -8,7 +8,7 @@ Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
 	Character (x, y, false)
 {
 	int sprite = setupRows (rowNum);
-
+	
 	sprite_.clearCoords();
 	getSprite (true, sprite); // Sprite 1
 	getSprite (false, sprite); // Sprite 2 

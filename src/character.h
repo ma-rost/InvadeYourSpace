@@ -13,7 +13,6 @@ protected:
 	static Character* player_;
 	static EnemyContainer* container_;
 
-
 	const bool isPlayer_;
 	Point <float> bulletSpawn_;
 	
@@ -27,16 +26,9 @@ public:
 	void moveBullet();
 	void draw(const int& spriteIndex);
 	void fire();
-
-	Point <float> getCoordinate();
-
-
 	bool checkCollider(Bullet& bullet);
 
-
-
 	static void setDestructibles(Character& player, EnemyContainer& container);
-
 
 	Character& operator++();
 	Character& operator--();

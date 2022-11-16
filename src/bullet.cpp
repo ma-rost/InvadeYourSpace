@@ -24,17 +24,6 @@ Bullet::Bullet(const float& x, const float& y, const bool& isPlayer):
 
 void Bullet::isBulletActive(const bool& isBottom) { isActive_ = isBottom; }
 
-void Bullet::checkEach(const Character& obj)
-{
-	if(isFired_) {
-		isFired_ = hasHitOppos(obj.getCollider());
-	}
-}
-
-void Bullet::checkCollider()
-{
-}
-
 void Bullet::move()
 {
 	if (!isFired_) { resetBullet(); }
@@ -50,7 +39,7 @@ void Bullet::fire()
 {
 	if (!isFired_) {
 		isFired_ = true;
-		drawColor_ = ofColor::white;
+		//drawColor_ = ofColor::white;
 	}
 }
 
@@ -74,9 +63,6 @@ void Bullet::setBulletOrigin(const Point <float> bulletOrigin)
 
 bool Bullet::hasHitOppos(Rect<float> col)
 {
-	//std::cout << col.x << " " << col.y << "\n";
-	
-
 	if (ofGetFrameNum() % 10 == 0 && isFired_) {
 		collider_.printXY();
 	}
