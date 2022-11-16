@@ -16,6 +16,7 @@ void Destructible::draw(const int& spriteIndex)
 {
 	ofSetColor(drawColor_);
 	sprite_.drawSprite(spriteIndex, collider_.x, collider_.y);
+	setCollision();
 }
 
 void Destructible::setCoords (const float& x, const float& y, const bool applyResize)

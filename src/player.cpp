@@ -7,15 +7,20 @@ Player::Player(const float& x, const float& y):
 {
 	drawColor_ = ofColor::green;
 	for (int i = 1; i < 3; ++i) sprite_.newCoords ({1 + (i * 18), 49});
+
+	std::ostringstream oss;
+	oss << "[Player]";
+	bullet_.memoryAddress_ = oss.str();
 }
 
 void Player::move(const bool isRightKey)
 {
 	if (isLive_) {
-		container_->checkForHit(bullet_);
 		Character::move (isRightKey);
 		collider_.x = ofClamp (collider_.x, glb::DRAW_RESTRICTIONS.x,
 		                       glb::DRAW_RESTRICTIONS.y - 16 * 3);
+		setCollision();
+		collider_.printRect();
 	}
 }
 

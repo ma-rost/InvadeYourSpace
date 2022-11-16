@@ -82,12 +82,13 @@ std::array<std::vector<Enemy>, 11>& EnemyContainer::getAllEnemies()
 	return enemyTest_;
 }
 
-void EnemyContainer::checkForHit(Bullet& bullet)
+void EnemyContainer::checkForHit()
 {
 	//std::cout << "checkForHit";
 	for (auto& enemyRow : enemyTest_) {
 		for (auto& enemy : enemyRow) {
-			enemy.checkCollider(enemy.bullet_);
+			enemy.checkCollider(Character::player_->bullet_);
+			Character::player_->checkCollider(enemy.bullet_);
 		}
 	}
 }

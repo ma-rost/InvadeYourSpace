@@ -36,6 +36,22 @@ void Character::draw(const int& spriteIndex)
 }
 
 void Character::fire() { bullet_.fire(); }
+
+bool Character::checkCollider(Bullet& bullet)
+{
+	bullet.getCollider().drawCircle(4);
+	//std::string address = glb::eraseFromFront(glb::getMemoryAddress(bullet), 8);
+	ofDrawBitmapString(bullet.memoryAddress_, bullet.getCollider().x, bullet.getCollider().y);
+
+	bool lifeState = bullet.hasHitOppos(getCollider());
+
+	if (lifeState) {
+		std::cout << bullet.memoryAddress_ << " HIT ME!";
+		kill();
+		return true;
+	}
+	return false;
+}
 #pragma endregion
 
 void Character::setBulletSpawn()
@@ -56,20 +72,7 @@ void Character::setBulletSpawn()
 
 Point <float> Character::getCoordinate() { return collider_.getXY(); }
 
-bool Character::checkCollider(Bullet& bullet)
-{
-	//std::cout << "hasHitOppos";
 
-	bool lifeState = bullet.hasHitOppos(getCollider());
-
-	if (lifeState) {
-		std::cout << &bullet << " HIT ME!";
-		kill();
-		return true;
-	}
-
-	return false;
-}
 
 void Character::setDestructibles(Character& player, EnemyContainer& container)
 {

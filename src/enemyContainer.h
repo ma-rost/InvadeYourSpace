@@ -23,7 +23,7 @@ public:
 	void setWholeCoordinate(const Point <float> coordinate);
 
 	void fireEvent();
-	void checkForHit(Bullet& bullet);
+	void checkForHit();
 
 	std::array<std::vector<Enemy>, 11>& getAllEnemies();
 
