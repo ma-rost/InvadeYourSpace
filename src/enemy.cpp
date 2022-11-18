@@ -63,18 +63,6 @@ void Enemy::getSprite(const bool isFirst, const int& setNum)
 	sprite_.newCoords ({x, y});
 }
 
-void Enemy::hitEvent(const bool& isTrue)
-{
-	if (isBottomMost_) {
-
-	}
-}
-
 void Enemy::setNewBottom(const bool& val) { isBottomMost_ = val; }
 
 bool Enemy::canShoot() { return isLive_ && isBottomMost_ ? true : false; }
-
-void Enemy::takeBullet(Bullet& bullet)
-{
-
-}

@@ -17,6 +17,4 @@ public:
 	int getScore();
 	void getDigits(int x);
 	void printDigits();
-
-	static float getMoveSpeed() { return MOVE_SPEED; }
 };

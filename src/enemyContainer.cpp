@@ -11,7 +11,6 @@ EnemyContainer::EnemyContainer (Character& player)
 			setWholeSize (x, y);
 		}
 	}
-
 	setWholeCoordinate ({glb::DRAW_RESTRICTIONS.x, 100});
 }
 
@@ -84,7 +83,6 @@ std::array<std::vector<Enemy>, 11>& EnemyContainer::getAllEnemies()
 
 void EnemyContainer::checkForHit()
 {
-	//std::cout << "checkForHit";
 	for (auto& enemyRow : enemyTest_) {
 		for (auto& enemy : enemyRow) {
 			enemy.checkCollider(Character::player_->bullet_);

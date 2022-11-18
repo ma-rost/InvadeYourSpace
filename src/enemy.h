@@ -25,13 +25,9 @@ public:
 
 	void getSprite(bool isFirst, const int& setNum);
 
-	void hitEvent(const bool& isTrue);
-
 	void setNewBottom(const bool& val);
 
 	bool canShoot();
-
-	void takeBullet(Bullet& bullet);
 
 	
 };

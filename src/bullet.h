@@ -35,7 +35,6 @@ public:
 	
 	bool hasHitOppos(Rect<float> col);
 
-	static float getMoveSpeed() { return MOVE_SPEED; }
 	Bullet& operator++();
 };
 

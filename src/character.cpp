@@ -39,8 +39,6 @@ void Character::fire() { bullet_.fire(); }
 
 bool Character::checkCollider(Bullet& bullet)
 {
-	bullet.getCollider().drawCircle(4);
-	//std::string address = glb::eraseFromFront(glb::getMemoryAddress(bullet), 8);
 	ofDrawBitmapString(bullet.memoryAddress_, bullet.getCollider().x, bullet.getCollider().y);
 
 	bool lifeState = bullet.hasHitOppos(getCollider());
@@ -83,13 +81,13 @@ void Character::setDestructibles(Character& player, EnemyContainer& container)
 #pragma region Operators
 Character& Character::operator++()
 {
-	this->collider_.x += this->getMoveSpeed();
+	this->collider_.x += this->MOVE_SPEED;
 	return *this;
 }
 
 Character& Character::operator--()
 {
-	this->collider_.x -= this->getMoveSpeed();
+	this->collider_.x -= this->MOVE_SPEED;
 	return *this;
 }
 #pragma endregion

@@ -17,10 +17,8 @@ void ofApp::update()
 {
 	Character::setDestructibles(player, enemyContainer);
 	//player.getDigits(player.score_);
-
-
+	
 	enemyContainer.checkForHit();
-
 }
 
 
