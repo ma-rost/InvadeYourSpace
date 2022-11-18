@@ -20,7 +20,6 @@ void Player::move(const bool isRightKey)
 		collider_.x = ofClamp (collider_.x, glb::DRAW_RESTRICTIONS.x,
 		                       glb::DRAW_RESTRICTIONS.y - 16 * 3);
 		setCollision();
-		collider_.printRect();
 	}
 }
 

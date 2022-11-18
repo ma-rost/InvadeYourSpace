@@ -41,8 +41,7 @@ void EnemyContainer::moveWhole ()
 			? wholeCollision_.x += MOVE_SPEED
 			: wholeCollision_.x -= MOVE_SPEED;
 	}
-	drawDebugRange();
-	drawEnemies();
+	draw();
 
 	if (ofGetFrameNum() % 60 == 0) fireEvent();
 }
@@ -85,8 +84,12 @@ void EnemyContainer::checkForHit()
 {
 	for (auto& enemyRow : enemyTest_) {
 		for (auto& enemy : enemyRow) {
-			enemy.checkCollider(Character::player_->bullet_);
-			Character::player_->checkCollider(enemy.bullet_);
+			if (enemy.isBottomMost_) {
+				// Make each enemy check player bullet
+				enemy.checkCollider (Character::player_->bullet_);
+				// Make player check each enemy bullet
+				Character::player_->checkCollider (enemy.bullet_);
+			}
 		}
 	}
 }

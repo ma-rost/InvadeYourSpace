@@ -63,25 +63,12 @@ void Bullet::setBulletOrigin(const Point <float> bulletOrigin)
 
 bool Bullet::hasHitOppos(Rect<float> col, const bool isLive)
 {
-	if (ofGetFrameNum() % 10 == 0 && isFired_) {
-		//collider_.printXY();
-	}
-
-	col.drawRect();
-
-	if (collider_.x <= col.x && collider_.addXW() >= col.addXW()) {
-		
-		std::cout << memoryAddress_ << " IN X";
-		drawColor_ = ofColor::blue;
-		if (collider_.y <= col.y && collider_.addYH() >= col.addYH()) {
-			std::cout << "& Y";
-			//resetBullet();
+	if (collider_.x >= col.x && collider_.addXW() <= col.addXW() && isLive) {
+		if (collider_.y >= col.y && collider_.addYH() <= col.addYH()) {
+			resetBullet();
 			drawColor_ = ofColor::red;
 			return true;
 		}
-		
-		std::cout << "\n";
 	}
-
 	return false;
 }

@@ -12,11 +12,12 @@ class Enemy : public Character {
 	Point <float> selfCoord_;
 
 	int points_ {30};
-	bool isBottomMost_;
 
 	int setupRows(int& setNum);
 
 public:
+	bool isBottomMost_;
+
 	Enemy(const float& x, const float& y, int& rowNum, Character& player);
 
 	void draw();
