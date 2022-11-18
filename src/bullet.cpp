@@ -1,5 +1,4 @@
 ﻿#include "bullet.h"
-
 #include "character.h"
 #include "ofGraphics.h"
 

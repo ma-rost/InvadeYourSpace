@@ -17,4 +17,9 @@ public:
 	int getScore();
 	void getDigits(int x);
 	void printDigits();
+
+	void moveEvent()
+	{
+		std::cout << "Player Moved";
+	}
 };

@@ -1,5 +1,4 @@
 ﻿#include "player.h"
-
 #include "enemyContainer.h"
 
 Player::Player(const float& x, const float& y):
@@ -11,6 +10,7 @@ Player::Player(const float& x, const float& y):
 	std::ostringstream oss;
 	oss << "[Player]";
 	bullet_.memoryAddress_ = oss.str();
+
 }
 
 void Player::move(const bool isRightKey)

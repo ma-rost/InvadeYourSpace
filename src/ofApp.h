@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "enemyContainer.h"
+#include "gameTemplate.h"
 #include "player.h"
 
 class ofApp : public ofBaseApp{
@@ -28,4 +29,6 @@ class ofApp : public ofBaseApp{
 		Player player {10, 70};
 
 		EnemyContainer enemyContainer {player};
+
+		GameTemplate gameTemplate_;
 };

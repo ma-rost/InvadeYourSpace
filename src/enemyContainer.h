@@ -26,6 +26,11 @@ public:
 	void fireEvent();
 	void checkForHit();
 	void newBottomEnemy();
+	bool allEnemiesDead();
+
+	int totalEnemies();
 
 	std::array<std::vector<Enemy>, 11>& getAllEnemies();
 };
+
+

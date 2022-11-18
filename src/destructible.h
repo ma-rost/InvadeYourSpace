@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "ofEventUtils.h"
+#include "ofEvent.h"
 #include "globals.h"
 #include "ofColor.h"
 #include "point.h"

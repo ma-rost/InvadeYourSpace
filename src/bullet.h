@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "destructible.h"
 
+
 class Character;
 class EnemyContainer;
 
@@ -11,6 +12,7 @@ class Bullet : public Destructible {
 
 	const bool isPlayer_;
 	bool isFired_ {false};
+	ofEvent <bool> fired_;
 	bool isActive_ {false};
 	Point <float> bulletOrigin_;
 

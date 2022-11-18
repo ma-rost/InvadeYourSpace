@@ -9,7 +9,7 @@ void ofApp::setup()
 	ofTrueTypeFont::setGlobalDpi (72);
 	retroFont_.load (ofToDataPath ("DePixelBreit.ttf"), 30, true, true);
 
-	player.setCoords (21, static_cast <float> (glb::SCREEN_SIZE.y - 50), false);
+	
 }
 
 //--------------------------------------------------------------
@@ -37,19 +37,13 @@ void ofApp::draw()
 	char fpsStr[255]; // an array of chars
 	retroFont_.drawString(fpsStr, 100, 600);
 
-	player.draw();
-	enemyContainer.moveWhole();
+	
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-	if (key == OF_KEY_LEFT || key == 'a') player.move (false);
-	if (key == OF_KEY_RIGHT || key == 'd') player.move (true);
-
-	if (key == OF_KEY_UP || key == 'w') player.fire();
-
-	if (key == 'e') player.killEnemy();
+	
 }
 
 //--------------------------------------------------------------

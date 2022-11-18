@@ -7,16 +7,21 @@ class GameTemplate {
 	int playerLivesLeft_{3};
 	int enemiesAlive_;
 
-	Player player{ 10, 70 };
-	EnemyContainer enemyContainer{ player };
-
-	int score_ {0};
+	Player player_{ 10, 70 };
+	EnemyContainer enemyContainer_{ player_ };
 
 public:
+	int score_{ 0 };
 
+	void setup();
 	void update();
 
 	void playerDied();
 	void newGame();
 	void endGame();
+
+	void gameLost();
+	void gameWon();
+
+	void keyPress(int key);
 };

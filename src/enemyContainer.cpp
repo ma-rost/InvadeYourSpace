@@ -108,6 +108,31 @@ void EnemyContainer::newBottomEnemy()
 	}
 }
 
+bool EnemyContainer::allEnemiesDead()
+{
+	int enemiesAlive = 0;
+	for (auto& enemyRow : enemyTest_) {
+		for (auto enemy : enemyRow) {
+			if (enemy.isLiving()) {
+				enemiesAlive++;
+			}
+		}
+	}
+
+	return enemiesAlive >= 0 ? true : false;
+}
+
+int EnemyContainer::totalEnemies()
+{
+	int enemies = 0;
+	for (auto& enemyRow : enemyTest_) {
+		for (auto enemy : enemyRow) {
+			enemies++;
+		}
+	}
+	return enemies;
+}
+
 std::array<std::vector<Enemy>, 11>& EnemyContainer::getAllEnemies()
 {
 	return enemyTest_;
