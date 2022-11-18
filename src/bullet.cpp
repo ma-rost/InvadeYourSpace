@@ -53,6 +53,7 @@ void Bullet::resetBullet()
 {
 	//drawColor_ = ofColor::red;
 	setCoords (bulletOrigin_.x, bulletOrigin_.y, false);
+	isFired_ = false;
 }
 
 void Bullet::setBulletOrigin(const Point <float> bulletOrigin)
@@ -60,7 +61,7 @@ void Bullet::setBulletOrigin(const Point <float> bulletOrigin)
 	bulletOrigin_ = bulletOrigin;
 }
 
-bool Bullet::hasHitOppos(Rect<float> col)
+bool Bullet::hasHitOppos(Rect<float> col, const bool isLive)
 {
 	if (ofGetFrameNum() % 10 == 0 && isFired_) {
 		//collider_.printXY();

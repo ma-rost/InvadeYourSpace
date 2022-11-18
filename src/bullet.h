@@ -33,7 +33,7 @@ public:
 	void setBulletOrigin(Point <float> bulletOrigin);
 	void isBulletActive(const bool& isBottom);
 	
-	bool hasHitOppos(Rect<float> col);
+	bool hasHitOppos(Rect<float> col, bool isLive);
 
 	Bullet& operator++();
 };

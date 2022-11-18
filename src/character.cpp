@@ -41,7 +41,7 @@ bool Character::checkCollider(Bullet& bullet)
 {
 	ofDrawBitmapString(bullet.memoryAddress_, bullet.getCollider().x, bullet.getCollider().y);
 
-	bool lifeState = bullet.hasHitOppos(getCollider());
+	bool lifeState = bullet.hasHitOppos(getCollider(), isLive_);
 
 	if (lifeState) {
 		std::cout << bullet.memoryAddress_ << " HIT ME!";
