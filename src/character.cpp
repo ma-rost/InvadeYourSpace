@@ -29,8 +29,20 @@ void Character::moveBullet()
 	bullet_.move();
 }
 
+void Character::hasPlayedDeathAnimation()
+{
+
+}
+
 void Character::draw(const int& spriteIndex)
 {
+
+	if (!isLive_ && !hasPlayedDeathAnimation_) {
+		hasPlayedDeathAnimation_ = true;
+	}
+	else if (!isLive_ && hasPlayedDeathAnimation_) {
+		sprite_.drawnSprite_.clear();
+	}
 	moveBullet();
 	Destructible::draw (spriteIndex);
 }
@@ -44,7 +56,7 @@ bool Character::checkCollider(Bullet& bullet)
 	bool lifeState = bullet.hasHitOppos(getCollider(), isLive_);
 
 	if (lifeState) {
-		std::cout << bullet.memoryAddress_ << " HIT ME!";
+		std::cout << bullet.memoryAddress_ << " HIT " << bullet_.memoryAddress_ << "!\n";
 		kill();
 		return true;
 	}

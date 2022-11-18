@@ -13,9 +13,6 @@ class Bullet : public Destructible {
 	bool isFired_ {false};
 	bool isActive_ {false};
 	Point <float> bulletOrigin_;
-	
-
-	//std::vector <Destructible> targetableObj_;
 
 	static constexpr float MOVE_SPEED {10};
 
@@ -31,7 +28,7 @@ public:
 
 	void resetBullet();
 	void setBulletOrigin(Point <float> bulletOrigin);
-	void isBulletActive(const bool& isBottom);
+	void setIsActive(const bool& isBottom);
 	
 	bool hasHitOppos(Rect<float> col, bool isLive);
 

@@ -22,11 +22,12 @@ public:
 
 	void draw();
 	void move(Point <float> refCoord);
-	void fire();
+	
+	void kill();
 
 	void getSprite(bool isFirst, const int& setNum);
 
-	void setNewBottom(const bool& val);
+	void setNewBottom();
 
 	bool canShoot();
 

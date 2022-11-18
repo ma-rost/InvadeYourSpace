@@ -22,6 +22,7 @@ public:
 	 * \brief Set isLive_ to false
 	 */
 	void kill();
+	bool isLiving();
 	void draw(const int& spriteIndex);
 
 	/**

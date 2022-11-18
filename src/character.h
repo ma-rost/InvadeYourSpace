@@ -8,11 +8,11 @@
 class EnemyContainer;
 
 class Character : public Destructible {
+	bool hasPlayedDeathAnimation_{ false };
 protected:
 	///std::array<std::vector<Character>, 11>* enemies_;
 	const bool isPlayer_;
 	Point <float> bulletSpawn_;
-	
 public:
 	static Character* player_;
 	static EnemyContainer* container_;
@@ -24,6 +24,7 @@ public:
 
 	void move(const bool& isMoveRight);
 	void moveBullet();
+	void hasPlayedDeathAnimation();
 	void draw(const int& spriteIndex);
 	void fire();
 	bool checkCollider(Bullet& bullet);

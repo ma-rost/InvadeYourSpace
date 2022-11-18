@@ -22,7 +22,7 @@ Bullet::Bullet(const float& x, const float& y, const bool& isPlayer):
 	sprite_.newCoords ({16, 21}); // Death
 }
 
-void Bullet::isBulletActive(const bool& isBottom) { isActive_ = isBottom; }
+void Bullet::setIsActive(const bool& isBottom) { isActive_ = isBottom; }
 
 void Bullet::move()
 {
@@ -63,6 +63,7 @@ void Bullet::setBulletOrigin(const Point <float> bulletOrigin)
 
 bool Bullet::hasHitOppos(Rect<float> col, const bool isLive)
 {
+	col.drawRect();
 	if (collider_.x >= col.x && collider_.addXW() <= col.addXW() && isLive) {
 		if (collider_.y >= col.y && collider_.addYH() <= col.addYH()) {
 			resetBullet();

@@ -12,6 +12,11 @@ void Destructible::kill()
 	isLive_ = false;
 }
 
+bool Destructible::isLiving()
+{
+	return isLive_;
+}
+
 void Destructible::draw(const int& spriteIndex)
 {
 	ofSetColor(drawColor_);

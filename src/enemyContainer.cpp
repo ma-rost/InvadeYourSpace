@@ -16,7 +16,7 @@ EnemyContainer::EnemyContainer (Character& player)
 
 void EnemyContainer::draw ()
 {
-	drawDebugRange();
+	//drawDebugRange();
 	drawEnemies();
 }
 
@@ -71,14 +71,14 @@ void EnemyContainer::fireEvent ()
 	const int a = static_cast <int> (round (ofRandom (10)));
 	const int b = static_cast <int> (round (ofRandom (4)));
 
-	if (enemyTest_[a][b].canShoot()) enemyTest_[a][b].fire();
+	if (enemyTest_[a][b].canShoot()) {
+		enemyTest_[a][b].fire();
+		std::cout << a << " " << b << "\n";
+	}
 	else fireEvent();
 }
 
-std::array<std::vector<Enemy>, 11>& EnemyContainer::getAllEnemies()
-{
-	return enemyTest_;
-}
+
 
 void EnemyContainer::checkForHit()
 {
@@ -86,10 +86,29 @@ void EnemyContainer::checkForHit()
 		for (auto& enemy : enemyRow) {
 			if (enemy.isBottomMost_) {
 				// Make each enemy check player bullet
-				enemy.checkCollider (Character::player_->bullet_);
+				const bool isEnemyLive = enemy.checkCollider (Character::player_->bullet_);
 				// Make player check each enemy bullet
-				Character::player_->checkCollider (enemy.bullet_);
+				const bool isPlayerLive = Character::player_->checkCollider (enemy.bullet_);
+
+				if (!isEnemyLive) newBottomEnemy();
 			}
 		}
 	}
+}
+
+void EnemyContainer::newBottomEnemy()
+{
+	for (auto& x : enemyTest_) {
+		for (int y = 0; y < x.size(); ++y) {
+			if (y != 0 && !x[y].isLiving() && x[y].isBottomMost_) {
+				x[y].isBottomMost_ = false;
+				x[y - 1].setNewBottom();
+			}
+		}
+	}
+}
+
+std::array<std::vector<Enemy>, 11>& EnemyContainer::getAllEnemies()
+{
+	return enemyTest_;
 }

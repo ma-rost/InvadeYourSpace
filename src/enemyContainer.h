@@ -21,13 +21,11 @@ public:
 
 	void setWholeSize(int rowSize, int columnSize);
 	void setWholeCoordinate(const Point <float> coordinate);
-
+	
+	/** \brief Randomly chooses a bullet for one of the enemies to fire */
 	void fireEvent();
 	void checkForHit();
+	void newBottomEnemy();
 
 	std::array<std::vector<Enemy>, 11>& getAllEnemies();
-
-	static float getMoveSpeed() { return MOVE_SPEED; }
-
-	
 };

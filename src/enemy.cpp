@@ -3,6 +3,8 @@
 #include "ofGraphics.h"
 #include <vector>       // std::vector
 
+#include "enemyContainer.h"
+
 
 Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
 	Character (x, y, false)
@@ -38,7 +40,7 @@ int Enemy::setupRows(int& setNum)
 	points_ -= sprite * 10;
 
 	isBottomMost_ = setNum == 4 ? true : false;
-	bullet_.isBulletActive (isBottomMost_);
+	bullet_.setIsActive (isBottomMost_);
 
 	return sprite;
 }
@@ -53,7 +55,11 @@ void Enemy::move(Point <float> refCoord)
 	draw();
 }
 
-void Enemy::fire() { Character::fire(); }
+void Enemy::kill()
+{
+	Destructible::kill();
+	container_->newBottomEnemy();
+}
 
 void Enemy::getSprite(const bool isFirst, const int& setNum)
 {
@@ -63,6 +69,11 @@ void Enemy::getSprite(const bool isFirst, const int& setNum)
 	sprite_.newCoords ({x, y});
 }
 
-void Enemy::setNewBottom(const bool& val) { isBottomMost_ = val; }
+void Enemy::setNewBottom()
+{
+	isBottomMost_ = true;
+	bullet_.setIsActive(isBottomMost_);
+	std::cout << bullet_.memoryAddress_ << " is " << isBottomMost_ << "\n";
+}
 
 bool Enemy::canShoot() { return isLive_ && isBottomMost_ ? true : false; }
