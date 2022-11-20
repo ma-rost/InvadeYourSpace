@@ -3,9 +3,17 @@
 
 //========================================================================
 int main( ){
-	ofSetupOpenGL(glb::SCREEN_SIZE.x, glb::SCREEN_SIZE.y,OF_WINDOW);			// <-------- setup the GL context
+
+	ofGLFWWindowSettings settings;
+	settings.setSize(glb::SCREEN_SIZE.x, glb::SCREEN_SIZE.y);
+	settings.title = glb::TITLE;
+	settings.resizable = false;
+	ofCreateWindow(settings);
+	
+	//ofSetupOpenGL(glb::SCREEN_SIZE.x, glb::SCREEN_SIZE.y,OF_WINDOW);			// <-------- setup the GL context
 	ofSetWindowTitle(glb::TITLE); // Set the window title
-	//ofSetFrameRate(8);
+
+	
 
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN
