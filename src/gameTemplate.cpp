@@ -10,14 +10,18 @@ void GameTemplate::setup()
 void GameTemplate::update()
 {
 	if (!player_.isLiving()) playerDied();
-	if (enemyContainer_.allEnemiesDead()) gameWon();
+	if (!enemyContainer_.allEnemiesLive()) gameWon();
 
 	//player.getDigits(player.score_);
 
+	Character::setDestructibles(player_, enemyContainer_);
+	enemyContainer_.checkForHit();
+}
+
+void GameTemplate::draw()
+{
 	player_.draw();
 	enemyContainer_.moveWhole();
-
-	enemyContainer_.checkForHit();
 }
 
 void GameTemplate::playerDied()

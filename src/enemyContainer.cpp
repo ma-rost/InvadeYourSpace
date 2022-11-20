@@ -108,7 +108,7 @@ void EnemyContainer::newBottomEnemy()
 	}
 }
 
-bool EnemyContainer::allEnemiesDead()
+bool EnemyContainer::allEnemiesLive()
 {
 	int enemiesAlive = 0;
 	for (auto& enemyRow : enemyTest_) {

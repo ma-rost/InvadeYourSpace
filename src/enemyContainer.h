@@ -26,7 +26,7 @@ public:
 	void fireEvent();
 	void checkForHit();
 	void newBottomEnemy();
-	bool allEnemiesDead();
+	bool allEnemiesLive();
 
 	int totalEnemies();
 

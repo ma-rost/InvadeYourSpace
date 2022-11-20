@@ -15,6 +15,7 @@ public:
 
 	void setup();
 	void update();
+	void draw();
 
 	void playerDied();
 	void newGame();

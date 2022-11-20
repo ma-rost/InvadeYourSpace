@@ -9,7 +9,7 @@ void ofApp::setup()
 	ofTrueTypeFont::setGlobalDpi (72);
 	retroFont_.load (ofToDataPath ("DePixelBreit.ttf"), 30, true, true);
 
-	
+	gameTemplate_.setup();
 }
 
 //--------------------------------------------------------------
@@ -19,6 +19,8 @@ void ofApp::update()
 	//player.getDigits(player.score_);
 	
 	enemyContainer.checkForHit();
+
+	gameTemplate_.update();
 }
 
 
@@ -37,13 +39,13 @@ void ofApp::draw()
 	char fpsStr[255]; // an array of chars
 	retroFont_.drawString(fpsStr, 100, 600);
 
-	
+	gameTemplate_.draw();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-	
+	gameTemplate_.keyPress(key);
 }
 
 //--------------------------------------------------------------
@@ -84,7 +86,8 @@ void ofApp::mouseExited(int x, int y)
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h)
 {
-	player.setCoords (static_cast <float> (h - 50), false);
+	//player.setCoords (static_cast <float> (h - 50), false);
+	
 }
 
 //--------------------------------------------------------------
