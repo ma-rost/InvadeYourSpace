@@ -34,7 +34,6 @@ public:
 	bool hasHitOppos(Rect<float> col, bool isLive);
 
 	void notified();
-	void applyListener(Character& parent);
 
 	Bullet& operator++();
 };

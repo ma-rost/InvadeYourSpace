@@ -1,6 +1,5 @@
 ﻿// ReSharper disable All
 #include "character.h"
-
 #include "gameEvent.h"
 #include "ofGraphics.h"
 
@@ -18,7 +17,6 @@ Character::Character(const float& x, const float& y,
 {
 	setBulletSpawn();
 	bullet_.resetBullet();
-	bullet_.applyListener(*this);
 }
 
 #pragma region Actions
@@ -34,6 +32,7 @@ void Character::kill()
 {
 	static GameEvent newEvent;
 	newEvent.chara_ = this;
+	newEvent.score_ = value_;
 	newEvent.message = bullet_.memoryAddress_ + " has been hit!";
 	ofNotifyEvent(GameEvent::events_, newEvent);
 	Destructible::kill();
@@ -46,7 +45,6 @@ void Character::hasPlayedDeathAnimation()
 
 void Character::draw(const int& spriteIndex)
 {
-
 	if (!isLive_ && !hasPlayedDeathAnimation_) {
 		hasPlayedDeathAnimation_ = true;
 	}
@@ -64,14 +62,7 @@ bool Character::checkCollider(Bullet& bullet)
 	ofDrawBitmapString(bullet.memoryAddress_, bullet.getCollider().x, bullet.getCollider().y);
 
 	bool lifeState = bullet.hasHitOppos(getCollider(), isLive_);
-
-	if (lifeState) {
-		sendEvent();
-		std::cout << bullet.memoryAddress_ << " HIT " << bullet_.memoryAddress_ << "!\n";
-		kill();
-		return true;
-	}
-	return false;
+	return !lifeState;
 }
 #pragma endregion
 

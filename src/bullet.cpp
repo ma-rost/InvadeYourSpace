@@ -19,8 +19,6 @@ Bullet::Bullet(const float& x, const float& y, const bool& isPlayer):
 	sprite_.setSize ({3, 7});
 	sprite_.newCoords ({41, 21}); // Default
 	sprite_.newCoords ({16, 21}); // Death
-
-	
 }
 
 
@@ -74,14 +72,4 @@ bool Bullet::hasHitOppos(Rect<float> col, const bool isLive)
 		}
 	}
 	return false;
-}
-
-void Bullet::notified()
-{
-	std::cout << "NOTIFIED\n";
-}
-
-void Bullet::applyListener(Character& parent)
-{
-	ofAddListener(parent.notify_, this, &Bullet::notified);
 }

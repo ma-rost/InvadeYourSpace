@@ -10,12 +10,7 @@
 class Enemy : public Character {
 	Point <int> placeValue_;
 	Point <float> selfCoord_;
-
-	int points_ {30};
-
 	int setupRows(int& setNum);
-
-	
 
 public:
 	bool isBottomMost_;

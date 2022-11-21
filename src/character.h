@@ -13,11 +13,11 @@ protected:
 	///std::array<std::vector<Character>, 11>* enemies_;
 	const bool isPlayer_;
 	Point <float> bulletSpawn_;
+	int value_{ 0 };
 	
 public:
 	static Character* player_;
 	static EnemyContainer* container_;
-	ofEvent<void> notify_;
 	Bullet bullet_;
 
 	Character(const float& x, const float& y, const bool& isPlayer);
@@ -38,10 +38,6 @@ public:
 
 	Character& operator++();
 	Character& operator--();
-
-	void sendEvent() {
-		ofNotifyEvent(notify_);
-	}
 
 private:
 	void setBulletSpawn();

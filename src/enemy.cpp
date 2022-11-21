@@ -27,6 +27,7 @@ Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
 
 int Enemy::setupRows(int& setNum)
 {
+	value_ = 30;
 	int sprite;
 	drawColor_ = ofColor::red;
 	sprite     = 0;
@@ -38,7 +39,7 @@ int Enemy::setupRows(int& setNum)
 		sprite     = 2;
 		drawColor_ = ofColor::paleVioletRed;
 	}
-	points_ -= sprite * 10;
+	value_ -= sprite * 10;
 
 	isBottomMost_ = setNum == 4 ? true : false;
 	bullet_.setIsActive (isBottomMost_);
