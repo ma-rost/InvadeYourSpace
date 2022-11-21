@@ -137,8 +137,6 @@ void GameTemplate::keyPress(int key)
 	if (key == OF_KEY_RIGHT || key == 'd') player_.move(true);
 
 	if (key == OF_KEY_UP || key == 'w') player_.fire();
-
-	
 }
 
 void GameTemplate::gameEvent(GameEvent& e)
@@ -146,4 +144,7 @@ void GameTemplate::gameEvent(GameEvent& e)
 	cout << "Game Event: " + e.message << endl;
 
 	e.chara_->isLiving();
+	score_ += e.score_;
+
+	cout << score_ << "\n";
 }

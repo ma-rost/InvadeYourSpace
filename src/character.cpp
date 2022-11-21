@@ -35,7 +35,8 @@ void Character::kill()
 {
 	static GameEvent newEvent;
 	newEvent.chara_ = this;
-	newEvent.message = bullet_.memoryAddress_ + " has been hit!";
+	newEvent.message = bullet_.memoryAddress_ + " has been hit! With a score of " + std::to_string(value_);
+	newEvent.score_ = value_;
 	ofNotifyEvent(GameEvent::events_, newEvent);
 	Destructible::kill();
 }
