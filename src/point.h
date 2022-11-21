@@ -52,6 +52,11 @@ struct Rect {
 		std::cout << "x:" << x << " y:" << y << " w:" << w << " h:" << h << "\n";
 	}
 
+	void printRectAdd() const
+	{
+		std::cout << "x:" << x << " y:" << y << " w:" << x+w << " h:" << y+h << "\n";
+	}
+
 	void drawRect() const
 	{
 		ofDrawRectangle(x, y, w, h);

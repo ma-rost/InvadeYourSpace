@@ -14,6 +14,7 @@ class Enemy : public Character {
 
 public:
 	bool isBottomMost_;
+	bool canBeKilled_ = false;
 
 	Enemy(const float& x, const float& y, int& rowNum, Character& player);
 
@@ -31,7 +32,7 @@ public:
 
 class EnemyContainer {
 	Rect <float> wholeCollision_;
-	static constexpr float MOVE_SPEED{ 8 };
+	static float moveSpeed_;
 	static bool isForwardMove_;
 
 	std::array <std::vector <Enemy>, 11> enemyTest_;
@@ -50,11 +51,13 @@ public:
 	/** \brief Randomly chooses a bullet for one of the enemies to fire */
 	void fireEvent();
 	void checkForHit();
-	void newBottomEnemy();
+	void enemyKilled();
 	bool enemiesLive();
 
 	int totalEnemies();
 	void debugKillAllEnemies();
 
 	std::array<std::vector<Enemy>, 11>& getAllEnemies();
+
+	void debugPrintStates();
 };

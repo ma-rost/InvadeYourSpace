@@ -22,7 +22,11 @@ void Player::move(const bool isRightKey)
 	}
 }
 
-void Player::draw() { Character::draw (isLive_ ? 0 : getSpriteValue() + 1); }
+void Player::draw()
+{
+	Character::draw (isLive_ ? 0 : getSpriteValue() + 1);
+	std::cout << isLive_;
+}
 
 void Player::kill() { isLive_ = isLive_ ? false : true; }
 

@@ -39,7 +39,11 @@ int Enemy::setupRows(int& setNum)
 	}
 	value_ -= sprite * 10;
 
-	isBottomMost_ = setNum == 4 ? true : false;
+	if (setNum == 4) {
+		isBottomMost_ = true;
+		canBeKilled_ = true;
+	}
+	else isBottomMost_             = false;
 	bullet_.setIsActive (isBottomMost_);
 
 	return sprite;
@@ -49,7 +53,10 @@ void Enemy::draw() { Character::draw (isLive_ ? getSpriteValue() : 2); }
 
 void Enemy::move(Point <float> refCoord)
 {
-	player_->checkCollider(bullet_);
+	if (player_->isLiving()) {
+		player_->checkCollider(bullet_);
+	}
+	
 	collider_.x = selfCoord_.x + refCoord.x;
 	collider_.y = selfCoord_.y + refCoord.y;
 	draw();
@@ -58,8 +65,7 @@ void Enemy::move(Point <float> refCoord)
 void Enemy::kill()
 {
 	Character::kill();
-	container_->newBottomEnemy();
-	
+	container_->enemyKilled();
 }
 
 void Enemy::getSprite(const bool isFirst, const int& setNum)
@@ -73,8 +79,9 @@ void Enemy::getSprite(const bool isFirst, const int& setNum)
 void Enemy::setNewBottom()
 {
 	isBottomMost_ = true;
+	canBeKilled_ = true;
 	bullet_.setIsActive(isBottomMost_);
-	std::cout << bullet_.memoryAddress_ << " is " << isBottomMost_ << "\n";
+	//std::cout << bullet_.memoryAddress_ << " is " << isBottomMost_ << "\n";
 }
 
 bool Enemy::canShoot() { return isLive_ && isBottomMost_ ? true : false; }
@@ -82,6 +89,7 @@ bool Enemy::canShoot() { return isLive_ && isBottomMost_ ? true : false; }
 
 // Static variables must be declared in the .cpp file
 bool EnemyContainer::isForwardMove_;
+float EnemyContainer::moveSpeed_ = 8;
 
 EnemyContainer::EnemyContainer (Character& player)
 {
@@ -118,11 +126,9 @@ void EnemyContainer::moveWhole ()
 	if (ofGetFrameNum() % 30 == 0) {
 		isMovingRight();
 		isForwardMove_
-			? wholeCollision_.x += MOVE_SPEED
-			: wholeCollision_.x -= MOVE_SPEED;
+			? wholeCollision_.x += moveSpeed_
+			: wholeCollision_.x -= moveSpeed_;
 	}
-
-	
 }
 
 void EnemyContainer::isMovingRight ()
@@ -158,7 +164,7 @@ void EnemyContainer::fireEvent ()
 
 	if (enemyTest_[a][b].canShoot()) {
 		enemyTest_[a][b].fire();
-		std::cout << a << " " << b << "\n";
+		//std::cout << a << " " << b << "\n";
 	}
 	else fireEvent();
 }
@@ -174,19 +180,23 @@ void EnemyContainer::checkForHit()
 				const bool isEnemyLive = enemy.checkCollider (Character::player_->bullet_);
 				// Make player check each enemy bullet
 				const bool isPlayerLive = Character::player_->checkCollider (enemy.bullet_);
+				std::cout << Character::player_->isLiving();
 
-				if (!isEnemyLive) newBottomEnemy();
+				if (!isPlayerLive) Character::player_->kill();
+				if (!isEnemyLive && enemy.canBeKilled_) enemy.kill();
 			}
 		}
 	}
 }
 
-void EnemyContainer::newBottomEnemy()
+void EnemyContainer::enemyKilled()
 {
+	moveSpeed_ += 21;
 	for (auto& x : enemyTest_) {
 		for (int y = 0; y < x.size(); ++y) {
 			if (y != 0 && !x[y].isLiving() && x[y].isBottomMost_) {
 				x[y].isBottomMost_ = false;
+				x[y].canBeKilled_ = false;
 				x[y - 1].setNewBottom();
 			}
 		}
@@ -230,4 +240,18 @@ void EnemyContainer::debugKillAllEnemies()
 std::array<std::vector<Enemy>, 11>& EnemyContainer::getAllEnemies()
 {
 	return enemyTest_;
+}
+
+void EnemyContainer::debugPrintStates()
+{
+	if (ofGetFrameNum() % 30 == 0) {
+		for (auto& enemyRow : enemyTest_) {
+			for (auto& enemy : enemyRow) {
+				std::cout << enemy.isBottomMost_ << ", ";
+			}
+			std::cout << "\n";
+		}
+		std::cout << "----\n";
+	}
+	
 }
