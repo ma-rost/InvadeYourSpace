@@ -180,7 +180,6 @@ void EnemyContainer::checkForHit()
 				const bool isEnemyLive = enemy.checkCollider (Character::player_->bullet_);
 				// Make player check each enemy bullet
 				const bool isPlayerLive = Character::player_->checkCollider (enemy.bullet_);
-				std::cout << Character::player_->isLiving();
 
 				if (!isPlayerLive) Character::player_->kill();
 				if (!isEnemyLive && enemy.canBeKilled_) enemy.kill();
