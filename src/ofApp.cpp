@@ -18,6 +18,7 @@ void ofApp::setup()
 	player_.setCoords(21, static_cast <float> (glb::SCREEN_SIZE.y - 100), false);
 
 	ofAddListener(GameEvent::events_, this, &ofApp::gameEvent);
+	ofAddListener(GameStateEvent::events_, this, &ofApp::gameStateEvent);
 }
 
 //--------------------------------------------------------------
@@ -154,6 +155,12 @@ void ofApp::gameEvent(GameEvent& e)
 	cout << "Game Event: " + e.message << endl;
 	e.chara_->isLiving();
 	score_ += e.score_;
+}
+
+void ofApp::gameStateEvent(GameStateEvent& e)
+{
+	curState_ = e.state_;
+	std::cout << curState_;
 }
 
 void ofApp::playerDied()

@@ -31,10 +31,11 @@ void Character::moveBullet()
 void Character::kill()
 {
 	static GameEvent newEvent;
-	newEvent.chara_ = this;
-	newEvent.score_ = value_;
+	newEvent.chara_  = this;
+	newEvent.score_  = value_;
 	newEvent.message = bullet_.memoryAddress_ + " has been hit!";
-	ofNotifyEvent(GameEvent::events_, newEvent);
+	ofNotifyEvent (GameEvent::events_, newEvent);
+
 	Destructible::kill();
 }
 

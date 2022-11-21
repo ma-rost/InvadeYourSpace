@@ -21,6 +21,7 @@ class ofApp : public ofBaseApp{
 		void mouseReleased(int x, int y, int button);
 
 		void gameEvent(GameEvent& e);
+		void gameStateEvent(GameStateEvent& e);
 		void playerDied();
 		void newGame();
 		void endGame();
@@ -39,5 +40,7 @@ class ofApp : public ofBaseApp{
 		int score_{ 0 };
 		
 };
+
+
 
 

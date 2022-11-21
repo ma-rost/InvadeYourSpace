@@ -175,6 +175,12 @@ void EnemyContainer::fireEvent ()
 
 void EnemyContainer::checkForHit()
 {
+	if (wholeCollision_.addYH() > glb::GAME_LOSE_HEIGHT) {
+		static GameStateEvent newStateEvent;
+		newStateEvent.state_ = GAME_LOST;
+		ofNotifyEvent(GameStateEvent::events_, newStateEvent);
+	}
+
 	for (auto& enemyRow : enemyTest_) {
 		for (auto& enemy : enemyRow) {
 			if (enemy.isBottomMost_) {
