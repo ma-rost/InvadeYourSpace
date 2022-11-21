@@ -7,10 +7,7 @@ void GameTemplate::setup()
 
 	player_.setCoords(21, static_cast <float> (glb::SCREEN_SIZE.y - 50), false);
 
-
-
 	ofAddListener(GameEvent::events_, this, &GameTemplate::gameEvent);
-	
 }
 
 void GameTemplate::update()

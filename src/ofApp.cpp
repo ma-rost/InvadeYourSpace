@@ -6,8 +6,6 @@ void ofApp::setup()
 {
 	ofSetBackgroundColor (53);
 
-	
-
 	gameTemplate_.setup();
 }
 

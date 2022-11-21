@@ -13,7 +13,6 @@ protected:
 	///std::array<std::vector<Character>, 11>* enemies_;
 	const bool isPlayer_;
 	Point <float> bulletSpawn_;
-
 	
 public:
 	static Character* player_;
@@ -43,8 +42,6 @@ public:
 	void sendEvent() {
 		ofNotifyEvent(notify_);
 	}
-
-
 
 private:
 	void setBulletSpawn();
