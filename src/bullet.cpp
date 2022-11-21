@@ -32,6 +32,10 @@ void Bullet::move()
 		++*this;
 	}
 
+	if (collider_.addYH() > glb::DRAW_RESTRICTIONS.h + glb::DRAW_RESTRICTIONS.y || collider_.y < glb::DRAW_RESTRICTIONS.y) {
+		resetBullet();
+	}
+
 	draw (isLive_ ? 0 : 1);
 }
 
@@ -64,26 +68,20 @@ void Bullet::setBulletOrigin(const Point <float> bulletOrigin)
 bool Bullet::hasHitOppos(Rect<float> col, const bool isLive)
 {
 	if (isFired_) {
-		if (collider_.y >= col.y && collider_.addYH() <= col.addYH()) {
-			ofSetColor(ofColor::green);
-			std::cout << "boop\n";
-		}
 		ofDrawBitmapString(std::to_string(static_cast<int>(collider_.x)) + " " + std::to_string(static_cast<int>(collider_.y)), 20, 585);
 		ofDrawBitmapString(std::to_string(static_cast<int>(collider_.addXW())) + " " + std::to_string(static_cast<int>(collider_.addYH())), 20, 600);
 	}
 
-	
-	
 	col.drawRect();
 	ofDrawBitmapString(std::to_string(static_cast<int>(col.x)) + " " + std::to_string(static_cast<int>(col.y)), 20, 685);
 	ofDrawBitmapString(std::to_string(static_cast<int>(col.addXW())) + " " + std::to_string(static_cast<int>(col.addYH())), 20, 700);
-	if (collider_.x >= col.x && collider_.addXW() <= col.addXW() && isLive) {
-		if (collider_.y >= col.y && collider_.addYH() <= col.addYH()) {
-			std::cout << "HIT";
+		//std::cout << "Run for " << memoryAddress_ << "\n";
+
+		if (collider_.checkBounds(col) && isLive) {
 			resetBullet();
 			drawColor_ = ofColor::red;
 			return true;
 		}
+		return false;
 	}
-	return false;
 }
