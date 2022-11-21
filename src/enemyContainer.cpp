@@ -41,9 +41,8 @@ void EnemyContainer::moveWhole ()
 			? wholeCollision_.x += MOVE_SPEED
 			: wholeCollision_.x -= MOVE_SPEED;
 	}
-	draw();
 
-	if (ofGetFrameNum() % 60 == 0) fireEvent();
+	
 }
 
 void EnemyContainer::isMovingRight ()
@@ -68,8 +67,14 @@ void EnemyContainer::setWholeCoordinate (const Point <float> coordinate)
 
 void EnemyContainer::fireEvent ()
 {
-	const int a = static_cast <int> (round (ofRandom (10)));
-	const int b = static_cast <int> (round (ofRandom (4)));
+	constexpr int a1 = 10;
+	constexpr int b1 = 4;
+	int a = static_cast <int> (round (ofRandom (a1)));
+	int b = static_cast <int> (round (ofRandom (b1)));
+
+	if (a > a1) a = a1;
+	if (b > b1) b = b1;
+	
 
 	if (enemyTest_[a][b].canShoot()) {
 		enemyTest_[a][b].fire();
@@ -108,7 +113,7 @@ void EnemyContainer::newBottomEnemy()
 	}
 }
 
-bool EnemyContainer::allEnemiesLive()
+bool EnemyContainer::enemiesLive()
 {
 	int enemiesAlive = 0;
 	for (auto& enemyRow : enemyTest_) {
@@ -119,18 +124,27 @@ bool EnemyContainer::allEnemiesLive()
 		}
 	}
 
-	return enemiesAlive >= 0 ? true : false;
+	return enemiesAlive == 0 ? false : true;
 }
 
 int EnemyContainer::totalEnemies()
 {
 	int enemies = 0;
 	for (auto& enemyRow : enemyTest_) {
-		for (auto enemy : enemyRow) {
+		for (auto& enemy : enemyRow) {
 			enemies++;
 		}
 	}
 	return enemies;
+}
+
+void EnemyContainer::debugKillAllEnemies()
+{
+	for (auto& enemyRow : enemyTest_) {
+		for (auto& enemy : enemyRow) {
+			enemy.kill();
+		}
+	}
 }
 
 std::array<std::vector<Enemy>, 11>& EnemyContainer::getAllEnemies()

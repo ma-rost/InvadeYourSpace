@@ -5,7 +5,7 @@
 // - Make enemies move down when hitting right side
 //		- only rightmost enemies slide down
 // - Only bottom most enemy has (Working) bullets
-//		- Hide bullets on enemies not bottommost 
+//		- Hide bullets on enemies not bottommost
 
 class Enemy : public Character {
 	Point <int> placeValue_;
@@ -14,6 +14,8 @@ class Enemy : public Character {
 	int points_ {30};
 
 	int setupRows(int& setNum);
+
+	
 
 public:
 	bool isBottomMost_;

@@ -5,9 +5,12 @@
 #include "gameTemplate.h"
 #include "player.h"
 
+
 class ofApp : public ofBaseApp{
 
 	ofTrueTypeFont retroFont_;
+
+	
 
 	public:
 		void setup();
@@ -25,10 +28,6 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-
-		Player player {10, 70};
-
-		EnemyContainer enemyContainer {player};
 
 		GameTemplate gameTemplate_;
 };

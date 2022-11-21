@@ -10,7 +10,6 @@ Player::Player(const float& x, const float& y):
 	std::ostringstream oss;
 	oss << "[Player]";
 	bullet_.memoryAddress_ = oss.str();
-
 }
 
 void Player::move(const bool isRightKey)
@@ -27,6 +26,11 @@ void Player::draw() { Character::draw (isLive_ ? 0 : getSpriteValue() + 1); }
 
 void Player::kill() { isLive_ = isLive_ ? false : true; }
 
+void Player::respawn()
+{
+	isLive_ = true;
+}
+
 void Player::killEnemy()
 {
 	score_ += 30;
@@ -40,8 +44,7 @@ int Player::getScore()
 
 void Player::getDigits(int x)
 {
-	if (x >= 10)
-		getDigits(x / 10);
+	if (x >= 10) getDigits(x / 10);
 
 	int digit = x % 10;
 	

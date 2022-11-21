@@ -12,7 +12,6 @@ class Bullet : public Destructible {
 
 	const bool isPlayer_;
 	bool isFired_ {false};
-	ofEvent <bool> fired_;
 	bool isActive_ {false};
 	Point <float> bulletOrigin_;
 
@@ -33,6 +32,9 @@ public:
 	void setIsActive(const bool& isBottom);
 	
 	bool hasHitOppos(Rect<float> col, bool isLive);
+
+	void notified();
+	void applyListener(Character& parent);
 
 	Bullet& operator++();
 };

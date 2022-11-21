@@ -2,6 +2,7 @@
 #include "character.h"
 
 #include "enemyContainer.h"
+#include "gameEvent.h"
 #include "ofGraphics.h"
 
 Character* Character::player_;
@@ -18,6 +19,7 @@ Character::Character(const float& x, const float& y,
 {
 	setBulletSpawn();
 	bullet_.resetBullet();
+	bullet_.applyListener(*this);
 }
 
 #pragma region Actions
@@ -27,6 +29,15 @@ void Character::moveBullet()
 {
 	setBulletSpawn();
 	bullet_.move();
+}
+
+void Character::kill()
+{
+	static GameEvent newEvent;
+	newEvent.chara_ = this;
+	newEvent.message = bullet_.memoryAddress_ + " has been hit!";
+	ofNotifyEvent(GameEvent::events_, newEvent);
+	Destructible::kill();
 }
 
 void Character::hasPlayedDeathAnimation()
@@ -56,6 +67,7 @@ bool Character::checkCollider(Bullet& bullet)
 	bool lifeState = bullet.hasHitOppos(getCollider(), isLive_);
 
 	if (lifeState) {
+		sendEvent();
 		std::cout << bullet.memoryAddress_ << " HIT " << bullet_.memoryAddress_ << "!\n";
 		kill();
 		return true;

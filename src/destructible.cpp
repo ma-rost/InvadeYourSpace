@@ -10,6 +10,7 @@ Destructible::Destructible (const float& x, const float& y)
 void Destructible::kill()
 {
 	isLive_ = false;
+	
 }
 
 bool Destructible::isLiving()

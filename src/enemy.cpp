@@ -4,6 +4,7 @@
 #include <vector>       // std::vector
 
 #include "enemyContainer.h"
+#include "gameTemplate.h"
 
 
 Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
@@ -22,7 +23,7 @@ Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
 	std::ostringstream oss;
 	oss << "[" << placeValue_.x << ", " << placeValue_.y << "]";
 	bullet_.memoryAddress_ = oss.str();
-
+	
 }
 
 int Enemy::setupRows(int& setNum)
@@ -58,8 +59,9 @@ void Enemy::move(Point <float> refCoord)
 
 void Enemy::kill()
 {
-	Destructible::kill();
+	Character::kill();
 	container_->newBottomEnemy();
+	
 }
 
 void Enemy::getSprite(const bool isFirst, const int& setNum)

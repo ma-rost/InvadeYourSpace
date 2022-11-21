@@ -6,8 +6,7 @@ void ofApp::setup()
 {
 	ofSetBackgroundColor (53);
 
-	ofTrueTypeFont::setGlobalDpi (72);
-	retroFont_.load (ofToDataPath ("DePixelBreit.ttf"), 30, true, true);
+	
 
 	gameTemplate_.setup();
 }
@@ -15,10 +14,6 @@ void ofApp::setup()
 //--------------------------------------------------------------
 void ofApp::update()
 {
-	Character::setDestructibles(player, enemyContainer);
-	//player.getDigits(player.score_);
-	
-	enemyContainer.checkForHit();
 
 	gameTemplate_.update();
 }
@@ -29,15 +24,6 @@ void ofApp::draw()
 {
 	ofSetColor(ofColor::black);
 	ofDrawRectangle(0, 0, ofGetWidth(), 90);
-
-	ofSetColor (ofColor::white);
-	retroFont_.drawString ("SCORE <1> | HI-SCORE | SCORE <2>", 10, 30);
-	retroFont_.drawString ("0000 \t 0000 \t 0000", 10, 90);
-
-	
-
-	char fpsStr[255]; // an array of chars
-	retroFont_.drawString(fpsStr, 100, 600);
 
 	gameTemplate_.draw();
 }
@@ -51,6 +37,7 @@ void ofApp::keyPressed(int key)
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key)
 {
+	gameTemplate_.keyRelease(key);
 }
 
 //--------------------------------------------------------------

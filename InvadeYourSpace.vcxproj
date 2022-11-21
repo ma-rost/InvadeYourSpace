@@ -185,6 +185,7 @@
     <ClCompile Include="src\destructible.cpp" />
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\enemyContainer.cpp" />
+    <ClCompile Include="src\gameEvent.cpp" />
     <ClCompile Include="src\gameTemplate.cpp" />
     <ClCompile Include="src\globals.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="src\destructible.h" />
     <ClInclude Include="src\enemy.h" />
     <ClInclude Include="src\enemyContainer.h" />
+    <ClInclude Include="src\gameEvent.h" />
     <ClInclude Include="src\gameTemplate.h" />
     <ClInclude Include="src\globals.h" />
     <ClInclude Include="src\ofApp.h" />

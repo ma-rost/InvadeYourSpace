@@ -11,6 +11,7 @@ public:
 	void move(bool isRightKey);
 	void draw();
 	void kill();
+	void respawn();
 
 	void killEnemy();
 
@@ -22,4 +23,5 @@ public:
 	{
 		std::cout << "Player Moved";
 	}
+	
 };
