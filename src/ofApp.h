@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "enemyContainer.h"
+#include "enemy.h"
 #include "gameTemplate.h"
 #include "player.h"
 
@@ -9,8 +9,6 @@
 class ofApp : public ofBaseApp{
 
 	ofTrueTypeFont retroFont_;
-
-	
 
 	public:
 		void setup();

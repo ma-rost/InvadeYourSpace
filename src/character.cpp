@@ -1,7 +1,6 @@
 ﻿// ReSharper disable All
 #include "character.h"
 
-#include "enemyContainer.h"
 #include "gameEvent.h"
 #include "ofGraphics.h"
 

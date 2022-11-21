@@ -3,7 +3,6 @@
 #include "ofGraphics.h"
 #include <vector>       // std::vector
 
-#include "enemyContainer.h"
 #include "gameTemplate.h"
 
 
@@ -165,7 +164,7 @@ void EnemyContainer::fireEvent ()
 	else fireEvent();
 }
 
-
+// ENEMY CONTAINER ----------------------
 
 void EnemyContainer::checkForHit()
 {

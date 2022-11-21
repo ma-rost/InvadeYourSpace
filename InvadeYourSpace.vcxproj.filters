@@ -25,9 +25,6 @@
     <ClCompile Include="src\destructible.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\enemyContainer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\globals.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -66,9 +63,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\destructible.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\enemyContainer.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\globals.h">
