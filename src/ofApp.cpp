@@ -103,6 +103,10 @@ void ofApp::draw()
 	ofDrawRectangle(0, 0, ofGetWidth(), 90);
 	ofDrawRectangle(0, glb::SCREEN_SIZE.y - 60, ofGetWidth(), 90);
 
+	ofSetColor(ofColor::white);
+	ofDrawRectangle(0, 90, ofGetWidth(), 1);
+	ofDrawRectangle(0, glb::SCREEN_SIZE.y - 60, ofGetWidth(), 1);
+
 	drawScore();
 	switch (curState_)
 	{
@@ -121,6 +125,7 @@ void ofApp::draw()
 		std::cout << "Default Case\n";
 		break;
 	}
+	
 }
 
 //--------------------------------------------------------------

@@ -17,7 +17,7 @@ void Player::move(const bool isRightKey)
 	if (isLive_) {
 		Character::move (isRightKey);
 		collider_.x = ofClamp (collider_.x, glb::DRAW_RESTRICTIONS.x,
-		                       glb::DRAW_RESTRICTIONS.y - 16 * 3);
+		                       glb::DRAW_RESTRICTIONS.w - 16 * 3);
 		setCollision();
 	}
 }
@@ -25,7 +25,6 @@ void Player::move(const bool isRightKey)
 void Player::draw()
 {
 	Character::draw (isLive_ ? 0 : getSpriteValue() + 1);
-	std::cout << isLive_;
 }
 
 void Player::kill() { isLive_ = isLive_ ? false : true; }

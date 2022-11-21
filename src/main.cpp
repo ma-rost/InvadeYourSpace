@@ -9,7 +9,7 @@ int main( ){
 	settings.title = glb::TITLE;
 	settings.resizable = false;
 	ofCreateWindow(settings);
-	
+	ofSetFrameRate(24);
 	//ofSetupOpenGL(glb::SCREEN_SIZE.x, glb::SCREEN_SIZE.y,OF_WINDOW);			// <-------- setup the GL context
 	ofSetWindowTitle(glb::TITLE); // Set the window title
 
@@ -19,5 +19,4 @@ int main( ){
 	// can be OF_WINDOW or OF_FULLSCREEN
 	// pass in width and height too:
 	ofRunApp(new ofApp());
-
 }

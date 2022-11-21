@@ -3,6 +3,8 @@
 #include "ofGraphics.h"
 #include <vector>       // std::vector
 
+#include "gameEvent.h"
+
 
 Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
 	Character (x, y, false)
@@ -117,7 +119,7 @@ void EnemyContainer::drawDebugRange () const
 void EnemyContainer::drawEnemies ()
 {
 	for (auto& enemyRow : enemyTest_) {
-		for (auto& enemy : enemyRow) { enemy.move (wholeCollision_.getXY()); }
+		for (auto& enemy : enemyRow) enemy.move (wholeCollision_.getXY()); 
 	}
 }
 
@@ -133,9 +135,9 @@ void EnemyContainer::moveWhole ()
 
 void EnemyContainer::isMovingRight ()
 {
-	if (wholeCollision_.addXW() >= glb::DRAW_RESTRICTIONS.y) {
+	if (wholeCollision_.addXW() >= glb::DRAW_RESTRICTIONS.w) {
 		isForwardMove_ = false;
-		wholeCollision_.y += 3;
+		wholeCollision_.y += 6;
 	}
 	if (wholeCollision_.x <= glb::DRAW_RESTRICTIONS.x) isForwardMove_ = true;
 }
@@ -143,7 +145,7 @@ void EnemyContainer::isMovingRight ()
 void EnemyContainer::setWholeSize (int rowSize, int columnSize)
 {
 	wholeCollision_.w += glb::RESIZE_FACTOR * 3.56f;
-	wholeCollision_.h += glb::RESIZE_FACTOR + 2;
+	wholeCollision_.h += glb::RESIZE_FACTOR + 1.6f;
 }
 
 void EnemyContainer::setWholeCoordinate (const Point <float> coordinate)
@@ -190,7 +192,7 @@ void EnemyContainer::checkForHit()
 
 void EnemyContainer::enemyKilled()
 {
-	moveSpeed_ += 21;
+	moveSpeed_ += 3;
 	for (auto& x : enemyTest_) {
 		for (int y = 0; y < x.size(); ++y) {
 			if (y != 0 && !x[y].isLiving() && x[y].isBottomMost_) {
