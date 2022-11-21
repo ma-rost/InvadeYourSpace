@@ -1,21 +1,100 @@
 #include "ofApp.h"
 #include <ofImage.cpp>
 
+/*
+ * Notable Bugs:
+ * - Some enemies cannot be hit, even if they are bottom
+ * - Player cant be hit
+ */
+
 //--------------------------------------------------------------
 void ofApp::setup()
 {
 	ofSetBackgroundColor (53);
 
-	gameTemplate_.setup();
+	ofTrueTypeFont::setGlobalDpi(72);
+	retroFont_.load(ofToDataPath("DePixelBreit.ttf"), 30, true, true);
+
+	player_.setCoords(21, static_cast <float> (glb::SCREEN_SIZE.y - 100), false);
+
+	ofAddListener(GameEvent::events_, this, &ofApp::gameEvent);
 }
 
 //--------------------------------------------------------------
 void ofApp::update()
 {
+	if (!player_.isLiving()) playerDied();
+	if (!enemyContainer_.enemiesLive()) curState_ = won;
 
-	gameTemplate_.update();
+	//player.getDigits(player.score_);
+
+	switch (curState_)
+	{
+	case startScreen:
+		std::cout << "startScreen\n";
+		break;
+	case inPlay:
+		Character::setDestructibles(player_, enemyContainer_);
+		enemyContainer_.checkForHit();
+		enemyContainer_.moveWhole();
+
+		if (ofGetFrameNum() % 60 == 0) enemyContainer_.fireEvent();
+		break;
+	case won:
+		break;
+	case lost:
+		break;
+	default:
+		std::cout << "Default Case\n";
+		break;
+	}
+
+	for (auto& i : enemyContainer_.getAllEnemies())
+	{
+		for (auto& j : i)
+		{
+
+		}
+	}
 }
 
+void ofApp::drawScore()
+{
+	ofSetColor(ofColor::white);
+
+	char fpsStr[255]; // an array of chars
+	retroFont_.drawString(fpsStr, 100, 600);
+
+	switch (curState_)
+	{
+	case startScreen:
+		std::cout << "startScreen\n";
+		break;
+	case inPlay:
+		retroFont_.drawString("SCORE: " + std::to_string(score_), 10, 30);
+		retroFont_.drawString("0000", 10, 90);
+
+		retroFont_.drawString("LIVES: ", 20, glb::SCREEN_SIZE.y - 15);
+
+		for (int i = 0; i < playerLivesLeft_; ++i) {
+			Sprite sprite{};
+			ofSetColor(ofColor::gray);
+			sprite.drawSprite(i * 60 + 140, glb::SCREEN_SIZE.y - 40);
+		}
+
+		break;
+	case won:
+		retroFont_.drawString("YOU WON", 350, 450);
+		retroFont_.drawString("SCORE: " + std::to_string(score_), 350, 500);
+		break;
+	case lost:
+		retroFont_.drawString("YOU LOST", 350, 450);
+		break;
+	default:
+		std::cout << "Default Case\n";
+		break;
+	}
+}
 
 //--------------------------------------------------------------
 void ofApp::draw()
@@ -24,34 +103,40 @@ void ofApp::draw()
 	ofDrawRectangle(0, 0, ofGetWidth(), 90);
 	ofDrawRectangle(0, glb::SCREEN_SIZE.y - 60, ofGetWidth(), 90);
 
-	gameTemplate_.draw();
+	drawScore();
+	switch (curState_)
+	{
+	case startScreen:
+		std::cout << "startScreen\n";
+		break;
+	case inPlay:
+		player_.draw();
+		enemyContainer_.draw();
+		break;
+	case won:
+		break;
+	case lost:
+		break;
+	default:
+		std::cout << "Default Case\n";
+		break;
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key)
 {
-	gameTemplate_.keyPress(key);
+	if (key == OF_KEY_LEFT || key == 'a') player_.move(false);
+	if (key == OF_KEY_RIGHT || key == 'd') player_.move(true);
+
+	if (key == OF_KEY_UP || key == 'w') player_.fire();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key)
 {
-	gameTemplate_.keyRelease(key);
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y)
-{
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button)
-{
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button)
-{
+	if (key == 'e') enemyContainer_.debugKillAllEnemies();
+	if (key == 'r') player_.kill();
 }
 
 //--------------------------------------------------------------
@@ -59,29 +144,38 @@ void ofApp::mouseReleased(int x, int y, int button)
 {
 }
 
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y)
+void ofApp::gameEvent(GameEvent& e)
 {
+	cout << "Game Event: " + e.message << endl;
+	e.chara_->isLiving();
+	score_ += e.score_;
 }
 
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y)
+void ofApp::playerDied()
 {
+	playerLivesLeft_--;
+	if (playerLivesLeft_ <= 0) gameLost();
+	else player_.respawn();
 }
 
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h)
+void ofApp::newGame()
 {
-	//player.setCoords (static_cast <float> (h - 50), false);
-	
+	playerLivesLeft_ = 3;
 }
 
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg)
+void ofApp::endGame()
 {
+	playerLivesLeft_ = 3;
 }
 
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo)
+void ofApp::gameLost()
 {
+	curState_ = lost;
+	playerLivesLeft_ = 0;
+}
+
+void ofApp::gameWon()
+{
+	curState_ = won;
+	std::cout << "game won\n";
 }

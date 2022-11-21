@@ -3,8 +3,6 @@
 #include "ofGraphics.h"
 #include <vector>       // std::vector
 
-#include "gameTemplate.h"
-
 
 Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
 	Character (x, y, false)

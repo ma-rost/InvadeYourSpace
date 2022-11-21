@@ -28,9 +28,6 @@
     <ClCompile Include="src\globals.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\gameTemplate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\gameEvent.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -66,9 +63,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\globals.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gameTemplate.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\gameEvent.h">
