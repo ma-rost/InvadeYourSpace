@@ -45,14 +45,10 @@ void Character::hasPlayedDeathAnimation()
 
 void Character::draw(const int& spriteIndex)
 {
-	if (!isLive_ && !hasPlayedDeathAnimation_) {
-		hasPlayedDeathAnimation_ = true;
-	}
-	else if (!isLive_ && hasPlayedDeathAnimation_) {
-		sprite_.drawnSprite_.clear();
-	}
+	if		(!isLive_ && !hasPlayedDeathAnimation_)	hasPlayedDeathAnimation_ = true; 
+	else if (!isLive_ && hasPlayedDeathAnimation_)  sprite_.drawnSprite_.clear(); 
+	else											Destructible::draw (spriteIndex); 
 	moveBullet();
-	Destructible::draw (spriteIndex);
 }
 
 void Character::fire() { bullet_.fire(); }
