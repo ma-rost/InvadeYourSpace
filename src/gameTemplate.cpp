@@ -5,7 +5,7 @@ void GameTemplate::setup()
 	ofTrueTypeFont::setGlobalDpi(72);
 	retroFont_.load(ofToDataPath("DePixelBreit.ttf"), 30, true, true);
 
-	player_.setCoords(21, static_cast <float> (glb::SCREEN_SIZE.y - 50), false);
+	player_.setCoords(21, static_cast <float> (glb::SCREEN_SIZE.y - 100), false);
 
 	ofAddListener(GameEvent::events_, this, &GameTemplate::gameEvent);
 }
@@ -62,6 +62,8 @@ void GameTemplate::drawScore()
 	case inPlay:
 		retroFont_.drawString("SCORE <1> | HI-SCORE | SCORE <2>", 10, 30);
 		retroFont_.drawString("0000 \t 0000 \t 0000", 10, 90);
+
+		retroFont_.drawString("LIVES: ", 20, glb::SCREEN_SIZE.y - 15);
 		break;
 	case won:
 		retroFont_.drawString("YOU WON", 350, 450);

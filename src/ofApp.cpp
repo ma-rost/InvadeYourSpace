@@ -22,6 +22,7 @@ void ofApp::draw()
 {
 	ofSetColor(ofColor::black);
 	ofDrawRectangle(0, 0, ofGetWidth(), 90);
+	ofDrawRectangle(0, glb::SCREEN_SIZE.y - 60, ofGetWidth(), 90);
 
 	gameTemplate_.draw();
 }
