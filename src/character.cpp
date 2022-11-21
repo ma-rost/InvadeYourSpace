@@ -56,8 +56,6 @@ void Character::fire() { bullet_.fire(); }
 
 bool Character::checkCollider(Bullet& bullet)
 {
-	ofDrawBitmapString(bullet.memoryAddress_, bullet.getCollider().x, bullet.getCollider().y);
-
 	bool lifeState = bullet.hasHitOppos(getCollider(), isLive_);
 	return !lifeState;
 }

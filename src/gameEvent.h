@@ -24,7 +24,7 @@ public:
 class GameStateEvent : public ofEventArgs {
     
 public:
-    string message;
+    string message_;
     int state_;
 
     static ofEvent <GameStateEvent> events_;

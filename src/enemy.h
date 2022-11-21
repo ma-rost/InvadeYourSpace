@@ -19,7 +19,7 @@ public:
 	Enemy(const float& x, const float& y, int& rowNum, Character& player);
 
 	void draw();
-	void move(Point <float> refCoord);
+	void move(Point<float> refCoord);
 	
 	void kill();
 
@@ -32,7 +32,8 @@ public:
 
 class EnemyContainer {
 	Rect <float> wholeCollision_;
-	static float moveSpeed_;
+	constexpr static float MOVE_SPEED {8};
+	static int moveInterval_;
 	static bool isForwardMove_;
 
 	std::array <std::vector <Enemy>, 11> enemyTest_;

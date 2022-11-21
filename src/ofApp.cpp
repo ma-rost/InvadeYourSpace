@@ -1,16 +1,10 @@
 #include "ofApp.h"
 #include <ofImage.cpp>
 
-/*
- * Notable Bugs:
- * - Some enemies cannot be hit, even if they are bottom
- * - Player cant be hit
- */
-
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-	ofSetBackgroundColor (53);
+	ofSetBackgroundColor (0);
 
 	ofTrueTypeFont::setGlobalDpi(72);
 	retroFont_.load(ofToDataPath("DePixelBreit.ttf"), 30, true, true);
@@ -49,14 +43,6 @@ void ofApp::update()
 		std::cout << "Default Case\n";
 		break;
 	}
-
-	for (auto& i : enemyContainer_.getAllEnemies())
-	{
-		for (auto& j : i)
-		{
-
-		}
-	}
 }
 
 void ofApp::drawScore()
@@ -72,17 +58,15 @@ void ofApp::drawScore()
 		std::cout << "startScreen\n";
 		break;
 	case inPlay:
-		retroFont_.drawString("SCORE: " + std::to_string(score_), 10, 30);
-		retroFont_.drawString("0000", 10, 90);
-
+		retroFont_.drawString("SCORE: " + std::to_string(score_), 20, 60);
 		retroFont_.drawString("LIVES: ", 20, glb::SCREEN_SIZE.y - 15);
 
+		// Draw Remaining Lives
 		for (int i = 0; i < playerLivesLeft_; ++i) {
 			Sprite sprite{};
 			ofSetColor(ofColor::gray);
 			sprite.drawSprite(i * 60 + 140, glb::SCREEN_SIZE.y - 40);
 		}
-
 		break;
 	case won:
 		retroFont_.drawString("YOU WON", 350, 450);
@@ -90,6 +74,7 @@ void ofApp::drawScore()
 		break;
 	case lost:
 		retroFont_.drawString("YOU LOST", 350, 450);
+		retroFont_.drawString("SCORE: " + std::to_string(score_), 350, 500);
 		break;
 	default:
 		std::cout << "Default Case\n";
@@ -100,13 +85,10 @@ void ofApp::drawScore()
 //--------------------------------------------------------------
 void ofApp::draw()
 {
-	ofSetColor(ofColor::black);
-	ofDrawRectangle(0, 0, ofGetWidth(), 90);
-	ofDrawRectangle(0, glb::SCREEN_SIZE.y - 60, ofGetWidth(), 90);
-
+	// Draw the lines that act to demonstrate "menu's"
 	ofSetColor(ofColor::white);
-	ofDrawRectangle(0, 90, ofGetWidth(), 1);
-	ofDrawRectangle(0, glb::SCREEN_SIZE.y - 60, ofGetWidth(), 1);
+	ofDrawRectangle(0, 90, static_cast<float>(ofGetWidth()), 1);
+	ofDrawRectangle(0, glb::SCREEN_SIZE.y - 60, static_cast<float>(ofGetWidth()), 1);
 
 	drawScore();
 	switch (curState_)
@@ -134,7 +116,6 @@ void ofApp::keyPressed(int key)
 {
 	if (key == OF_KEY_LEFT || key == 'a') player_.move(false);
 	if (key == OF_KEY_RIGHT || key == 'd') player_.move(true);
-
 	if (key == OF_KEY_UP || key == 'w') player_.fire();
 }
 

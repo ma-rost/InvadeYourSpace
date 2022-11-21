@@ -22,7 +22,6 @@ Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
 	std::ostringstream oss;
 	oss << "[" << placeValue_.x << ", " << placeValue_.y << "]";
 	bullet_.memoryAddress_ = oss.str();
-	
 }
 
 int Enemy::setupRows(int& setNum)
@@ -51,7 +50,10 @@ int Enemy::setupRows(int& setNum)
 	return sprite;
 }
 
-void Enemy::draw() { Character::draw (isLive_ ? getSpriteValue() : 2); }
+void Enemy::draw()
+{
+	Character::draw (isLive_ ? getSpriteValue() : 2);
+}
 
 void Enemy::move(Point <float> refCoord)
 {
@@ -83,7 +85,6 @@ void Enemy::setNewBottom()
 	isBottomMost_ = true;
 	canBeKilled_ = true;
 	bullet_.setIsActive(isBottomMost_);
-	//std::cout << bullet_.memoryAddress_ << " is " << isBottomMost_ << "\n";
 }
 
 bool Enemy::canShoot() { return isLive_ && isBottomMost_ ? true : false; }
@@ -91,7 +92,7 @@ bool Enemy::canShoot() { return isLive_ && isBottomMost_ ? true : false; }
 
 // Static variables must be declared in the .cpp file
 bool EnemyContainer::isForwardMove_;
-float EnemyContainer::moveSpeed_ = 8;
+int EnemyContainer::moveInterval_{ 30 };
 
 EnemyContainer::EnemyContainer (Character& player)
 {
@@ -106,7 +107,6 @@ EnemyContainer::EnemyContainer (Character& player)
 
 void EnemyContainer::draw ()
 {
-	//drawDebugRange();
 	drawEnemies();
 }
 
@@ -125,11 +125,13 @@ void EnemyContainer::drawEnemies ()
 
 void EnemyContainer::moveWhole ()
 {
-	if (ofGetFrameNum() % 30 == 0) {
+	if (moveInterval_ <= 1) moveInterval_ = 4;
+
+	if (ofGetFrameNum() % moveInterval_ == 0) {
 		isMovingRight();
 		isForwardMove_
-			? wholeCollision_.x += moveSpeed_
-			: wholeCollision_.x -= moveSpeed_;
+			? wholeCollision_.x += MOVE_SPEED
+			: wholeCollision_.x -= MOVE_SPEED;
 	}
 }
 
@@ -137,7 +139,7 @@ void EnemyContainer::isMovingRight ()
 {
 	if (wholeCollision_.addXW() >= glb::DRAW_RESTRICTIONS.w) {
 		isForwardMove_ = false;
-		wholeCollision_.y += 6;
+		wholeCollision_.y += 12;
 	}
 	if (wholeCollision_.x <= glb::DRAW_RESTRICTIONS.x) isForwardMove_ = true;
 }
@@ -162,13 +164,8 @@ void EnemyContainer::fireEvent ()
 
 	if (a > a1) a = a1;
 	if (b > b1) b = b1;
-	
 
-	if (enemyTest_[a][b].canShoot()) {
-		enemyTest_[a][b].fire();
-		//std::cout << a << " " << b << "\n";
-	}
-	else fireEvent();
+	enemyTest_[a][b].canShoot() ? enemyTest_[a][b].fire() : fireEvent();
 }
 
 // ENEMY CONTAINER ----------------------
@@ -198,7 +195,7 @@ void EnemyContainer::checkForHit()
 
 void EnemyContainer::enemyKilled()
 {
-	moveSpeed_ += 3;
+	moveInterval_ <= 1 ? moveInterval_ = 4 : moveInterval_ -= 3;
 	for (auto& x : enemyTest_) {
 		for (int y = 0; y < x.size(); ++y) {
 			if (y != 0 && !x[y].isLiving() && x[y].isBottomMost_) {
