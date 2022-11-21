@@ -9,7 +9,6 @@ public:
 
     Bullet* bullet;
     Destructible* chara_;
-    int score_;
     string   message;
 
     GameEvent() {

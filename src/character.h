@@ -13,7 +13,7 @@ protected:
 	///std::array<std::vector<Character>, 11>* enemies_;
 	const bool isPlayer_;
 	Point <float> bulletSpawn_;
-	int value_ = 0;
+
 	
 public:
 	static Character* player_;
