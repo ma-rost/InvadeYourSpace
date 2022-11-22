@@ -4,11 +4,15 @@
 
 Destructible::Destructible(const float& x, const float& y)
 {
+	shootSFX_.load("shoot.mp3");
+	shootSFX_.setLoop(false);
+	shootSFX_.setVolume(0.5f);
 	setCoords(x, y, true);
 }
 
 void Destructible::kill()
 {
+	shootSFX_.play();
 	isLive_ = false;
 }
 

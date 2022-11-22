@@ -38,6 +38,13 @@ class ofApp : public ofBaseApp{
 		bool isPlayerLive_{ true };
 		int playerLivesLeft_{ 3 };
 		int score_{ 0 };
+		ofSoundPlayer   bgMusic_; //Music by Lightyeartraxx from Pixabay
+
+		
+		ofSoundPlayer   winSFX_; //Sound Effect from Pixabay
+		ofSoundPlayer   loseSFX_; //Sound Effect from Pixabay
+
+		bool sfxAlreadyPlayed = false;
 		
 };
 

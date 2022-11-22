@@ -4,6 +4,7 @@
 #include "ofEvent.h"
 #include "globals.h"
 #include "ofColor.h"
+#include "ofSoundPlayer.h"
 #include "point.h"
 #include "sprite.h"
 
@@ -17,6 +18,8 @@ protected:
 	Rect <float> collider_;
 
 	bool isLive_ {true};
+
+	ofSoundPlayer   shootSFX_;
 public:
 	Destructible(const float& x, const float& y);
 

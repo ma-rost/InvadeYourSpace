@@ -6,6 +6,20 @@ void ofApp::setup()
 {
 	ofSetBackgroundColor(0);
 
+	bgMusic_.load("lightyear.mp3");
+	bgMusic_.play();
+	bgMusic_.setVolume(0.05f);
+	bgMusic_.setLoop(true); //Sound will loop
+
+	
+
+	winSFX_.load("gameWin.mp3");
+	winSFX_.setLoop(false);
+
+	loseSFX_.load("gameLoss.mp3");
+	loseSFX_.setLoop(false);
+
+
 	ofTrueTypeFont::setGlobalDpi(72);
 	retroFont_.load(ofToDataPath("DePixelBreit.ttf"), 30, true, true);
 
@@ -36,8 +50,19 @@ void ofApp::update()
 			if (ofGetFrameNum() % 60 == 0) enemyContainer_.fireEvent();
 			break;
 		case won:
+			if (!winSFX_.isPlaying() && !sfxAlreadyPlayed)
+			{
+				sfxAlreadyPlayed = true;
+				winSFX_.play();
+			}
 			break;
 		case lost:
+			if(!loseSFX_.isPlaying() && !sfxAlreadyPlayed)
+			{
+				sfxAlreadyPlayed = true;
+				loseSFX_.play();
+			}
+			
 			break;
 		default:
 			std::cout << "Default Case\n";
@@ -153,6 +178,7 @@ void ofApp::playerDied()
 
 void ofApp::newGame()
 {
+	sfxAlreadyPlayed = true;
 	playerLivesLeft_ = 3;
 }
 
