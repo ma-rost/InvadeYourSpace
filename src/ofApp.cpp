@@ -4,12 +4,12 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-	ofSetBackgroundColor (0);
+	ofSetBackgroundColor(0);
 
 	ofTrueTypeFont::setGlobalDpi(72);
 	retroFont_.load(ofToDataPath("DePixelBreit.ttf"), 30, true, true);
 
-	player_.setCoords(21, static_cast <float> (glb::SCREEN_SIZE.y - 100), false);
+	player_.setCoords(21, static_cast<float>(glb::SCREEN_SIZE.y - 100), false);
 
 	ofAddListener(GameEvent::events_, this, &ofApp::gameEvent);
 	ofAddListener(GameStateEvent::events_, this, &ofApp::gameStateEvent);
@@ -25,23 +25,23 @@ void ofApp::update()
 
 	switch (curState_)
 	{
-	case startScreen:
-		std::cout << "startScreen\n";
-		break;
-	case inPlay:
-		Character::setDestructibles(player_, enemyContainer_);
-		enemyContainer_.checkForHit();
-		enemyContainer_.moveWhole();
+		case startScreen:
+			std::cout << "startScreen\n";
+			break;
+		case inPlay:
+			Character::setDestructibles(player_, enemyContainer_);
+			enemyContainer_.checkForHit();
+			enemyContainer_.moveWhole();
 
-		if (ofGetFrameNum() % 60 == 0) enemyContainer_.fireEvent();
-		break;
-	case won:
-		break;
-	case lost:
-		break;
-	default:
-		std::cout << "Default Case\n";
-		break;
+			if (ofGetFrameNum() % 60 == 0) enemyContainer_.fireEvent();
+			break;
+		case won:
+			break;
+		case lost:
+			break;
+		default:
+			std::cout << "Default Case\n";
+			break;
 	}
 }
 
@@ -54,31 +54,32 @@ void ofApp::drawScore()
 
 	switch (curState_)
 	{
-	case startScreen:
-		std::cout << "startScreen\n";
-		break;
-	case inPlay:
-		retroFont_.drawString("SCORE: " + std::to_string(score_), 20, 60);
-		retroFont_.drawString("LIVES: ", 20, glb::SCREEN_SIZE.y - 15);
+		case startScreen:
+			std::cout << "startScreen\n";
+			break;
+		case inPlay:
+			retroFont_.drawString("SCORE: " + std::to_string(score_), 20, 60);
+			retroFont_.drawString("LIVES: ", 20, glb::SCREEN_SIZE.y - 15);
 
-		// Draw Remaining Lives
-		for (int i = 0; i < playerLivesLeft_; ++i) {
-			Sprite sprite{};
-			ofSetColor(ofColor::gray);
-			sprite.drawSprite(i * 60 + 140, glb::SCREEN_SIZE.y - 40);
-		}
-		break;
-	case won:
-		retroFont_.drawString("YOU WON", 350, 450);
-		retroFont_.drawString("SCORE: " + std::to_string(score_), 350, 500);
-		break;
-	case lost:
-		retroFont_.drawString("YOU LOST", 350, 450);
-		retroFont_.drawString("SCORE: " + std::to_string(score_), 350, 500);
-		break;
-	default:
-		std::cout << "Default Case\n";
-		break;
+			// Draw Remaining Lives
+			for (int i = 0; i < playerLivesLeft_; ++i)
+			{
+				Sprite sprite{};
+				ofSetColor(ofColor::gray);
+				sprite.drawSprite(i * 60 + 140, glb::SCREEN_SIZE.y - 40);
+			}
+			break;
+		case won:
+			retroFont_.drawString("YOU WON", 350, 450);
+			retroFont_.drawString("SCORE: " + std::to_string(score_), 350, 500);
+			break;
+		case lost:
+			retroFont_.drawString("YOU LOST", 350, 450);
+			retroFont_.drawString("SCORE: " + std::to_string(score_), 350, 500);
+			break;
+		default:
+			std::cout << "Default Case\n";
+			break;
 	}
 }
 
@@ -93,22 +94,21 @@ void ofApp::draw()
 	drawScore();
 	switch (curState_)
 	{
-	case startScreen:
-		std::cout << "startScreen\n";
-		break;
-	case inPlay:
-		player_.draw();
-		enemyContainer_.draw();
-		break;
-	case won:
-		break;
-	case lost:
-		break;
-	default:
-		std::cout << "Default Case\n";
-		break;
+		case startScreen:
+			std::cout << "startScreen\n";
+			break;
+		case inPlay:
+			player_.draw();
+			enemyContainer_.draw();
+			break;
+		case won:
+			break;
+		case lost:
+			break;
+		default:
+			std::cout << "Default Case\n";
+			break;
 	}
-	
 }
 
 //--------------------------------------------------------------

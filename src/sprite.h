@@ -20,8 +20,7 @@ public:
 		Sprite({ x, y }, { 16, 8 }) {}
 	Sprite() :
 		Sprite({ 1, 49 }, { 16, 8 }) {}
-
-	void debugSpriteVecValue() const;
+	
 	static float getResize() { return glb::RESIZE_FACTOR; }
 	void clearCoords() { coordList_.clear(); }
 	void newCoords(const Point<int>& coords) { coordList_.emplace_back(coords); }
