@@ -3,12 +3,14 @@
 #include "character.h"
 #include "Bullet.h"
 
+#define GAME_LOST 3
+
 class GameEvent : public ofEventArgs {
 
 public:
-
     Bullet* bullet;
     Destructible* chara_;
+    int score_;
     string   message;
 
     GameEvent() {
@@ -17,5 +19,14 @@ public:
     }
 
     static ofEvent <GameEvent> events_;
+};
+
+class GameStateEvent : public ofEventArgs {
+    
+public:
+    string message_;
+    int state_;
+
+    static ofEvent <GameStateEvent> events_;
 };
 

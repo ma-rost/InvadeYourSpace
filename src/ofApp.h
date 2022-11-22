@@ -1,33 +1,46 @@
 #pragma once
 
 #include "ofMain.h"
-#include "enemyContainer.h"
-#include "gameTemplate.h"
+#include "enemy.h"
 #include "player.h"
+#include "GameEvent.h"
 
 
 class ofApp : public ofBaseApp{
 
 	ofTrueTypeFont retroFont_;
 
-	
-
 	public:
 		void setup();
 		void update();
+		void drawScore();
 		void draw();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
 
-		GameTemplate gameTemplate_;
+		void gameEvent(GameEvent& e);
+		void gameStateEvent(GameStateEvent& e);
+		void playerDied();
+		void newGame();
+		void endGame();
+		void gameLost();
+		void gameWon();
+		
+		Player player_{ 10, 70 };
+		EnemyContainer enemyContainer_{ player_ };
+
+		enum gameStates_ { startScreen, inPlay, won, lost };
+		int curState_ = inPlay;
+		int enemiesAlive_;
+
+		bool isPlayerLive_{ true };
+		int playerLivesLeft_{ 3 };
+		int score_{ 0 };
+		
 };
+
+
+
+

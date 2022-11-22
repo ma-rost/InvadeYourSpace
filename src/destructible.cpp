@@ -2,7 +2,7 @@
 #include "ofGraphics.h"
 
 
-Destructible::Destructible (const float& x, const float& y)
+Destructible::Destructible(const float& x, const float& y)
 {
 	setCoords(x, y, true);
 }
@@ -10,7 +10,6 @@ Destructible::Destructible (const float& x, const float& y)
 void Destructible::kill()
 {
 	isLive_ = false;
-	
 }
 
 bool Destructible::isLiving()
@@ -25,25 +24,25 @@ void Destructible::draw(const int& spriteIndex)
 	setCollision();
 }
 
-void Destructible::setCoords (const float& x, const float& y, const bool applyResize)
+void Destructible::setCoords(const float& x, const float& y, const bool applyResize)
 {
 	collider_.x = applyResize ? x * Sprite::getResize() : x;
 	collider_.y = applyResize ? y * Sprite::getResize() : y;
 }
 
-void Destructible::setCoords (const float& y, bool applyResize)
+void Destructible::setCoords(const float& y, bool applyResize)
 {
 	collider_.y = applyResize ? y * Sprite::getResize() : y;
 }
 
-float Destructible::applyResize (float value)
+float Destructible::applyResize(float value)
 {
 	return value * Sprite::getResize();
 }
 
-Point<float> Destructible::applyResize (Point<float> value)
+Point<float> Destructible::applyResize(Point<float> value)
 {
-	return { applyResize(value.x), applyResize(value.y) };
+	return {applyResize(value.x), applyResize(value.y)};
 }
 
 int Destructible::getSpriteValue()
@@ -52,22 +51,22 @@ int Destructible::getSpriteValue()
 	return ofGetFrameNum() % frameRate < frameRate / 2 ? 0 : 1;
 }
 
-Rect<float> Destructible::getCollider () const
+Rect<float> Destructible::getCollider() const
 {
 	return collider_;
 }
 
-void Destructible::setCollision ()
+void Destructible::setCollision()
 {
 	setCollision(collider_.x, collider_.y, sprite_.getSize().x, sprite_.getSize().y);
 }
 
 void Destructible::setCollision(const float& x, const float& y, const float& w, const float& h)
 {
-	setCollision({ x,y }, { w,h });
+	setCollision({x, y}, {w, h});
 }
 
-void Destructible::setCollision (Point<float> xy, Point<float> wh)
+void Destructible::setCollision(Point<float> xy, Point<float> wh)
 {
 	collider_.setXY(xy);
 	collider_.setWH(wh);

@@ -9,3 +9,4 @@
 #include "GameEvent.h"
 
 ofEvent <GameEvent> GameEvent::events_;
+ofEvent <GameStateEvent> GameStateEvent::events_;

@@ -3,65 +3,72 @@
 #include "ofGraphics.h"
 #include <vector>       // std::vector
 
-#include "enemyContainer.h"
-#include "gameTemplate.h"
+#include "gameEvent.h"
 
 
 Enemy::Enemy(const float& x, const float& y, int& rowNum, Character& player) :
-	Character (x, y, false)
+	Character(x, y, false)
 {
-	int sprite = setupRows (rowNum);
-	
-	sprite_.clearCoords();
-	getSprite (true, sprite); // Sprite 1
-	getSprite (false, sprite); // Sprite 2 
-	sprite_.newCoords ({55, 1}); // Death Sprite
+	int sprite = setupRows(rowNum);
 
-	placeValue_ = {static_cast <int> (x / 18), static_cast <int> (rowNum)};
-	selfCoord_  = applyResize ({x, y});
-	
+	sprite_.clearCoords();
+	getSprite(true, sprite); // Sprite 1
+	getSprite(false, sprite); // Sprite 2 
+	sprite_.newCoords({55, 1}); // Death Sprite
+
+	placeValue_ = {static_cast<int>(x / 18), static_cast<int>(rowNum)};
+	selfCoord_ = applyResize({x, y});
+
 	std::ostringstream oss;
 	oss << "[" << placeValue_.x << ", " << placeValue_.y << "]";
 	bullet_.memoryAddress_ = oss.str();
-	
 }
 
 int Enemy::setupRows(int& setNum)
 {
+	value_ = 30;
 	int sprite;
 	drawColor_ = ofColor::red;
-	sprite     = 0;
-	if (setNum == 1 || setNum == 2) {
-		sprite     = 1;
+	sprite = 0;
+	if (setNum == 1 || setNum == 2)
+	{
+		sprite = 1;
 		drawColor_ = ofColor::orangeRed;
 	}
-	else if (setNum == 3 || setNum == 4) {
-		sprite     = 2;
+	else if (setNum == 3 || setNum == 4)
+	{
+		sprite = 2;
 		drawColor_ = ofColor::paleVioletRed;
 	}
-	points_ -= sprite * 10;
+	value_ -= sprite * 10;
 
-	isBottomMost_ = setNum == 4 ? true : false;
-	bullet_.setIsActive (isBottomMost_);
+	if (setNum == 4)
+	{
+		isBottomMost_ = true;
+		canBeKilled_ = true;
+	}
+	else isBottomMost_ = false;
+	bullet_.setIsActive(isBottomMost_);
 
 	return sprite;
 }
 
-void Enemy::draw() { Character::draw (isLive_ ? getSpriteValue() : 2); }
-
-void Enemy::move(Point <float> refCoord)
+void Enemy::move(Point<float> refCoord)
 {
-	player_->checkCollider(bullet_);
+	if (player_->isLiving())
+	{
+		player_->checkCollider(bullet_);
+	}
+
 	collider_.x = selfCoord_.x + refCoord.x;
 	collider_.y = selfCoord_.y + refCoord.y;
-	draw();
+	Character::draw(isLive_ ? getSpriteValue() : 2);
 }
 
 void Enemy::kill()
 {
 	Character::kill();
-	container_->newBottomEnemy();
-	
+	container_->enemyKilled();
 }
 
 void Enemy::getSprite(const bool isFirst, const int& setNum)
@@ -69,14 +76,185 @@ void Enemy::getSprite(const bool isFirst, const int& setNum)
 	const int x = 1 + (setNum * 18);
 	const int y = isFirst ? 1 : 11;
 
-	sprite_.newCoords ({x, y});
+	sprite_.newCoords({x, y});
 }
 
 void Enemy::setNewBottom()
 {
 	isBottomMost_ = true;
+	canBeKilled_ = true;
 	bullet_.setIsActive(isBottomMost_);
-	std::cout << bullet_.memoryAddress_ << " is " << isBottomMost_ << "\n";
 }
 
-bool Enemy::canShoot() { return isLive_ && isBottomMost_ ? true : false; }
+bool Enemy::canShoot()
+{
+	return isLive_ && isBottomMost_ ? true : false;
+}
+
+
+// Static variables must be declared in the .cpp file
+bool EnemyContainer::isForwardMove_;
+int EnemyContainer::moveInterval_{30};
+
+EnemyContainer::EnemyContainer(Character& player)
+{
+	for (int x = 0; x < 11; ++x)
+	{
+		for (int y = 0; y < 5; ++y)
+		{
+			enemyTest_[x].emplace_back(x * 18, y * 18, y, player);
+			setWholeSize();
+		}
+	}
+	setWholeCoordinate({glb::DRAW_RESTRICTIONS.x, 100});
+}
+
+void EnemyContainer::draw()
+{
+	for (auto& enemyRow : enemyTest_)
+	{
+		for (auto& enemy : enemyRow) enemy.move(wholeCollision_.getXY());
+	}
+}
+
+void EnemyContainer::drawDebugRange() const
+{
+	ofSetColor(ofColor::lavender);
+	wholeCollision_.drawRect();
+}
+
+void EnemyContainer::moveWhole()
+{
+	if (moveInterval_ <= 1) moveInterval_ = 4;
+
+	if (ofGetFrameNum() % moveInterval_ == 0)
+	{
+		isMovingRight();
+		isForwardMove_
+			? wholeCollision_.x += MOVE_SPEED
+			: wholeCollision_.x -= MOVE_SPEED;
+	}
+}
+
+void EnemyContainer::isMovingRight()
+{
+	if (wholeCollision_.addXW() >= glb::DRAW_RESTRICTIONS.w)
+	{
+		isForwardMove_ = false;
+		wholeCollision_.y += 12;
+	}
+	if (wholeCollision_.x <= glb::DRAW_RESTRICTIONS.x) isForwardMove_ = true;
+}
+
+void EnemyContainer::setWholeSize()
+{
+	wholeCollision_.w += glb::RESIZE_FACTOR * 3.56f;
+	wholeCollision_.h += glb::RESIZE_FACTOR + 1.6f;
+}
+
+void EnemyContainer::setWholeCoordinate(const Point<float> coordinate)
+{
+	wholeCollision_.setXY(coordinate);
+}
+
+void EnemyContainer::fireEvent()
+{
+	constexpr int a1 = 10;
+	constexpr int b1 = 4;
+	int a = static_cast<int>(round(ofRandom(a1)));
+	int b = static_cast<int>(round(ofRandom(b1)));
+
+	if (a > a1) a = a1;
+	if (b > b1) b = b1;
+
+	enemyTest_[a][b].canShoot() ? enemyTest_[a][b].fire() : fireEvent();
+}
+
+// ENEMY CONTAINER ----------------------
+
+void EnemyContainer::checkForHit()
+{
+	if (wholeCollision_.addYH() > glb::GAME_LOSE_HEIGHT)
+	{
+		static GameStateEvent newStateEvent;
+		newStateEvent.state_ = GAME_LOST;
+		ofNotifyEvent(GameStateEvent::events_, newStateEvent);
+	}
+
+	for (auto& enemyRow : enemyTest_)
+	{
+		for (auto& enemy : enemyRow)
+		{
+			if (enemy.isBottomMost_)
+			{
+				// Make each enemy check player bullet
+				const bool isEnemyLive = enemy.checkCollider(Character::player_->bullet_);
+				// Make player check each enemy bullet
+				const bool isPlayerLive = Character::player_->checkCollider(enemy.bullet_);
+
+				if (!isPlayerLive) Character::player_->kill();
+				if (!isEnemyLive && enemy.canBeKilled_) enemy.kill();
+			}
+		}
+	}
+}
+
+void EnemyContainer::enemyKilled()
+{
+	moveInterval_ <= 1 ? moveInterval_ = 4 : moveInterval_ -= 3;
+	for (auto& x : enemyTest_)
+	{
+		for (int y = 0; y < x.size(); ++y)
+		{
+			if (y != 0 && !x[y].isLiving() && x[y].isBottomMost_)
+			{
+				x[y].isBottomMost_ = false;
+				x[y].canBeKilled_ = false;
+				x[y - 1].setNewBottom();
+			}
+		}
+	}
+}
+
+bool EnemyContainer::enemiesLive()
+{
+	int enemiesAlive = 0;
+	for (auto& enemyRow : enemyTest_)
+	{
+		for (auto enemy : enemyRow)
+		{
+			if (enemy.isLiving()) enemiesAlive++;
+		}
+	}
+
+	return enemiesAlive == 0 ? false : true;
+}
+
+std::array<std::vector<Enemy>, 11>& EnemyContainer::getAllEnemies()
+{
+	return enemyTest_;
+}
+
+void EnemyContainer::debugKillAllEnemies()
+{
+	for (auto& enemyRow : enemyTest_)
+	{
+		for (auto& enemy : enemyRow) enemy.kill();
+	}
+}
+
+void EnemyContainer::debugPrintStates()
+{
+	if (ofGetFrameNum() % 30 == 0)
+	{
+		for (auto& enemyRow : enemyTest_)
+		{
+			for (auto& enemy : enemyRow)
+			{
+				std::cout << enemy.isBottomMost_ << ", ";
+			}
+			std::cout << "\n";
+		}
+		std::cout << "----\n";
+	}
+}

@@ -10,10 +10,6 @@ std::string glb::getMemoryAddress(const Destructible& object)
 std::string glb::eraseFromFront(std::string& in, const int amount)
 {
 	const int toRemove = static_cast<int>(in.size()) - amount;
-	
 	in.erase(in.begin(), in.end() - toRemove);
-
 	return in;
 }
-
-

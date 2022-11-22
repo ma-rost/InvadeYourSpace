@@ -7,9 +7,6 @@ class EnemyContainer;
 
 class Bullet : public Destructible {
 
-	/*Character* player_;
-	EnemyContainer* container_;*/
-
 	const bool isPlayer_;
 	bool isFired_ {false};
 	bool isActive_ {false};
@@ -25,22 +22,42 @@ public:
 
 	void move();
 	void fire();
-	bool isHitValid();
 
+	/**
+	 * \brief move the bullet to its origin and mark isFired_ = false;
+	 */
 	void resetBullet();
+	/**
+	 * \brief set a new point for the bullet to rest (x,y)
+	 * \param bulletOrigin the coordinate of where the origin should be
+	 */
 	void setBulletOrigin(Point <float> bulletOrigin);
+	/**
+	 * \brief set if the bullet should be able to shoot
+	 * \param isBottom is the bullet on the bottom row of enemies
+	 */
 	void setIsActive(const bool& isBottom);
-	
+
+	/**
+	 * \brief checks if the bullet is within a given collider
+	 * \param col the collider of the hittable object
+	 * \param isLive if the hittable object is living
+	 * \return if the bullet is within the hittable object
+	 */
 	bool hasHitOppos(Rect<float> col, bool isLive);
 
-	void notified();
-	void applyListener(Character& parent);
+	Bullet& operator++()
+	{
+		isPlayer_ ? collider_.y -= MOVE_SPEED :
+					collider_.y += MOVE_SPEED;
+		return *this;
+	}
 
-	Bullet& operator++();
+private:
+	/**
+	 * \brief Determine if the bullet is within the glb::DRAW_RESTRICTIONS
+	 * \return If the bullet is within the glb::DRAW_RESTRICTIONS.
+	 *		If it is, return true. Otherwise return false
+	 */
+	bool isHitValid();
 };
-
-inline Bullet& Bullet::operator++()
-{
-	isPlayer_ ? collider_.y -= MOVE_SPEED : collider_.y += MOVE_SPEED;
-	return *this;
-}
