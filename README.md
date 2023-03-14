@@ -1,2 +1,2 @@
 # InvadeYourSpace
-[![Run on Repl.it](https://replit.com/badge/github/MA-ROST/InvadeYourSpace.git)](https://replit.com/new/github/MA-ROST/InvadeYourSpace.git)
+Invade Your Space must be run on [OpenFrameworks 0.11.2](https://openframeworks.cc/download/).
